@@ -21,7 +21,7 @@ const toursData = [
     status: "upcoming",
     description: "Enjoy a snowy retreat in Swat Valley with guided treks and bonfires.",
   },
-];
+] as const;
 
 export default function ToursPage() {
   const [filter, setFilter] = useState<"all" | "upcoming" | "past">("all");
