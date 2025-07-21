@@ -1,6 +1,6 @@
-import Slider from "./compunents/slider";
-import Main from "./compunents/main";
-import Footer from "./compunents/footer";
+import Slider from "./components/slider";
+import Main from "./components/main";
+import Footer from "./components/footer";
 
 
 export default function Home() {
