@@ -1,11 +1,9 @@
-import Slider from "@/app/components/slider";
-import Footer from "@/app/components/footer";
+
 
 
 export default function AboutPage() {
   return (
     <div>
-      <Slider />
 
       <section className="py-16 px-4 md:px-20 ">
         <div className="md:w-7xl w-80 mx-auto text-center md:text-left mb-16">
@@ -49,8 +47,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
-      <Footer />
     </div>
   );
 }

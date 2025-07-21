@@ -32,12 +32,16 @@ export default function Navbar() {
         if (pathname === '/about') {
           setActiveTab('about');
 
+        }if (pathname === '/Destinations') {
+          setActiveTab('destinations');
+
+        }if (pathname === '/tours') {
+          setActiveTab('tours');
+
         }else if (pathname === '/') {
         const hash = window.location.hash
-          if (hash === '#Destinations') {
-          setActiveTab('Destinations');
-        } else if (hash === '#Tours') {
-          setActiveTab('Tours');
+           if (hash === '#skardu') {
+          setActiveTab('destinations');
         } else {
           setActiveTab('home');
         }
@@ -53,13 +57,13 @@ export default function Navbar() {
   const navItems = [
     { label: 'Home', href: '/', tab: 'home' },
     { label: 'About', href: '/about', tab: 'about' },
-    { label: 'Destinations', href: '/', tab: 'Destinations' },
-    { label: 'Tours', href: '/', tab: 'Tours' },
+    { label: 'Destinations', href: '/destinations', tab: 'Destinations' },
+    { label: 'Tours', href: '/tours', tab: 'Tours' },
   ];
 
   return (
     <nav className="w-full sticky top-0 z-40">
-      <div className="w-80 md:w-7xl mx-auto flex items-center justify-between h-20 px-7 md:px-0">
+      <div className="w-80 md:w-7xl mx-auto flex items-center justify-between h-20">
         {/* Logo */}
         <div className="flex items-center gap-10">
           <Link href="/">

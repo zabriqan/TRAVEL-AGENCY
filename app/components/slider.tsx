@@ -7,8 +7,8 @@ import Navbar from './nav';
 import Image1 from '@/public/image1.jpg';
 import Image2 from '@/public/image2.jpg';
 import Image3 from '@/public/image3.jpg';
-import Image4 from '@/public/image4.jpg'; // About page
-import Image5 from '@/public/image5.jpg'; // Contact page
+import Image4 from '@/public/image4.jpg'; 
+import Image5 from '@/public/image5.jpg'; 
 
 const sliderImages = [Image1, Image2, Image3];
 
@@ -20,13 +20,15 @@ export default function Slider() {
   const isHome = pathname === '/';
   const isAbout = pathname === '/about';
   const isContact = pathname === '/contact';
+  const isDestinations = pathname === '/destinations';
+  const isTours = pathname === '/tours';
 
   useEffect(() => {
     if (!isHome) return;
 
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % sliderImages.length);
-    }, 5000);
+    }, 1000);
 
     return () => clearInterval(interval);
   }, [isHome]);
@@ -46,6 +48,20 @@ export default function Slider() {
     showButton = false;
     heightClass = 'h-[40vh]';
     backgroundImage = Image4;
+  }  else if (isDestinations) {
+    heading = 'Destinations';
+    description =
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.';
+    showButton = false;
+    heightClass = 'h-[40vh]';
+    backgroundImage = Image2;
+  }   else if (isTours) {
+    heading = 'Tours';
+    description =
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.';
+    showButton = false;
+    heightClass = 'h-[40vh]';
+    backgroundImage = Image2;
   } else if (isContact) {
     heading = 'Contact Us';
     description =
@@ -70,9 +86,8 @@ export default function Slider() {
               fill
               priority
               quality={100}
-              className={`object-cover absolute inset-0 transition-opacity duration-500 ${
-                index === current ? 'opacity-100' : 'opacity-0'
-              }`}
+              className={`object-cover absolute inset-0 transition-opacity duration-500 ${index === current ? 'opacity-100' : 'opacity-0'
+                }`}
             />
           ))
         ) : (

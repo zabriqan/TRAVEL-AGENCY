@@ -1,14 +1,9 @@
 'use client';
 
 import { Mail, MapPin, Phone } from "lucide-react";
-import Slider from "@/app/components/slider";
-import Footer from "@/app/components/footer";
-
 export default function ContactPage() {
   return (
     <div className="bg-gray-50 min-h-screen">
-      <Slider />
-
       <div className="max-w-6xl mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
         {/* Contact Form */}
         <div className="bg-white p-8 rounded-lg shadow-md">
@@ -92,8 +87,6 @@ export default function ContactPage() {
           </ul>
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 }

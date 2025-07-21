@@ -1,5 +1,7 @@
 'use client';
+import { useRouter } from 'next/navigation';
 import Image from "next/image";
+import Link from "next/link";
 import ProductCard from "./productcard";
 import Reviews from "./reviews";
 import { Phone, CalendarCheck, MapPin } from "lucide-react";
@@ -12,6 +14,7 @@ import image6 from "@/public/image6.jpg";
 import image7 from "@/public/image7.jpg";
 
 export default function Main() {
+  const router = useRouter();
   return (
     <div>
       <main className="w-80 md:w-7xl mx-auto  pt-20 space-y-20">
@@ -23,7 +26,7 @@ export default function Main() {
             <p className="text-gray-600 mb-4">
               Discover the serene beauty and vibrant life of Mykonos City. Enjoy top-tier service, beautiful scenery, and unforgettable experiences.
             </p>
-            <button className="bg-secondary text-white px-6 py-2 rounded hover:bg-secondary-dark">Book Now</button>
+            <button  onClick={() => router.push('/destination')} className="bg-secondary text-white px-6 py-2 rounded hover:bg-secondary-dark">Book Now</button>
           </div>
           <div className="flex flex-col md:flex-col-reverse">
             {/* Image (will appear first on mobile due to flex-col-reverse) */}
@@ -41,7 +44,7 @@ export default function Main() {
               <p className="text-gray-600 mb-4">
                 Discover the serene beauty and vibrant life of Mykonos City. Enjoy top-tier service, beautiful scenery, and unforgettable experiences.
               </p>
-              <button className="bg-secondary text-white px-6 py-2 mb-4 rounded hover:bg-secondary-dark">Book Now</button>
+              <button  onClick={() => router.push('/destination')} className="bg-secondary text-white px-6 py-2 mb-4 rounded hover:bg-secondary-dark">Book Now</button>
             </div>
           </div>
 
@@ -50,29 +53,29 @@ export default function Main() {
         {/* Section: Amenities */}
         <section>
           <div className="flex justify-between items-center mb-6">
-            <h2 className="md:text-2xl text-xl font-bold">Amenities & Facilities</h2>
-            <button className="text-sm border border-primary-light md:px-4 px-2 md:py-1 hover:bg-secondary">View All</button>
+            <h2 className="md:text-2xl text-xl font-bold">Destinations</h2>
+            <button  onClick={() => router.push('/destination')} className="text-sm border border-primary-light md:px-4 px-2 md:py-1 hover:bg-secondary">View All</button>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <ProductCard
               image={image1}
               title="An Infinite-edge Pool"
               description="Relax and swim in our luxurious infinity pool with breathtaking views."
-              link = '#'
+              link='/destinations/#hunza'
             />
             <ProductCard
               image={image3}
               title="An Iconic Spa"
               description="Enjoy rejuvenating spa experiences with natural therapies."
-              link = '#'
+              link='/destinations/#skardu'
             />
             <div className="hidden md:block">
-            <ProductCard
-              image={image1}
-              title="In-house Restaurants"
-              description="Taste local and international cuisine prepared by expert chefs."
-              link = '#'
-            /></div>
+              <ProductCard
+                image={image1}
+                title="In-house Restaurants"
+                description="Taste local and international cuisine prepared by expert chefs."
+                link='/destinations/#gilgit'
+              /></div>
           </div>
         </section>
 
@@ -106,22 +109,22 @@ export default function Main() {
         {/*-secbg-secondary overlay */}
         <div className="w-full flex justify-center items-center absolute inset-0 bg-secondary/20" >
 
-        {/* Content */}
-        <div className="md:w-7xl w-80 relative z-10 flex flex-col justify-center items-center h-full px-4 text-center">
-          <h2 className="text-2xl md:text-4xl font-bold mb-4">
-            Plan an Unforgettable Experience in Mykonos Today!
-          </h2>
-          <p className="mb-6 text-sm md:text-base font-light max-w-xl">
-            We can help you fit your stay and experience within your allotted budget.
-          </p>
+          {/* Content */}
+          <div className="md:w-7xl w-80 relative z-10 flex flex-col justify-center items-center h-full px-4 text-center">
+            <h2 className="text-2xl md:text-4xl font-bold mb-4">
+              Plan an Unforgettable Experience in Mykonos Today!
+            </h2>
+            <p className="mb-6 text-sm md:text-base font-light max-w-xl">
+              We can help you fit your stay and experience within your allotted budget.
+            </p>
 
-          <p className="uppercase text-xs tracking-wide mb-1 flex items-center justify-center gap-1">
-            <CalendarCheck size={16} /> Book your stay now
-          </p>
-          <p className="text-xl md:text-3xl font-bold flex justify-center items-center gap-2">
-            <Phone size={24} /> +1-123 456 7890
-          </p>
-        </div>
+            <p className="uppercase text-xs tracking-wide mb-1 flex items-center justify-center gap-1">
+              <CalendarCheck size={16} /> Book your stay now
+            </p>
+            <p className="text-xl md:text-3xl font-bold flex justify-center items-center gap-2">
+              <Phone size={24} /> +1-123 456 7890
+            </p>
+          </div>
         </div>
       </section>
     </div>

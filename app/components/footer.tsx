@@ -12,16 +12,6 @@ export default function Footer() {
           <h4 className="font-semibold text-lg mb-2">Travel</h4>
           <p className="mb-4">Where Wisdom Shines</p>
           <div className="space-y-2">
-            <div className="flex flex-wrap justify-center md:justify-start gap-3">
-              <Link href="#" className="flex items-center justify-center hover:bg-primary-dark text-white rounded-full p-2 hover:opacity-90 transition">
-                <Facebook size={20} />
-              </Link>
-
-
-              <Link href="#" className="flex items-center justify-center hover:bg-primary-dark text-white rounded-full p-2 hover:opacity-90 transition">
-                <Linkedin size={20} />
-              </Link>
-            </div>
             <p>
               Email:{" "}
               <a href="" className="hover:text-primary-bg-primary-dark">
