@@ -1,7 +1,7 @@
 'use client';
 import Image from "next/image";
 import ProductCard from "./productcard";
-import Reviews from "./reviwes";
+import Reviews from "./reviews";
 import { Phone, CalendarCheck, MapPin } from "lucide-react";
 import image from "@/public/image.jpeg";
 import image1 from "@/public/image1.jpeg";
