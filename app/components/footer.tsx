@@ -9,15 +9,15 @@ export default function Footer() {
       <div className="md:w-7xl w-80 mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
         {/* Section 1 */}
         <div>
-          <h4 className="font-semibold text-lg mb-2">Baseera&apos;s World</h4>
+          <h4 className="font-semibold text-lg mb-2">Travel</h4>
           <p className="mb-4">Where Wisdom Shines</p>
           <div className="space-y-2">
-          <div className="flex flex-wrap justify-center md:justify-start gap-3">
+            <div className="flex flex-wrap justify-center md:justify-start gap-3">
               <Link href="#" className="flex items-center justify-center hover:bg-primary-dark text-white rounded-full p-2 hover:opacity-90 transition">
                 <Facebook size={20} />
               </Link>
-            
-            
+
+
               <Link href="#" className="flex items-center justify-center hover:bg-primary-dark text-white rounded-full p-2 hover:opacity-90 transition">
                 <Linkedin size={20} />
               </Link>
@@ -29,7 +29,7 @@ export default function Footer() {
               </a>
             </p >
             <p>Phone:{""}
-            <a href="tel:"className=" hover:text-primary-bg-primary-dark"> +62 123 456 789</a>
+              <a href="tel:" className=" hover:text-primary-bg-primary-dark"> +62 123 456 789</a>
             </p>
           </div>
         </div>
@@ -40,8 +40,8 @@ export default function Footer() {
           <ul className="space-y-1">
             <li><Link href="#" className="hover:text-primary-bg-primary-dark">Home</Link></li>
             <li><Link href="/#about" className="hover:text-primary-bg-primary-dark">About Us</Link></li>
-            <li><Link href="/#program" className="hover:text-primary-bg-primary-dark">Programs</Link></li>
-            <li><Link href="/#program" className="hover:text-primary-bg-primary-dark">Programs</Link></li>
+            <li><Link href="/#program" className="hover:text-primary-bg-primary-dark">Destinations</Link></li>
+            <li><Link href="/#program" className="hover:text-primary-bg-primary-dark">Tours</Link></li>
             <li><Link href="/contact" className="hover:text-primary-bg-primary-dark">Contacts</Link></li>
           </ul>
         </div>
@@ -50,7 +50,7 @@ export default function Footer() {
         <div>
           <h4 className="font-semibold text-lg mb-2">Follow Travel </h4>
           <p className="mb-4">
-          Lorem Ipsum Education (LIE) is the learning wing of Ipsum World, dedicated to combining traditional values with modern teaching techniques to develop balanced individuals.
+            Lorem Ipsum Education (LIE) is the learning wing of Ipsum World, dedicated to combining traditional values with modern teaching techniques to develop balanced individuals.
           </p>
           <div className="flex flex-wrap justify-center md:justify-start md: gap-3">
             <Link href="https://youtube.com/@islamicbaseera?si=zvGmG2G2VX5sIJ-Z" className="flex items-center justify-center text-white hover:bg-primary-dark rounded-full p-2 hover:opacity-90 transition">
@@ -70,7 +70,7 @@ export default function Footer() {
       </div>
 
       <div className="text-center mt-8 text-sm">
-        &copy; All Rights Reserved - Baseera&apos;s World
+        &copy; All Rights Reserved - Travel
       </div>
     </footer>
   );

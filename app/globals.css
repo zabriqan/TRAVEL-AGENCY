@@ -9,3 +9,6 @@
   --color-secondary-light: #a8e6d2;
   --color-secondary-dark: #3a8f7d;
 }
+.no-scroll {
+  overflow: hidden;
+}
