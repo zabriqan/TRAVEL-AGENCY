@@ -67,21 +67,21 @@ export default function ContactPage() {
               <MapPin className="text-secondary" />
               <span>
                 <strong>Address:</strong><br />
-                123 Main Street, Karachi, Pakistan
+                G-5 kashif Arcade, pakistan town phase 2, PWD, Islamabad
               </span>
             </li>
             <li className="flex items-start gap-4">
               <Phone className="text-secondary" />
               <span>
                 <strong>Phone:</strong><br />
-                +92 300 1234567
+                03403120120
               </span>
             </li>
             <li className="flex items-start gap-4">
               <Mail className="text-secondary" />
               <span>
                 <strong>Email:</strong><br />
-                contact@yourwebsite.com
+                Info@majesticpaths.com
               </span>
             </li>
           </ul>

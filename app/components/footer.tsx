@@ -14,12 +14,12 @@ export default function Footer() {
           <div className="space-y-2">
             <p>
               Email:{" "}
-              <a href="" className="hover:text-primary-bg-primary-dark">
-                Connect@travel.com
+              <a href="mailto:Info@majesticpaths.com" className="hover:text-primary-bg-primary-dark">
+              Info@majesticpaths.com
               </a>
             </p >
             <p>Phone:{""}
-              <a href="tel:" className=" hover:text-primary-bg-primary-dark"> +62 123 456 789</a>
+              <a href="tel:03403120120" className=" hover:text-primary-bg-primary-dark">03403120120</a>
             </p>
           </div>
         </div>
