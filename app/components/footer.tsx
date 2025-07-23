@@ -43,16 +43,10 @@ export default function Footer() {
             Lorem Ipsum Education (LIE) is the learning wing of Ipsum World, dedicated to combining traditional values with modern teaching techniques to develop balanced individuals.
           </p>
           <div className="flex flex-wrap justify-center md:justify-start md: gap-3">
-            <Link href="https://youtube.com/@islamicbaseera?si=zvGmG2G2VX5sIJ-Z" className="flex items-center justify-center text-white hover:bg-secondary-dark rounded-full p-2 hover:opacity-90 transition">
-              <Youtube size={20} />
-            </Link>
-            <Link href="https://www.facebook.com/share/15qX9CipMf/?mibextid=wwXIfr" className="flex items-center justify-center text-white hover:bg-secondary-dark rounded-full p-2 hover:opacity-90 transition">
+            <Link href="#" className="flex items-center justify-center text-white hover:bg-secondary-dark rounded-full p-2 hover:opacity-90 transition">
               <Facebook size={20} />
             </Link>
-            <Link href="https://x.com/islamicbaseera?s=11" className="flex items-center justify-center text-white hover:bg-secondary-dark rounded-full p-2 hover:opacity-90 transition">
-              <Twitter size={20} />
-            </Link>
-            <Link href="https://www.instagram.com/islamicbaseera/?utm_source=ig_web_button_share_sheet" className="flex items-center justify-center text-white hover:bg-secondary-dark rounded-full p-2 hover:opacity-90 transition">
+            <Link href="#" className="flex items-center justify-center text-white hover:bg-secondary-dark rounded-full p-2 hover:opacity-90 transition">
               <Instagram size={20} />
             </Link>
           </div>
