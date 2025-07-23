@@ -11,7 +11,7 @@ export default function TourCard({ title, date, status, description }: Tour) {
   return (
     <div className="border rounded-xl shadow p-6 bg-white dark:bg-gray-900 flex flex-col justify-between">
       <div>
-        <h2 className="text-xl font-bold text-primary">{title}</h2>
+        <h2 className="text-xl font-bold text-secondary">{title}</h2>
         <p className="text-sm text-gray-500 mt-1">{date}</p>
       </div>
       <div className="my-4 text-sm text-gray-700 dark:text-gray-300">{description}</div>

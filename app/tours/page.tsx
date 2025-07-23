@@ -32,13 +32,13 @@ export default function ToursPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-26">
-      <h1 className="text-3xl font-bold text-center text-primary mb-6">Our Tour Plans</h1>
+      <h1 className="text-3xl font-bold text-center text-secondary mb-6">Our Tour Plans</h1>
 
       <div className="flex justify-center gap-4 mb-6">
         <button
           onClick={() => setFilter("all")}
           className={`px-4 py-2 rounded ${
-            filter === "all" ? "bg-primary text-white" : "bg-gray-200"
+            filter === "all" ? "bg-secondary-light text-white" : "bg-gray-200"
           }`}
         >
           All
@@ -46,7 +46,7 @@ export default function ToursPage() {
         <button
           onClick={() => setFilter("upcoming")}
           className={`px-4 py-2 rounded ${
-            filter === "upcoming" ? "bg-primary text-white" : "bg-gray-200"
+            filter === "upcoming" ? "bg-secondary-light text-white" : "bg-gray-200"
           }`}
         >
           Upcoming
@@ -54,7 +54,7 @@ export default function ToursPage() {
         <button
           onClick={() => setFilter("past")}
           className={`px-4 py-2 rounded ${
-            filter === "past" ? "bg-primary text-white" : "bg-gray-200"
+            filter === "past" ? "bg-secondary-light text-white" : "bg-gray-200"
           }`}
         >
           Past
