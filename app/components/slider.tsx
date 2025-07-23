@@ -90,7 +90,7 @@ export default function Slider() {
   }
 
   return (
-    <section className={`relative w-full ${heightClass} overflow-hidden`}>
+    <section className={`relative w-full ${heightClass}`}>
       {/* Image background */}
       <div className="absolute inset-0 z-0">
         {isHome ? (

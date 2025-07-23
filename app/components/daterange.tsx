@@ -3,7 +3,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // Main style
-import 'react-date-range/dist/theme/default.css'; // Theme style
 import { format } from 'date-fns';
 
 interface Props {
@@ -40,7 +39,7 @@ export default function DateRangePickerBox({ selectedRange, setSelectedRange }: 
   }, []);
 
   return (
-    <div className="relative w-full max-w-sm" ref={ref}>
+    <div className="relative z-50 w-full max-w-sm" ref={ref}>
       <div
         className="flex items-center justify-between cursor-pointer px-4 py-4 rounded shadow-sm text-sm bg-secondary-light"
         onClick={() => setOpen(!open)}
@@ -60,7 +59,7 @@ export default function DateRangePickerBox({ selectedRange, setSelectedRange }: 
       </div>
 
       {open && (
-        <div className="absolute z-50 shadow-lg pt-1 rounded-lg">
+        <div style={{zIndex: 9999}} className="absolute z-50 shadow-lg pt-1 rounded-lg">
           <DateRange
             editableDateInputs={true}
             onChange={handleSelect}

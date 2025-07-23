@@ -17,7 +17,7 @@ export default function Main() {
   const router = useRouter();
   return (
     <div>
-      <main className="w-80 md:w-7xl mx-auto  pt-20 space-y-20">
+      <main className="w-80 md:w-7xl mx-auto pt-20 space-y-20">
         {/* Section: Experience Mykonos */}
         <section className="grid md:grid-cols-2 gap-8 items-center">
           <div>
@@ -122,7 +122,7 @@ export default function Main() {
               <CalendarCheck size={16} /> Book your stay now
             </p>
             <p className="text-xl md:text-3xl font-bold flex justify-center items-center gap-2">
-              <Phone size={24} /> +1-123 456 7890
+              <Phone size={22} /> 03403120120
             </p>
           </div>
         </div>
