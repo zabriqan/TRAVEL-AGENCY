@@ -3,12 +3,13 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { XIcon } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Range } from "react-date-range";
 
 type Props = {
   open: boolean;
   setOpen: (open: boolean) => void;
   destinations: string[];
-  dateRange: { startDate: Date; endDate: Date };
+  dateRange: Range
 };
 
 export default function BookingDialog({ open, setOpen, destinations, dateRange }: Props) {

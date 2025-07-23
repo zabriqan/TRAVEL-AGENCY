@@ -1,10 +1,9 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import Image from "next/image";
-import Link from "next/link";
 import ProductCard from "./productcard";
 import Reviews from "./reviews";
-import { Phone, CalendarCheck, MapPin } from "lucide-react";
+import { Phone, CalendarCheck } from "lucide-react";
 import image1 from "@/public/image1.jpg";
 import image2 from "@/public/image2.jpg";
 import image3 from "@/public/image3.jpg";
@@ -71,7 +70,7 @@ export default function Main() {
             />
             <div className="hidden md:block">
               <ProductCard
-                image={image1}
+                image={image2}
                 title="In-house Restaurants"
                 description="Taste local and international cuisine prepared by expert chefs."
                 link='/destinations/#gilgit'

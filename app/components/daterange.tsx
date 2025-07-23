@@ -1,28 +1,21 @@
 'use client';
 
-import { useRef, useState, useEffect } from 'react';
-import { DateRange } from 'react-date-range';
+import { useRef, useState, useEffect, Dispatch, SetStateAction } from 'react';
+import { DateRange, Range, RangeKeyDict } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // Main style
-import { format } from 'date-fns';
+import 'react-date-range/dist/theme/default.css'; // Theme style
+import { addDays, format } from 'date-fns';
 
 interface Props {
-  selectedRange: {
-    startDate: Date;
-    endDate: Date;
-    key: string;
-  };
-  setSelectedRange: (range: {
-    startDate: Date;
-    endDate: Date;
-    key: string;
-  }) => void;
+  selectedRange: Range
+  setSelectedRange: Dispatch<SetStateAction<Range>>
 }
 
 export default function DateRangePickerBox({ selectedRange, setSelectedRange }: Props) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
-  const handleSelect = (ranges: any) => {
+  const handleSelect = (ranges: RangeKeyDict) => {
     setSelectedRange(ranges.selection);
   };
 
@@ -45,7 +38,7 @@ export default function DateRangePickerBox({ selectedRange, setSelectedRange }: 
         onClick={() => setOpen(!open)}
       >
         <span>
-          {format(selectedRange.startDate, 'dd/MM/yyyy')} → {format(selectedRange.endDate, 'dd/MM/yyyy')}
+          {format(selectedRange.startDate ?? new Date(), 'dd/MM/yyyy')} → {format(selectedRange.endDate ?? addDays(new Date(0), 7), 'dd/MM/yyyy')}
         </span>
         <svg
           className="w-4 h-4 ml-2"

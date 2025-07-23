@@ -2,7 +2,6 @@
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
-import Navbar from './nav';
 import { addDays } from 'date-fns';
 import Image1 from '@/public/image1.jpg';
 import Image2 from '@/public/image2.jpg';
@@ -13,6 +12,7 @@ import BookingDialog from './bookingdailog';
 import MultiSelect from './multiselecter';
 import DateRangePicker from './daterange';
 import { toast } from "sonner";
+import { Range } from 'react-date-range';
 
 const sliderImages = [Image1, Image2, Image3];
 
@@ -46,9 +46,9 @@ export default function Slider() {
   }, [isHome]);
 
   // 🟢 Single valid state
-  const [selectedRange, setSelectedRange] = useState({
+  const [selectedRange, setSelectedRange] = useState<Range>({
     startDate: new Date(),
-    endDate: addDays(new Date(), 7),
+    endDate: addDays(new Date(0), 7),
     key: 'selection',
   });
 

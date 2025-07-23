@@ -45,8 +45,8 @@ export default function Reviews() {
                 <Star key={i} size={16} fill="currentColor" />
               ))}
             </div>
-            <p className="text-gray-700 mb-2 text-sm italic">"{r.review}"</p>
-            <p className="font-semibold text-gray-900 text-sm">— {r.name}</p>
+            <p className="text-gray-700 mb-2 text-sm italic">{r.review}</p>
+            <p className="font-semibold text-gray-900 text-sm">{r.name}</p>
           </div>
         ))}
       </div>
@@ -63,8 +63,8 @@ export default function Reviews() {
                 <Star key={i} size={18} fill="currentColor" />
               ))}
             </div>
-            <p className="text-gray-700 mb-4 italic">"{r.review}"</p>
-            <p className="font-semibold text-gray-900">— {r.name}</p>
+            <p className="text-gray-700 mb-4 italic">{r.review}</p>
+            <p className="font-semibold text-gray-900">{r.name}</p>
           </div>
         ))}
       </div>

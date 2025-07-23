@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import TourCard from "../components/tourcard";
 
 const toursData = [
