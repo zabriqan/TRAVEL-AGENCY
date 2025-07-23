@@ -28,8 +28,8 @@ export default function Footer() {
         <div className="hidden md:block">
           <h4 className="font-semibold text-lg mb-2">Quick Links</h4>
           <ul className="space-y-1">
-            <li><Link href="#" >Home</Link></li>
-            <li><Link href="/#about" >About Us</Link></li>
+            <li><Link href="/" >Home</Link></li>
+            <li><Link href="/about" >About Us</Link></li>
             <li><Link href="/destinations" >Destinations</Link></li>
             <li><Link href="/tours" >Tours</Link></li>
             <li><Link href="/contact" >Contacts</Link></li>
