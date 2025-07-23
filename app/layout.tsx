@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "travel",
-  description: "with tust",
+  title: "Majestic Paths",
+  description: "'If you are looking for a perfect holiday experience with memories to cherish you are at the right place. Let\'s plan a reasonable stay for you.",
 };
 
 export default function RootLayout({
@@ -32,10 +32,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Toaster position="top-center" />
-        <Navbar/>
-        <Slider/>
+        <Navbar />
+        <Slider />
         {children}
-        <Footer/>
+        <Footer />
       </body>
     </html>
   );
