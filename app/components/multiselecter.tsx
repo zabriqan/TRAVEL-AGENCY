@@ -24,7 +24,7 @@ export default function MultiSelect({ options, selected, setSelected, label = 'S
       <div className="relative w-full max-w-xs">
         <Listbox value={selected} onChange={setSelected} multiple>
           <div className="relative">
-            <Listbox.Button className="relative w-full cursor-pointer rounded-lg bg-secondary p-4 text-left text-sm shadow-sm">
+            <Listbox.Button className="relative w-full cursor-pointer rounded bg-secondary p-4 text-left text-sm shadow-sm">
               <span className="block truncate">
                 {selected.length === 0 ? label : selected.join(', ')}
               </span>

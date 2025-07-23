@@ -4,8 +4,15 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
 import { useEffect, useState } from "react";
 
-export default function BookingDialog() {
-  const [open, setOpen] = useState(false);
+type Props = {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+  destinations: string[];
+  dateRange: { startDate: Date; endDate: Date };
+};
+
+export default function BookingDialog({ open, setOpen, destinations, dateRange }: Props) {
+
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -27,19 +34,66 @@ export default function BookingDialog() {
     };
   }, [open]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", form);
-    setOpen(false);
+  
+    if (!form.name || !form.email || !form.phone) {
+      alert("Please fill all required fields.");
+      return;
+    }
+  
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^[0-9]{7,15}$/;
+  
+    if (!emailRegex.test(form.email)) {
+      alert("Please enter a valid email.");
+      return;
+    }
+  
+    if (!phoneRegex.test(form.phone)) {
+      alert("Please enter a valid phone number (7–15 digits, no spaces or +).");
+      return;
+    }
+  
+    const fullPhone = `${form.countryCode}${form.phone}`;
+  
+    const payload = {
+      name: form.name,
+      email: form.email,
+      phone: fullPhone,
+      pickup: form.pickup,
+      drop: form.drop,
+      destinations,
+      dateRange,
+    };
+  console.log(payload)
+    try {
+      const res = await fetch("/api/booking", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+  
+      if (!res.ok) {
+        throw new Error("Failed to submit booking.");
+      }
+  
+      alert("Booking submitted successfully!");
+      setOpen(false);
+    } catch (err) {
+      console.error(err);
+      alert("There was an error submitting the booking.");
+    }
   };
+  
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
-      <Dialog.Trigger asChild>
+      {/* <Dialog.Trigger asChild>
         <button className="bg-secondary text-white px-6 py-2 rounded hover:bg-secondary-dark">
           Book Now
         </button>
-      </Dialog.Trigger>
+      </Dialog.Trigger> */}
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 bg-black/20 z-20 backdrop-blur-sm" />
         <Dialog.Content className="fixed z-50 left-1/2 top-1/2 w-[90%] max-w-md -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-xl shadow-xl">

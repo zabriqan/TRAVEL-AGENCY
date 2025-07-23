@@ -12,18 +12,28 @@ import Image5 from '@/public/image5.jpg';
 import BookingDialog from './bookingdailog';
 import MultiSelect from './multiselecter';
 import DateRangePicker from './daterange';
+import { toast } from "sonner";
 
 const sliderImages = [Image1, Image2, Image3];
 
 export default function Slider() {
   const [current, setCurrent] = useState(0);
   const pathname = usePathname();
+  const [openDialog, setOpenDialog] = useState(false);
 
   const isHome = pathname === '/';
   const isAbout = pathname === '/about';
   const isContact = pathname === '/contact';
   const isDestinations = pathname === '/destinations';
   const isTours = pathname === '/tours';
+
+  const handleBookNow = () => {
+    if (!selectedDestinations.length || !selectedRange.startDate || !selectedRange.endDate) {
+      toast.error("Please select destinations and date range first.");
+      return;
+    }
+    setOpenDialog(true);
+  };
 
   useEffect(() => {
     if (!isHome) return;
@@ -138,7 +148,19 @@ export default function Slider() {
                     />
                   </div>
                 </div>
-                <BookingDialog />
+                <button
+                  onClick={handleBookNow}
+                  className="bg-secondary text-white px-6 py-2 rounded hover:bg-secondary-dark"
+                >
+                  Book Now
+                </button>
+
+                <BookingDialog
+                  open={openDialog}
+                  setOpen={setOpenDialog}
+                  destinations={selectedDestinations}
+                  dateRange={selectedRange}
+                />
               </div>
             )}
           </div>
