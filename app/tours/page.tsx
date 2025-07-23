@@ -31,7 +31,7 @@ export default function ToursPage() {
   );
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="max-w-7xl mx-auto px-4 py-26">
       <h1 className="text-3xl font-bold text-center text-primary mb-6">Our Tour Plans</h1>
 
       <div className="flex justify-center gap-4 mb-6">

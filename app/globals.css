@@ -5,9 +5,9 @@
   --color-primary-light: #4cb9c0;
   --color-primary-dark: #034a50;
 
-  --color-secondary: #73c9ae;
-  --color-secondary-light: #a8e6d2;
-  --color-secondary-dark: #3a8f7d;
+  --color-secondary: #013D64  ;
+  --color-secondary-light: #04588C;
+  --color-secondary-dark: #012F4A;
 }
 .no-scroll {
   overflow: hidden;

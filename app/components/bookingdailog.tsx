@@ -1,7 +1,7 @@
 "use client";
 
 import * as Dialog from "@radix-ui/react-dialog";
-import { X } from "lucide-react";
+import { XIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
 type Props = {
@@ -99,7 +99,7 @@ export default function BookingDialog({ open, setOpen, destinations, dateRange }
         <Dialog.Content className="fixed z-50 left-1/2 top-1/2 w-[90%] max-w-md -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-xl shadow-xl">
           <div className="flex items-center justify-between mb-4">
             <Dialog.Title className="text-xl font-semibold">Booking Info</Dialog.Title>
-            <Dialog.Close><X className="w-5 h-5" /></Dialog.Close>
+            <Dialog.Close><XIcon className="w-5 h-5" /></Dialog.Close>
           </div>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>

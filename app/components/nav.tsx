@@ -1,5 +1,5 @@
 'use client';
-
+import logo from '@/public/logo.png'
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 // import logo from '@/public/logo.png';
@@ -32,7 +32,7 @@ export default function Navbar() {
         if (pathname === '/about') {
           setActiveTab('about');
 
-        }if (pathname === '/Destinations') {
+        }if (pathname.startsWith ('/destinations')) {
           setActiveTab('destinations');
 
         }if (pathname === '/tours') {
@@ -57,18 +57,17 @@ export default function Navbar() {
   const navItems = [
     { label: 'Home', href: '/', tab: 'home' },
     { label: 'About', href: '/about', tab: 'about' },
-    { label: 'Destinations', href: '/destinations', tab: 'Destinations' },
-    { label: 'Tours', href: '/tours', tab: 'Tours' },
+    { label: 'Destinations', href: '/destinations', tab: 'destinations' },
+    { label: 'Tours', href: '/tours', tab: 'tours' },
   ];
 
   return (
-    <nav className="w-full sticky top-0 z-40">
+    <nav className="w-full sticky top-0 z-40 bg-white">
       <div className="w-80 md:w-7xl mx-auto flex items-center justify-between h-20">
         {/* Logo */}
         <div className="flex items-center gap-10">
           <Link href="/">
-            {/* <Image src={logo} alt="Logo"  className="w-50 md:w-80 h-auto" /> */}
-            <h1 className="w-50 md:w-80 h-auto text-white text-2xl">Travel</h1>
+            <Image src={logo} alt="Logo"  className="w-50 md:w-80 h-auto" />
           </Link>
         </div>
 
@@ -79,9 +78,9 @@ export default function Navbar() {
               key={item.tab}
               href={item.href}
               onClick={() => setActiveTab(item.tab)}
-              className={`transition-opacity duration-300 text-[20px] font-medium hover:text-white hover:opacity-100 ${activeTab === item.tab
-                  ? 'text-white opacity-100'
-                  : 'text-white opacity-50'
+              className={`transition-opacity duration-300 text-[20px] font-medium hover:text-secondary hover:opacity-100 ${activeTab === item.tab
+                  ? 'text-secondary opacity-100'
+                  : 'text-secondary opacity-50'
                 }`}
             >
               {item.label}
@@ -94,7 +93,7 @@ export default function Navbar() {
           <Link key='contact'
             onClick={() => setActiveTab('contact')}
             href="/contact"
-            className={`  text-white bg-secondary font-bold text-[20px] hover:bg-secondary-dark p-3  rounded-lg transition`}
+            className={`  text-white bg-secondary-light font-bold text-[20px] hover:bg-secondary p-3  rounded-lg transition`}
           >
             Contact
           </Link>
@@ -106,7 +105,7 @@ export default function Navbar() {
         <div className="md:hidden">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="text-3xl text-white"
+            className="text-3xl text-secondary-light"
           >
             ☰
           </button>
@@ -119,7 +118,7 @@ export default function Navbar() {
           {/* Close Button */}
           <button
             onClick={() => setMenuOpen(false)}
-            className="absolute top-4 left-4 text-gray-700 hover:text-white opacity-70"
+            className="absolute top-4 left-4 text-secondary hover:text-secondary-dark opacity-70"
           >
             <X size={32} />
           </button>

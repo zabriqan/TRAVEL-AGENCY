@@ -42,7 +42,7 @@ export default function DateRangePickerBox({ selectedRange, setSelectedRange }: 
   return (
     <div className="relative w-full max-w-sm" ref={ref}>
       <div
-        className="flex items-center justify-between cursor-pointer px-4 py-4 rounded shadow-sm text-sm bg-secondary"
+        className="flex items-center justify-between cursor-pointer px-4 py-4 rounded shadow-sm text-sm bg-secondary-light"
         onClick={() => setOpen(!open)}
       >
         <span>

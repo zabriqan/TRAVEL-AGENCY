@@ -91,8 +91,6 @@ export default function Slider() {
 
   return (
     <section className={`relative w-full ${heightClass} overflow-hidden`}>
-      <Navbar />
-
       {/* Image background */}
       <div className="absolute inset-0 z-0">
         {isHome ? (
@@ -121,7 +119,7 @@ export default function Slider() {
       </div>
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/20 z-10" />
+      <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#013D64]/90 via-[#034a50]/50 to-transparent" />
 
       {/* Content */}
       <div className="absolute inset-0 z-20 flex items-center justify-center">
