@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="md:w-7xl w-80 mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
         {/* Section 1 */}
         <div>
-          <h4 className="font-semibold text-lg mb-2">Travel</h4>
+          <h4 className="font-semibold text-lg mb-2">Majestic Paths</h4>
           <p className="mb-4">Where Wisdom Shines</p>
           <div className="space-y-2">
             <p>
@@ -38,7 +38,7 @@ export default function Footer() {
 
         {/* Section 3 */}
         <div>
-          <h4 className="font-semibold text-lg mb-2">Follow Travel </h4>
+          <h4 className="font-semibold text-lg mb-2">Follow Majestic Paths </h4>
           <p className="mb-4">
             Lorem Ipsum Education (LIE) is the learning wing of Ipsum World, dedicated to combining traditional values with modern teaching techniques to develop balanced individuals.
           </p>
@@ -54,7 +54,7 @@ export default function Footer() {
       </div>
 
       <div className="text-center mt-8 text-sm">
-        &copy; All Rights Reserved - Travel
+        &copy; All Rights Reserved - Majestic Paths
       </div>
     </footer>
   );
