@@ -1,68 +1,56 @@
 "use client";
-import { useState } from "react";
 import TourCard from "../components/tourcard";
 
 const toursData = [
   {
     title: "Hunza Spring Tour",
-    date: "2025-04-15",
-    status: "past",
+    date: "2025-04-15 → 2025-04-22",
+    status: "upcoming",
     description: "Explore the cherry blossoms and serene mountains of Hunza in spring.",
+    days: 8,
+    fromDate: "2025-04-15",
+    toDate: "2025-04-22",
+    peopleCount: 25,
+    travelMode: "Bus + Van",
+    detail:
+      "This 8-day guided tour takes you through the beautiful valleys of Hunza during peak cherry blossom season. Enjoy sightseeing, local culture, and majestic mountain views with our experienced guides. Accommodations and meals included.",
   },
   {
     title: "Skardu Autumn Adventure",
-    date: "2025-10-10",
+    date: "2025-10-10 → 2025-10-17",
     status: "upcoming",
-    description: "Join our guided tour to witness the golden hues of autumn in Skardu.",
+    description: "Witness the golden hues of autumn in Skardu on this immersive tour.",
+    days: 8,
+    fromDate: "2025-10-10",
+    toDate: "2025-10-17",
+    peopleCount: 32,
+    travelMode: "Coaster + 4x4 Jeeps",
+    detail:
+      "Join our 8-day autumn tour to Skardu and nearby lakes. Experience the surreal fall foliage, boat rides, Deosai plains, and warm hospitality. This package includes lodging, transport, meals, and guided activities.",
   },
   {
     title: "Winter Swat Escape",
-    date: "2026-01-05",
+    date: "2026-01-05 → 2026-01-10",
     status: "upcoming",
     description: "Enjoy a snowy retreat in Swat Valley with guided treks and bonfires.",
+    days: 6,
+    fromDate: "2026-01-05",
+    toDate: "2026-01-10",
+    peopleCount: 20,
+    travelMode: "Train + Van",
+    detail:
+      "Escape the hustle and experience a cozy winter tour in Swat. Enjoy snow-covered scenery, traditional food, and campfires. This 6-day trip includes comfortable stay, heating arrangements, and group activities.",
   },
 ] as const;
 
+
 export default function ToursPage() {
-  const [filter, setFilter] = useState<"all" | "upcoming" | "past">("all");
-
-  const filteredTours = toursData.filter((tour) =>
-    filter === "all" ? true : tour.status === filter
-  );
-
   return (
     <div className="max-w-7xl mx-auto px-4 py-26">
-      <h1 className="text-3xl font-bold text-center text-secondary mb-6">Our Tour Plans</h1>
-
-      <div className="flex justify-center gap-4 mb-6">
-        <button
-          onClick={() => setFilter("all")}
-          className={`px-4 py-2 rounded ${
-            filter === "all" ? "bg-secondary-light text-white" : "bg-gray-200"
-          }`}
-        >
-          All
-        </button>
-        <button
-          onClick={() => setFilter("upcoming")}
-          className={`px-4 py-2 rounded ${
-            filter === "upcoming" ? "bg-secondary-light text-white" : "bg-gray-200"
-          }`}
-        >
-          Upcoming
-        </button>
-        <button
-          onClick={() => setFilter("past")}
-          className={`px-4 py-2 rounded ${
-            filter === "past" ? "bg-secondary-light text-white" : "bg-gray-200"
-          }`}
-        >
-          Past
-        </button>
-      </div>
+      <h1 className="text-3xl font-bold text-center text-secondary mb-6">Our Upcoming Tours</h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {filteredTours.map((tour, i) => (
+        {toursData.map((tour, i) => (
           <TourCard key={i} {...tour} />
         ))}
       </div>

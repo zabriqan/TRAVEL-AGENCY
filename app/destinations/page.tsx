@@ -1,49 +1,97 @@
 import DestinationCard from "@/app/components/destinycard";
-import img1 from "@/public/image1.jpg";
-import img2 from "@/public/image2.jpg";
-import img3 from "@/public/image3.jpg";
-import img6 from "@/public/image6.jpg";
-import img7 from "@/public/image7.jpg";
+import chitral from "@/public/chitral.jpg";
+import nationalpark from "@/public/nationalpark.jpg";
+import naran from "@/public/Naran.jpg";
+import kaghan from "@/public/kaghan.jpg";
+import kalam from "@/public/kalam.jpg";
+import murree from '@/public/Muree.jpg'
+import hunza from '@/public/hunza.jpg'
+import skardu from '@/public/skardu.jpg'
+import swat from '@/public/Sawat.jpg'
+import neelum from '@/public/neelum.jpg'
+import attabad from '@/public/attabad.jpg'
+
+
 
 const destinations = [
     {
-        id: 'chitral',
-        name: "Garam Chashma Road, Chitrāl, Pakistan",
-        description: "A breathtaking mountainous valley located in the Gilgit-Baltistan region of Pakistan, known for its stunning landscapes, historical sites, and rich culture.",
-        images: img1,
-      },
-      {
-        id: 'naran',
+        id: 'Chitral',
+        name: "Garam Chashma Road, Chitral, Pakistan",
+        description: "A scenic valley surrounded by mountains and famous for its natural hot springs, cultural heritage, and peaceful environment.",
+        images: chitral,
+    },
+    {
+        id: 'Naran',
         name: "Naran Valley, Naran, Pakistan",
-        description: "Skardu, nestled in the Gilgit-Baltistan region of Pakistan, is famous for its scenic landscapes, lakes, and as a gateway to some of the world's highest peaks.",
-        images: img3,
-      },
-      {
-        id: 'nationalpark',
-        name: "Lulusar-Dudipatsar National Park, Mansehra - Naran - Jalkhad - Chilas Rd, Pakistan",
-        description: "An upgraded Hunza package with premium accommodations and extended guided tours.",
-        images: img2,
-      },
-      {
-        id: 'kaghan',
+        description: "A popular destination in the Kaghan Valley known for its green meadows, flowing rivers, and nearby attractions like Lake Saif-ul-Malook.",
+        images: naran,
+    },
+    {
+        id: 'Nationalpark',
+        name: "Lulusar-Dudipatsar National Park, Pakistan",
+        description: "A protected area with alpine lakes, snow-capped peaks, and diverse wildlife, ideal for trekking and sightseeing.",
+        images: nationalpark,
+    },
+    {
+        id: 'Kaghan',
         name: "Kaghan Valley, Balakot, Pakistan",
-        description: "Discover the serene beauty and vibrant life of Mykonos City. Enjoy top-tier service, beautiful scenery, and unforgettable experiences.Kaghan Valley in Balakot, Pakistan is a stunning alpine valley known for its lush green landscapes, flowing rivers, and snow-capped mountains. It stretches along the Kunhar River and offers scenic views, cool weather, and popular tourist spots like Lake Saif-ul-Malook, Siri Paye, and Shogran. Ideal for nature lovers and adventure seekers, the valley attracts thousands of visitors each year for hiking, jeep safaris, and trout fishing.",
-        images: img6,
-      },
-      {
-        id: 'kalam',
+        description: "An alpine valley along the Kunhar River offering lush scenery, snow-capped mountains, and spots like Shogran and Siri Paye.",
+        images: kaghan,
+    },
+    {
+        id: 'Kalam',
         name: "Kalam, Swat, Pakistan",
-        description: "Kalam in Swat, Pakistan is a picturesque valley surrounded by majestic mountains, dense forests, and crystal-clear rivers. Located at the upper end of the Swat Valley, Kalam serves as a gateway to stunning spots like Mahodand Lake, Ushu Forest, and Matiltan. The cool climate, lush meadows, and snow-covered peaks make it a favorite destination for tourists seeking natural beauty, peace, and adventure.",
-        images: img7,
-      }
+        description: "A lush valley at the top of Swat famous for Mahodand Lake, Ushu Forest, and its cool climate surrounded by mountains.",
+        images: kalam,
+    },
+    {
+        id: 'Murree',
+        name: "Murree, Punjab, Pakistan",
+        description: "A charming hill station near Islamabad known for its pine forests, Mall Road, and cool weather.",
+        images: murree,
+    },
+    {
+        id: 'Hunza',
+        name: "Hunza Valley, Gilgit-Baltistan, Pakistan",
+        description: "A stunning mountainous valley known for Baltit and Altit Forts, Attabad Lake, and panoramic views of Rakaposhi.",
+        images: hunza,
+    },
+    {
+        id: 'Skardu',
+        name: "Skardu, Gilgit-Baltistan, Pakistan",
+        description: "A gateway to the mighty Karakorams offering pristine lakes, high peaks, and cultural history.",
+        images: skardu,
+    },
+    {
+        id: 'Swat',
+        name: "Swat Valley, Khyber Pakhtunkhwa, Pakistan",
+        description: "Often called the Switzerland of Pakistan, Swat offers natural beauty, rivers, forests, and archaeological sites.",
+        images: swat,
+    },
+    {
+        id: 'Neelum',
+        name: "Neelum Valley, Azad Kashmir, Pakistan",
+        description: "A majestic valley with blue rivers, pine forests, and peaceful villages stretching along the Neelum River.",
+        images: neelum,
+    },
+    {
+        id: 'Attabad',
+        name: "Attabad Lake, Hunza, Pakistan",
+        description: "A striking turquoise lake formed by a landslide, offering boating, jet skiing, and beautiful surroundings.",
+        images: attabad,
+    },
 ];
 
+
+
 export default function DestinationsPage() {
+
     return (
         <div className="md:w-7xl w-80 mx-auto py-20">
             {destinations.map((dest) => (
                 <div key={dest.id} className="mb-15" id={dest.id}>
                     <DestinationCard
+                    id={dest.id}
                         images={dest.images}
                         name={dest.name}
                         description={dest.description}

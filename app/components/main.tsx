@@ -4,9 +4,9 @@ import Image from "next/image";
 import ProductCard from "./productcard";
 import Reviews from "./reviews";
 import { Phone, CalendarCheck } from "lucide-react";
-import image1 from "@/public/image1.jpg";
-import image2 from "@/public/image2.jpg";
-import image3 from "@/public/image3.jpg";
+import chitral from "@/public/chitral.jpg";
+import nationalpark from "@/public/nationalpark.jpg";
+import naran from "@/public/Naran.jpg";
 import image4 from "@/public/image4.jpg";
 import image5 from "@/public/image5.jpg";
 import image6 from "@/public/image6.jpg";
@@ -19,22 +19,22 @@ export default function Main() {
       id: 'chitral',
       name: "Garam Chashma Road, Chitrāl, Pakistan",
       description: "A breathtaking mountainous valley located in the Gilgit-Baltistan region of Pakistan, known for its stunning landscapes, historical sites, and rich culture.",
-      images: image1,
-      link: '/destinationss#chitral'
+      images: chitral,
+      link: '/destinationss#Chitral'
     },
     {
       id: 'naran',
       name: "Naran Valley, Naran, Pakistan",
       description: "Skardu, nestled in the Gilgit-Baltistan region of Pakistan, is famous for its scenic landscapes, lakes, and as a gateway to some of the world's highest peaks.",
-      images: image3,
-      link: '/destinationss#naran'
+      images: naran,
+      link: '/destinationss#Naran'
     },
     {
       id: 'nationalpark',
       name: "Lulusar-Dudipatsar National Park, Mansehra - Naran - Jalkhad - Chilas Rd, Pakistan",
       description: "An upgraded Hunza package with premium accommodations and extended guided tours.",
-      images: image2,
-      link: '/destinationss#nationalpark'
+      images: nationalpark,
+      link: '/destinationss#Nationalpark'
     }
   ];
   return (
@@ -48,7 +48,7 @@ export default function Main() {
             <p className="text-gray-600 mb-4">
               Discover the serene beauty and vibrant life of Mykonos City. Enjoy top-tier service, beautiful scenery, and unforgettable experiences.
             </p>
-            <button onClick={() => router.push('/destinations#kaghan')} className="bg-secondary text-white px-6 py-2 rounded hover:bg-secondary-dark">Book Now</button>
+            <button onClick={() => router.push('/destinations#Kaghan')} className="bg-secondary text-white px-6 py-2 rounded hover:bg-secondary-dark">Book Now</button>
           </div>
           <div className="flex flex-col md:flex-col-reverse">
             {/* Image (will appear first on mobile due to flex-col-reverse) */}
@@ -66,7 +66,7 @@ export default function Main() {
               <p className="text-gray-600 mb-4">
                 Discover the serene beauty and vibrant life of Mykonos City. Enjoy top-tier service, beautiful scenery, and unforgettable experiences.
               </p>
-              <button onClick={() => router.push('/destinations')} className="bg-secondary text-white px-6 py-2 mb-4 rounded hover:bg-secondary-dark">Book Now</button>
+              <button onClick={() => router.push('/destinations#Kalam')} className="bg-secondary text-white px-6 py-2 mb-4 rounded hover:bg-secondary-dark">Book Now</button>
             </div>
           </div>
 
@@ -98,7 +98,7 @@ export default function Main() {
           <h2 className="md:text-2xl text-xl font-bold text-center mb-6">Our Inside Gallery</h2>
           <p className="text-center text-gray-600 mb-10">Take a look at some pretty pictures captured in and around our premises.</p>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-2">
-            {[image1, image5, image4,].map((img, i) => (
+            {[chitral, image5, image4,].map((img, i) => (
               <Image
                 key={i}
                 src={img}

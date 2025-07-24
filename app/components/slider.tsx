@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { addDays } from 'date-fns';
-import Image1 from '@/public/image1.jpg';
-import Image2 from '@/public/image2.jpg';
-import Image3 from '@/public/image3.jpg';
+import Image1 from '@/public/chitral.jpg';
+import Image2 from '@/public/Naran.jpg';
+import Image3 from '@/public/hunza.jpg';
 import Image4 from '@/public/image4.jpg';
 import Image5 from '@/public/image5.jpg';
 import BookingDialog from './bookingdailog';
@@ -13,6 +13,7 @@ import MultiSelect from './multiselecter';
 import DateRangePicker from './daterange';
 import { toast } from "sonner";
 import { Range } from 'react-date-range';
+import { Destinationstore } from '@/lib/store/destinationstore';
 
 const sliderImages = [Image1, Image2, Image3];
 
@@ -51,10 +52,12 @@ export default function Slider() {
     endDate: addDays(new Date(0), 7),
     key: 'selection',
   });
-
-  const destinationOptions = ['Karachi', 'Lahore', 'Hunza', 'Skardu', 'Islamabad'];
-  const [selectedDestinations, setSelectedDestinations] = useState<string[]>([]);
-
+  const globalDestinations = Destinationstore((state) => state.selectedDestinations);
+  const destinationOptions = ['Karachi', 'Lahore', 'Hunza', 'Skardu', 'Islamabad', 'Murree', 'Naran', 'Kaghan Valley',"Chitral", "Nationalpark", 'Hunza Valley', 'Skardu', 'Fairy Meadows', 'Swat Valley', 'Kalam', 'Shogran', 'Siri Paye', 'Neelum Valley', 'Ratti Gali Lake', 'Lake Saif-ul-Malook', 'Khunjerab Pass', 'Gojal Valley', 'Deosai National Park', 'Attabad Lake', 'Lahore Fort', 'Badshahi Mosque', 'Mohenjo Daro', 'Ziarat', 'Hingol National Park', 'Makli Necropolis', ' Gorakh Hill Station', 'Islamabad (Daman-e-Koh, Faisal Mosque)']
+  const [selectedDestinations, setSelectedDestinations] = useState<string[]>((globalDestinations));
+  useEffect(() => {
+    setSelectedDestinations(globalDestinations);
+  }, [globalDestinations]);
   let heading = 'Discover New Horizons';
   let description =
     'If you are looking for a perfect holiday experience with memories to cherish you are at the right place. Let\'s plan a reasonable stay for you.';

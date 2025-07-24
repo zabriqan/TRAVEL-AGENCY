@@ -1,14 +1,25 @@
 'use client';
 import Image, { StaticImageData } from "next/image";
 import React from "react";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { Destinationstore } from "@/lib/store/destinationstore";
 
 interface DestinationCardProps {
+    id: string;
     name: string;
     description: string;
     images: StaticImageData;
 }
 
-export default function DestinationCard({ name, description, images, }: DestinationCardProps) {
+export default function DestinationCard({ id, name, description, images, }: DestinationCardProps) {
+    const router = useRouter();
+    const { addDestination } = Destinationstore()
+    const handleBookClick = () => {
+        addDestination(id)
+      toast.info("Please select the destination(s) you want to visit");
+      router.push("/"); 
+    };
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Left Images Section */}
@@ -31,7 +42,7 @@ export default function DestinationCard({ name, description, images, }: Destinat
                 </div>
                 <div>
                     <div className="mt-4">
-                        <button className="bg-secondary-light text-white px-6 py-2 rounded hover:bg-secondary transition cursor-pointer">
+                        <button onClick={handleBookClick} className="bg-secondary-light text-white px-6 py-2 rounded hover:bg-secondary transition cursor-pointer">
                             Book Now
                         </button>
                     </div>

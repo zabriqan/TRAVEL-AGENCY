@@ -12,13 +12,13 @@ interface MultiSelectProps {
 }
 
 export default function MultiSelect({ options, selected, setSelected, label = 'Select Destinations' }: MultiSelectProps) {
-  const toggleOption = (option: string) => {
-    if (selected.includes(option)) {
-      setSelected(selected.filter((item) => item !== option));
-    } else {
-      setSelected([...selected, option]);
-    }
-  };
+  // const toggleOption = (option: string) => {
+  //   if (selected.includes(option)) {
+  //     setSelected(selected.filter((item) => item !== option));
+  //   } else {
+  //     setSelected([...selected, option]);
+  //   }
+  // };
 
   return (
     <div className="relative w-full max-w-xs">
@@ -41,7 +41,6 @@ export default function MultiSelect({ options, selected, setSelected, label = 'S
                     <li
                       className={`relative cursor-pointer select-none py-2 pl-10 pr-4 list-none ${active ? 'bg-secondary-light text-white' : 'text-gray-700'
                         }`}
-                      onClick={() => toggleOption(option)}
                     >
                       <span className={`block truncate ${isSelected ? 'font-medium' : 'font-normal'}`}>{option}</span>
                       {isSelected && (
