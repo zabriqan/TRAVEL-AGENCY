@@ -95,9 +95,9 @@ export default function Main() {
 
         {/* Section: Inside Pictures */}
         <section>
-          <h2 className="md:text-2xl text-xl font-bold text-center mb-6">Our Inside Pictures</h2>
+          <h2 className="md:text-2xl text-xl font-bold text-center mb-6">Our Inside Gallery</h2>
           <p className="text-center text-gray-600 mb-10">Take a look at some pretty pictures captured in and around our premises.</p>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-2">
             {[image1, image5, image4,].map((img, i) => (
               <Image
                 key={i}
