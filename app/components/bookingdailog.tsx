@@ -4,6 +4,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { XIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Range } from "react-date-range";
+import { toast } from "sonner";
 
 type Props = {
   open: boolean;
@@ -39,7 +40,7 @@ export default function BookingDialog({ open, setOpen, destinations, dateRange }
     e.preventDefault();
   
     if (!form.name || !form.email || !form.phone) {
-      alert("Please fill all required fields.");
+      toast.error("Please fill all required fields.");
       return;
     }
   
@@ -47,12 +48,12 @@ export default function BookingDialog({ open, setOpen, destinations, dateRange }
     const phoneRegex = /^[0-9]{7,15}$/;
   
     if (!emailRegex.test(form.email)) {
-      alert("Please enter a valid email.");
+      toast.error("Please enter a valid email.");
       return;
     }
   
     if (!phoneRegex.test(form.phone)) {
-      alert("Please enter a valid phone number (7–15 digits, no spaces or +).");
+      toast.error("Please enter a valid phone number (7–15 digits, no spaces or +).");
       return;
     }
   
@@ -79,11 +80,11 @@ export default function BookingDialog({ open, setOpen, destinations, dateRange }
         throw new Error("Failed to submit booking.");
       }
   
-      alert("Booking submitted successfully!");
+      toast.error("Booking submitted successfully!");
       setOpen(false);
     } catch (err) {
       console.error(err);
-      alert("There was an error submitting the booking.");
+      toast.error("There was an error submitting the booking.");
     }
   };
   

@@ -11,9 +11,32 @@ import image4 from "@/public/image4.jpg";
 import image5 from "@/public/image5.jpg";
 import image6 from "@/public/image6.jpg";
 import image7 from "@/public/image7.jpg";
-
 export default function Main() {
   const router = useRouter();
+
+  const destinationss = [
+    {
+      id: 'chitral',
+      name: "Garam Chashma Road, Chitrāl, Pakistan",
+      description: "A breathtaking mountainous valley located in the Gilgit-Baltistan region of Pakistan, known for its stunning landscapes, historical sites, and rich culture.",
+      images: image1,
+      link: '/destinationss#chitral'
+    },
+    {
+      id: 'naran',
+      name: "Naran Valley, Naran, Pakistan",
+      description: "Skardu, nestled in the Gilgit-Baltistan region of Pakistan, is famous for its scenic landscapes, lakes, and as a gateway to some of the world's highest peaks.",
+      images: image3,
+      link: '/destinationss#naran'
+    },
+    {
+      id: 'nationalpark',
+      name: "Lulusar-Dudipatsar National Park, Mansehra - Naran - Jalkhad - Chilas Rd, Pakistan",
+      description: "An upgraded Hunza package with premium accommodations and extended guided tours.",
+      images: image2,
+      link: '/destinationss#nationalpark'
+    }
+  ];
   return (
     <div>
       <main className="w-80 md:w-7xl mx-auto pt-20 space-y-20">
@@ -21,11 +44,11 @@ export default function Main() {
         <section className="grid md:grid-cols-2 gap-8 items-center">
           <div>
             <Image src={image6} alt="Scenery" className="rounded-lg shadow-md mb-4 w-full h-1/2 md:h-[650px]" />
-            <h2 className="text-3xl  font-bold mb-2">Experience the Life of Mykonos City</h2>
+            <h2 className="text-3xl  font-bold mb-2">Experience the Life of Kaghan Valley, Balakot, Pakistan</h2>
             <p className="text-gray-600 mb-4">
               Discover the serene beauty and vibrant life of Mykonos City. Enjoy top-tier service, beautiful scenery, and unforgettable experiences.
             </p>
-            <button  onClick={() => router.push('/destination')} className="bg-secondary text-white px-6 py-2 rounded hover:bg-secondary-dark">Book Now</button>
+            <button onClick={() => router.push('/destinations#kaghan')} className="bg-secondary text-white px-6 py-2 rounded hover:bg-secondary-dark">Book Now</button>
           </div>
           <div className="flex flex-col md:flex-col-reverse">
             {/* Image (will appear first on mobile due to flex-col-reverse) */}
@@ -39,11 +62,11 @@ export default function Main() {
 
             {/* Text Content */}
             <div>
-              <h2 className="text-3xl font-bold mb-4">Experience the Life of Mykonos City</h2>
+              <h2 className="text-3xl font-bold mb-4">Experience the Life of Kalam, Swat, Pakistan</h2>
               <p className="text-gray-600 mb-4">
                 Discover the serene beauty and vibrant life of Mykonos City. Enjoy top-tier service, beautiful scenery, and unforgettable experiences.
               </p>
-              <button  onClick={() => router.push('/destination')} className="bg-secondary text-white px-6 py-2 mb-4 rounded hover:bg-secondary-dark">Book Now</button>
+              <button onClick={() => router.push('/destinations')} className="bg-secondary text-white px-6 py-2 mb-4 rounded hover:bg-secondary-dark">Book Now</button>
             </div>
           </div>
 
@@ -53,28 +76,20 @@ export default function Main() {
         <section>
           <div className="flex justify-between items-center mb-6">
             <h2 className="md:text-2xl text-xl font-bold">Destinations</h2>
-            <button  onClick={() => router.push('/destination')} className="text-sm border border-primary-light md:px-4 px-2 md:py-1 hover:bg-secondary">View All</button>
+            <button onClick={() => router.push('/destinations')} className="text-sm border border-primary-light md:px-4 px-2 md:py-1 hover:bg-secondary">View All</button>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <ProductCard
-              image={image1}
-              title="An Infinite-edge Pool"
-              description="Relax and swim in our luxurious infinity pool with breathtaking views."
-              link='/destinations/#hunza'
-            />
-            <ProductCard
-              image={image3}
-              title="An Iconic Spa"
-              description="Enjoy rejuvenating spa experiences with natural therapies."
-              link='/destinations/#skardu'
-            />
-            <div className="hidden md:block">
-              <ProductCard
-                image={image2}
-                title="In-house Restaurants"
-                description="Taste local and international cuisine prepared by expert chefs."
-                link='/destinations/#gilgit'
-              /></div>
+            {destinationss.map((dest) => (
+              <div key={dest.id} id={dest.id}>
+                <ProductCard
+                  image={dest.images}
+                  title={dest.name}
+                  description={dest.description}
+                  link={dest.link}
+                />
+              </div>
+            ))}
+
           </div>
         </section>
 
