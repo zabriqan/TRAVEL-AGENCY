@@ -20,21 +20,21 @@ export default function Main() {
       name: "Garam Chashma Road, Chitrāl, Pakistan",
       description: "A breathtaking mountainous valley located in the Gilgit-Baltistan region of Pakistan, known for its stunning landscapes, historical sites, and rich culture.",
       images: chitral,
-      link: '/destinationss#Chitral'
+      link: '/destinations#Chitral'
     },
     {
       id: 'naran',
       name: "Naran Valley, Naran, Pakistan",
       description: "Skardu, nestled in the Gilgit-Baltistan region of Pakistan, is famous for its scenic landscapes, lakes, and as a gateway to some of the world's highest peaks.",
       images: naran,
-      link: '/destinationss#Naran'
+      link: '/destinations#Naran'
     },
     {
       id: 'nationalpark',
       name: "Lulusar-Dudipatsar National Park, Mansehra - Naran - Jalkhad - Chilas Rd, Pakistan",
       description: "An upgraded Hunza package with premium accommodations and extended guided tours.",
       images: nationalpark,
-      link: '/destinationss#Nationalpark'
+      link: '/destinations#Nationalpark'
     }
   ];
   return (
@@ -48,7 +48,7 @@ export default function Main() {
             <p className="text-gray-600 mb-4">
               Discover the serene beauty and vibrant life of Mykonos City. Enjoy top-tier service, beautiful scenery, and unforgettable experiences.
             </p>
-            <button onClick={() => router.push('/destinations#Kaghan')} className="bg-secondary text-white px-6 py-2 rounded hover:bg-secondary-dark">Book Now</button>
+            <button onClick={() => router.push('/destinations#Kaghan')} className="bg-secondary text-white px-6 py-2 rounded hover:bg-secondary-dark">Learn More</button>
           </div>
           <div className="flex flex-col md:flex-col-reverse">
             {/* Image (will appear first on mobile due to flex-col-reverse) */}
@@ -66,7 +66,7 @@ export default function Main() {
               <p className="text-gray-600 mb-4">
                 Discover the serene beauty and vibrant life of Mykonos City. Enjoy top-tier service, beautiful scenery, and unforgettable experiences.
               </p>
-              <button onClick={() => router.push('/destinations#Kalam')} className="bg-secondary text-white px-6 py-2 mb-4 rounded hover:bg-secondary-dark">Book Now</button>
+              <button onClick={() => router.push('/destinations#Kalam')} className="bg-secondary text-white px-6 py-2 mb-4 rounded hover:bg-secondary-dark">Learn More</button>
             </div>
           </div>
 
