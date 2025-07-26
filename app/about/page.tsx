@@ -9,7 +9,7 @@ export default function AboutPage() {
         <div className="md:w-7xl w-80 mx-auto text-center md:text-left mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">About Us</h2>
           <p className="mb-4">
-            At Majestic Paths, we believe travel is more than just movement — it's a journey that inspires, connects, and transforms. Rooted in a passion for exploration and a deep love for Pakistan’s natural and cultural beauty, we are dedicated to crafting unforgettable travel experiences for adventurers, families, and explorers alike. <br />
+            At Majestic Paths, we believe travel is more than just movement — it’s a journey that inspires, connects, and transforms. Rooted in a passion for exploration and a deep love for Pakistan’s natural and cultural beauty, we are dedicated to crafting unforgettable travel experiences for adventurers, families, and explorers alike. <br />
             From snow-capped peaks to serene valleys and rich historical landmarks, we help you discover the hidden gems and majestic wonders of the world. Our team is committed to personalized service, cultural authenticity, and seamless planning, making sure every path you take with us leads to wonder.
           </p>
         </div>

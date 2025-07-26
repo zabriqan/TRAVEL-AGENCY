@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Facebook, Youtube, Twitter, Instagram } from "lucide-react";
+import { Facebook, Instagram } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -49,7 +49,7 @@ export default function Footer() {
             <Link href="#" className="flex items-center justify-center text-white hover:bg-secondary-dark rounded-full p-2 hover:opacity-90 transition">
               <Facebook size={20} />
             </Link>
-            <Link href="#" className="flex items-center justify-center text-white hover:bg-secondary-dark rounded-full p-2 hover:opacity-90 transition">
+            <Link href="https://www.instagram.com/majesticpaths?igsh=ZzNzdWZkbXBxYXo=" className="flex items-center justify-center text-white hover:bg-secondary-dark rounded-full p-2 hover:opacity-90 transition">
               <Instagram size={20} />
             </Link>
           </div>
