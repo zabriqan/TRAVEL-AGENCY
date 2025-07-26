@@ -46,8 +46,8 @@ const toursData = [
 
 export default function ToursPage() {
   return (
-    <div className="max-w-7xl mx-auto px-4 py-26">
-      <h1 className="text-3xl font-bold text-center text-secondary mb-6">Our Upcoming Tours</h1>
+    <div className="md:w-7xl w-80 mx-auto py-26">
+      <h1 className="md:text-3xl text-2xl font-bold text-center text-secondary mb-6">Our Upcoming Tours</h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {toursData.map((tour, i) => (

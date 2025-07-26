@@ -32,13 +32,13 @@ export default function DateRangePickerBox({ selectedRange, setSelectedRange }: 
   }, []);
 
   return (
-    <div className="relative z-50 w-full max-w-sm" ref={ref}>
+    <div className="relative w-full max-w-sm" ref={ref}>
       <div
         className="flex items-center justify-between cursor-pointer px-4 py-4 rounded shadow-sm text-sm bg-secondary-light"
         onClick={() => setOpen(!open)}
       >
         <span>
-          {format(selectedRange.startDate ?? new Date(), 'dd/MM/yyyy')} → {format(selectedRange.endDate ?? addDays(new Date(0), 7), 'dd/MM/yyyy')}
+          {format(selectedRange.startDate ?? new Date(), 'dd/MM/yyyy')} → {format(selectedRange.endDate ?? addDays(new Date(), 7), 'dd/MM/yyyy')}
         </span>
         <svg
           className="w-4 h-4 ml-2"

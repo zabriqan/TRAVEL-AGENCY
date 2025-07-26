@@ -10,7 +10,7 @@ export default function Footer() {
         {/* Section 1 */}
         <div>
           <h4 className="font-semibold text-lg mb-2">Majestic Paths</h4>
-          <p className="mb-4">Where Wisdom Shines</p>
+          <p className="mb-4">Where Every Journey Tells a Story</p>
           <div className="space-y-2">
             <p>
               Email:{" "}
@@ -19,7 +19,10 @@ export default function Footer() {
               </a>
             </p >
             <p>Phone:{""}
-              <a href="tel:03403120120"> 03403120120</a>
+              <a href="tel:+923403120120"> 0092 340 3120120 </a>
+            </p>
+            <p>Phone:{''}
+              <a href="tel:+923001203041"> 0092 300 1203041 </a>
             </p>
           </div>
         </div>
@@ -40,7 +43,7 @@ export default function Footer() {
         <div>
           <h4 className="font-semibold text-lg mb-2">Follow Majestic Paths </h4>
           <p className="mb-4">
-            Lorem Ipsum Education (LIE) is the learning wing of Ipsum World, dedicated to combining traditional values with modern teaching techniques to develop balanced individuals.
+          Discover the wonders of Pakistan with Majestic Paths — your trusted travel partner. We blend cultural heritage, natural beauty, and personalized service to make your journeys truly unforgettable.
           </p>
           <div className="flex flex-wrap justify-center md:justify-start md: gap-3">
             <Link href="#" className="flex items-center justify-center text-white hover:bg-secondary-dark rounded-full p-2 hover:opacity-90 transition">

@@ -53,7 +53,7 @@ export default function Slider() {
     key: 'selection',
   });
   const globalDestinations = Destinationstore((state) => state.selectedDestinations);
-  const destinationOptions = ['Karachi', 'Lahore', 'Hunza', 'Skardu', 'Islamabad', 'Murree', 'Naran', 'Kaghan Valley',"Chitral", "Nationalpark", 'Hunza Valley', 'Skardu', 'Fairy Meadows', 'Swat Valley', 'Kalam', 'Shogran', 'Siri Paye', 'Neelum Valley', 'Ratti Gali Lake', 'Lake Saif-ul-Malook', 'Khunjerab Pass', 'Gojal Valley', 'Deosai National Park', 'Attabad Lake', 'Lahore Fort', 'Badshahi Mosque', 'Mohenjo Daro', 'Ziarat', 'Hingol National Park', 'Makli Necropolis', ' Gorakh Hill Station', 'Islamabad (Daman-e-Koh, Faisal Mosque)']
+  const destinationOptions = ['Karachi', 'Lahore', "Kashmir",'Hunza', 'Skardu', 'Islamabad', 'Murree', 'Naran', 'Kaghan Valley',"Chitral", "Nationalpark", 'Hunza Valley', 'Skardu', 'Fairy Meadows', 'Swat Valley', 'Kalam', 'Shogran', 'Siri Paye', 'Neelum Valley', 'Ratti Gali Lake', 'Lake Saif-ul-Malook', 'Khunjerab Pass', 'Gojal Valley', 'Deosai National Park', 'Attabad Lake', 'Lahore Fort', 'Badshahi Mosque', 'Mohenjo Daro', 'Ziarat', 'Hingol National Park', 'Makli Necropolis', ' Gorakh Hill Station', 'Islamabad (Daman-e-Koh, Faisal Mosque)']
   const [selectedDestinations, setSelectedDestinations] = useState<string[]>((globalDestinations));
   useEffect(() => {
     setSelectedDestinations(globalDestinations);
@@ -68,25 +68,25 @@ export default function Slider() {
   if (isAbout) {
     heading = 'About Us';
     description =
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum.';
+      'We are passionate about connecting travelers with the beauty and culture of Pakistan. From breathtaking valleys to historic landmarks, our mission is to create unforgettable travel experiences tailored to your dreams.';
     showButton = false;
     heightClass = 'h-[40vh]';
     backgroundImage = Image4;
   } else if (isDestinations) {
     heading = 'Destinations';
-    description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.';
+    description = 'Explore the most stunning destinations across Pakistan — from snow-capped mountains to serene valleys and historic landmarks. Discover the beauty, culture, and adventure that awaits you.';
     showButton = false;
     heightClass = 'h-[40vh]';
     backgroundImage = Image2;
   } else if (isTours) {
     heading = 'Tours';
-    description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.';
+    description = 'Embark on unforgettable tours designed to showcase the natural wonders, cultural treasures, and hidden gems of Pakistan. Whether you\'re seeking adventure or relaxation, we have the perfect journey for you.';
     showButton = false;
     heightClass = 'h-[40vh]';
     backgroundImage = Image2;
   } else if (isContact) {
     heading = 'Contact Us';
-    description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.';
+    description = 'Have questions or ready to plan your trip? Get in touch with us — we\'re here to help you every step of the way.';
     showButton = false;
     heightClass = 'h-[40vh]';
     backgroundImage = Image5;

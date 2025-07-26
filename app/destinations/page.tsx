@@ -10,10 +10,17 @@ import skardu from '@/public/skardu.jpg'
 import swat from '@/public/Sawat.jpg'
 import neelum from '@/public/neelum.jpg'
 import attabad from '@/public/attabad.jpg'
+import kashmir from '@/public/kashmeer.jpg'
 
 
 
 const destinations = [
+    {
+        id: 'Kashmir',
+        name: "Azad Kashmir, Pakistan",
+        description: "Kashmir is one of the most breathtaking regions in South Asia, nestled between the Himalayas and the Pir Panjal range. Famous for its lush green valleys, snow-capped peaks, serene lakes, and rich cultural heritage, it offers a paradise-like experience for nature lovers and adventurers. In Pakistan-administered Kashmir, destinations such as Muzaffarabad, Neelum Valley, Rawalakot, Banjosa Lake, and Leepa Valley are known for their unspoiled beauty, alpine forests, and tranquil rivers. The area is also culturally significant, showcasing a blend of Islamic, Hindu, and Buddhist traditions. Visitors can enjoy traditional wooden architecture, exquisite handicrafts like Pashmina shawls, and delicious Kashmiri cuisine such as Rogan Josh and Kahwa tea. With its pristine landscapes and peaceful ambiance, Kashmir remains a must-visit destination for travelers seeking natural beauty and cultural depth.",
+        images: kashmir,
+    },
     {
         id: 'Chitral',
         name: "Garam Chashma Road, Chitral, Pakistan",

@@ -46,7 +46,7 @@ export default function TourCard({
       <div className="flex justify-between items-center mt-4">
         <span
           className={`text-xs px-3 py-1 rounded-full font-semibold ${
-            status === "upcoming" ? "bg-green-100 text-green-700" : "bg-gray-200 text-gray-600"
+            status === "upcoming" ? "bg-green-100 text-green-700" : ""
           }`}
         >
           {status === "upcoming" ? "Upcoming" : "Past"}

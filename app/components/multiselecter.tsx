@@ -34,7 +34,7 @@ export default function MultiSelect({ options, selected, setSelected, label = 'S
           </ListboxButton>
 
           <Transition as={Fragment} leave="transition ease-in duration-100" leaveFrom="opacity-100" leaveTo="opacity-0">
-            <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-lg bg-white  text-sm shadow-lg">
+            <Listbox.Options className="absolute z-20 mt-1 max-h-60 w-full overflow-auto rounded-lg bg-white  text-sm shadow-lg">
               {options.map((option, idx) => (
                 <Listbox.Option key={idx} value={option} as={Fragment}>
                   {({ active, selected: isSelected }) => (

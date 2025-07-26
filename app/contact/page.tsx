@@ -109,16 +109,23 @@ export default function ContactPage() {
             </li>
             <li className="flex items-start gap-4">
               <Phone className="text-secondary" />
-              <span>
-                <strong>Phone:</strong><br />
-                03403120120
+              <span><strong>Phone:</strong><br />
+                <a href="tel:+923403120120"> 0092 340 3120120 </a>
+              </span>
+            </li>
+            <li className="flex items-start gap-4">
+              <Phone className="text-secondary" />
+              <span><strong>Phone:</strong><br />
+                <a href="tel:+923001203041"> 0092 300 1203041 </a>
               </span>
             </li>
             <li className="flex items-start gap-4">
               <Mail className="text-secondary" />
               <span>
                 <strong>Email:</strong><br />
-                Info@majesticpaths.com
+                <a href="mailto:Info@majesticpaths.com">
+                  Info@majesticpaths.com
+                </a>
               </span>
             </li>
           </ul>

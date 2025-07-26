@@ -5,6 +5,7 @@ import ProductCard from "./productcard";
 import Reviews from "./reviews";
 import { Phone, CalendarCheck } from "lucide-react";
 import chitral from "@/public/chitral.jpg";
+import kashmeer from '@/public/kashmeer.jpg'
 import nationalpark from "@/public/nationalpark.jpg";
 import naran from "@/public/Naran.jpg";
 import image4 from "@/public/image4.jpg";
@@ -16,23 +17,23 @@ export default function Main() {
 
   const destinationss = [
     {
-      id: 'chitral',
-      name: "Garam Chashma Road, Chitrāl, Pakistan",
-      description: "A breathtaking mountainous valley located in the Gilgit-Baltistan region of Pakistan, known for its stunning landscapes, historical sites, and rich culture.",
-      images: chitral,
-      link: '/destinations#Chitral'
+      id: 'Kashmir',
+      name: "Haveli Azad Kashmir, Pakistan",
+      description: "Kashmir — known as \"Heaven on Earth\" — is a stunning region with lush valleys, snowy mountains, serene lakes like Dal Lake, and deep cultural roots.",
+      images: kashmeer,
+      link: '/destinations#Kashmir'
     },
     {
       id: 'naran',
-      name: "Naran Valley, Naran, Pakistan",
+      name: "Naran Valley, Pakistan",
       description: "Skardu, nestled in the Gilgit-Baltistan region of Pakistan, is famous for its scenic landscapes, lakes, and as a gateway to some of the world's highest peaks.",
       images: naran,
       link: '/destinations#Naran'
     },
     {
       id: 'nationalpark',
-      name: "Lulusar-Dudipatsar National Park, Mansehra - Naran - Jalkhad - Chilas Rd, Pakistan",
-      description: "An upgraded Hunza package with premium accommodations and extended guided tours.",
+      name: " National Park, Chilas Rd, Pakistan",
+      description: "A high-altitude national park in northern Pakistan featuring pristine alpine lakes, snow-dusted mountains, and rare wildlife in its remote wilderness.",
       images: nationalpark,
       link: '/destinations#Nationalpark'
     }
@@ -126,7 +127,7 @@ export default function Main() {
           {/* Content */}
           <div className="md:w-7xl w-80 relative z-10 flex flex-col justify-center items-center h-full px-4 text-center">
             <h2 className="text-2xl md:text-4xl font-bold mb-4">
-              Plan an Unforgettable Experience in Mykonos Today!
+              Plan an Unforgettable Experience in Kashmir Today!
             </h2>
             <p className="mb-6 text-sm md:text-base font-light max-w-xl">
               We can help you fit your stay and experience within your allotted budget.
@@ -136,7 +137,10 @@ export default function Main() {
               <CalendarCheck size={16} /> Book your stay now
             </p>
             <p className="text-xl md:text-3xl font-bold flex justify-center items-center gap-2">
-              <Phone size={22} /> 03403120120
+              <Phone size={22} /> 0092 340 3120120
+            </p>
+            <p className="text-xl md:text-3xl font-bold flex justify-center items-center gap-2">
+              <Phone size={22} /> 0092 300 1203041
             </p>
           </div>
         </div>
