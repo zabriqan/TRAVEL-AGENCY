@@ -63,7 +63,7 @@ export default function Navbar() {
 
   return (
     <nav className="w-full sticky top-0 z-40 bg-white">
-      <div className="w-80 md:w-7xl mx-auto flex items-center justify-between h-20">
+      <div className="w-80 md:w-4xl lg:w-7xl mx-auto flex items-center justify-between h-20">
         {/* Logo */}
         <div className="flex items-center gap-10">
           <Link href="/">

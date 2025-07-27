@@ -18,7 +18,7 @@ export default function DestinationCard({ id, name, description, images, }: Dest
     const handleBookClick = () => {
         addDestination(id)
       toast.info("Please select the destination(s) you want to visit");
-      router.push("/"); 
+      router.push("/#slider"); 
     };
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -28,7 +28,7 @@ export default function DestinationCard({ id, name, description, images, }: Dest
                 <Image
                 src={images}
                 alt="Scenery"
-                className="rounded-lg shadow-md w-full h-full "
+                className="rounded-lg shadow-md w-full h-[50vh] "
               />
             </div>
 

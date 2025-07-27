@@ -40,25 +40,21 @@ export default function Main() {
   ];
   return (
     <div>
-      <main className="w-80 md:w-7xl mx-auto pt-20 space-y-20">
+      <main className="w-80 lg:w-7xl md:w-4xl mx-auto pt-20 space-y-20">
         {/* Section: Experience Mykonos */}
         <section className="grid md:grid-cols-2 gap-8 items-center">
           <div>
-            <Image src={image6} alt="Scenery" className="rounded-lg shadow-md mb-4 w-full h-1/2 md:h-[650px]" />
+            <Image src={image6} alt="Scenery" className="rounded-lg shadow-md mb-4 w-full h-64 md:h-[350px] lg:h-[500px]" />
             <h2 className="text-3xl  font-bold mb-2">Experience the Life of Kaghan Valley, Balakot, Pakistan</h2>
             <p className="text-gray-600 mb-4">
               Discover the serene beauty and vibrant life of Mykonos City. Enjoy top-tier service, beautiful scenery, and unforgettable experiences.
             </p>
             <button onClick={() => router.push('/destinations#Kaghan')} className="bg-secondary text-white px-6 py-2 rounded hover:bg-secondary-dark">Learn More</button>
           </div>
-          <div className="flex flex-col md:flex-col-reverse">
+          <div className="flex flex-col md:flex-col-reverse justify-between h-full">
             {/* Image (will appear first on mobile due to flex-col-reverse) */}
             <div>
-              <Image
-                src={image7}
-                alt="Scenery"
-                className="rounded-lg shadow-md w-full h-64 md:h-[650px] object-cover"
-              />
+              <Image src={image7}alt="Scenery" className="rounded-lg shadow-md w-full h-64 md:h-[370px] lg:h-[520px] object-cover"/>
             </div>
 
             {/* Text Content */}
@@ -125,7 +121,7 @@ export default function Main() {
         <div className="w-full flex justify-center items-center absolute inset-0 bg-secondary/20" >
 
           {/* Content */}
-          <div className="md:w-7xl w-80 relative z-10 flex flex-col justify-center items-center h-full px-4 text-center">
+          <div className="md:w-4xl lg:w-7xl w-80 relative z-10 flex flex-col justify-center items-center h-full px-4 text-center">
             <h2 className="text-2xl md:text-4xl font-bold mb-4">
               Plan an Unforgettable Experience in Kashmir Today!
             </h2>

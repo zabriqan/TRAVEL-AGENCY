@@ -17,9 +17,9 @@ import kashmir from '@/public/kashmeer.jpg'
 const destinations = [
     {
         id: 'Kashmir',
-        name: "Azad Kashmir, Pakistan",
-        description: "Kashmir is one of the most breathtaking regions in South Asia, nestled between the Himalayas and the Pir Panjal range. Famous for its lush green valleys, snow-capped peaks, serene lakes, and rich cultural heritage, it offers a paradise-like experience for nature lovers and adventurers. In Pakistan-administered Kashmir, destinations such as Muzaffarabad, Neelum Valley, Rawalakot, Banjosa Lake, and Leepa Valley are known for their unspoiled beauty, alpine forests, and tranquil rivers. The area is also culturally significant, showcasing a blend of Islamic, Hindu, and Buddhist traditions. Visitors can enjoy traditional wooden architecture, exquisite handicrafts like Pashmina shawls, and delicious Kashmiri cuisine such as Rogan Josh and Kahwa tea. With its pristine landscapes and peaceful ambiance, Kashmir remains a must-visit destination for travelers seeking natural beauty and cultural depth.",
-        images: kashmir,
+        name: "Neelum Valley, Azad Kashmir, Pakistan",
+        description: "A majestic valley with blue rivers, pine forests, and peaceful villages stretching along the Neelum River.",
+        images: neelum,
     },
     {
         id: 'Chitral',
@@ -76,12 +76,6 @@ const destinations = [
         images: swat,
     },
     {
-        id: 'Neelum',
-        name: "Neelum Valley, Azad Kashmir, Pakistan",
-        description: "A majestic valley with blue rivers, pine forests, and peaceful villages stretching along the Neelum River.",
-        images: neelum,
-    },
-    {
         id: 'Attabad',
         name: "Attabad Lake, Hunza, Pakistan",
         description: "A striking turquoise lake formed by a landslide, offering boating, jet skiing, and beautiful surroundings.",
@@ -94,7 +88,7 @@ const destinations = [
 export default function DestinationsPage() {
 
     return (
-        <div className="md:w-7xl w-80 mx-auto py-20">
+        <div className="md:w-4xl lg:w-7xl w-80 mx-auto py-20 ">
             {destinations.map((dest) => (
                 <div key={dest.id} className="mb-15" id={dest.id}>
                     <DestinationCard

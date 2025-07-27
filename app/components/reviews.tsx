@@ -52,7 +52,7 @@ export default function Reviews() {
       </div>
 
       {/* DESKTOP (all reviews) */}
-      <div className="hidden md:grid md:w-7xl mx-auto grid-cols-3 gap-6">
+      <div className="hidden md:grid md:w-4xl lg:w-7xl mx-auto grid-cols-3 gap-6">
         {reviews.map((r, idx) => (
           <div
             key={idx}

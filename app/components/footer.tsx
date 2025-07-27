@@ -6,7 +6,7 @@ import { Facebook, Instagram } from "lucide-react";
 export default function Footer() {
   return (
     <footer className="bg-secondary-light text-white py-10 px-4 md:px-10">
-      <div className="md:w-7xl w-80 mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+      <div className="md:w-4xl lg:w-7xl w-80 mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
         {/* Section 1 */}
         <div>
           <h4 className="font-semibold text-lg mb-2">Majestic Paths</h4>

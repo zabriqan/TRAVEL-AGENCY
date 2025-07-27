@@ -62,7 +62,7 @@ export default function Slider() {
   let description =
     'If you are looking for a perfect holiday experience with memories to cherish you are at the right place. Let\'s plan a reasonable stay for you.';
   let showButton = true;
-  let heightClass = 'h-screen';
+  let heightClass = 'h-[92vh]';
   let backgroundImage = sliderImages[current];
 
   if (isAbout) {
@@ -125,8 +125,8 @@ export default function Slider() {
       <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#013D64]/90 via-[#034a50]/50 to-transparent" />
 
       {/* Content */}
-      <div className="absolute inset-0 z-20 flex items-center justify-center">
-        <div className="w-80 md:w-7xl mx-auto">
+      <div id='slider' className="absolute inset-0 z-20 flex items-center justify-center">
+        <div className="w-80 md:w-4xl lg:w-7xl mx-auto">
           <div className="text-left text-white max-w-xl">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">{heading}</h2>
             <p className="mb-6 text-lg">{description}</p>
