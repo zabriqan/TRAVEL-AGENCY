@@ -3,18 +3,17 @@
 import { Mail, MapPin, Phone } from "lucide-react";
 import { FormEvent } from "react";
 import { toast } from "sonner";
+import Form from "../components/form";
+
 export default function ContactPage() {
 
-  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-
-    const fd = new FormData(e.currentTarget);
-
+  const handleContactSubmit = async (data: Record<string, string>) => {
+    
     const payload = {
-      user_name: fd.get('user_name')?.toString() ?? '',
-      email: fd.get('email')?.toString() ?? '',
-      message: fd.get('message')?.toString() ?? '',
-    }
+      user_name: data.user_name,
+      email: data.email,
+      message: data.message,
+    };
 
     try {
       const response = await fetch("/api/contact", {
@@ -41,59 +40,16 @@ export default function ContactPage() {
         {/* Contact Form */}
         <div className="bg-white p-8 rounded-lg shadow-md">
           <h2 className="text-3xl font-bold mb-6">Contact Us</h2>
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="user_name"
-                className="mt-1 w-full rounded-md border border-gray-300 shadow-sm focus:ring-secondary focus:border-secondary p-2"
-                placeholder="Your Name"
-                required
-              />
-            </div>
-
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                Email
-              </label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                className="mt-1 w-full rounded-md border border-gray-300 shadow-sm focus:ring-secondary focus:border-secondary p-2"
-                placeholder="you@example.com"
-                required
-              />
-            </div>
-
-            <div>
-              <label htmlFor="message" className="block text-sm font-medium text-gray-700">
-                Message
-              </label>
-              <textarea
-                id="message"
-                rows={4}
-                name='message'
-                minLength={20}
-                className="mt-1 w-full rounded-md border border-gray-300 shadow-sm focus:ring-secondary focus:border-secondary p-2"
-                placeholder="Write your message here..."
-                required
-              ></textarea>
-            </div>
-
-            <div className="text-left">
-              <button
-                type="submit"
-                className="bg-secondary hover:bg-secondary-dark text-white font-bold py-2 px-6 rounded-md"
-              >
-                Send Message
-              </button>
-            </div>
-          </form>
+          <Form
+            fields={[
+              { id: "user_name", label: "Name", type: "text", placeholder: "Your Name", required: true },
+              { id: "email", label: "Email", type: "email", placeholder: "you@example.com", required: true },
+              { id: "message", label: "Message", type: "textarea", placeholder: "Write your message here...", required: true },
+            ]}
+            onSubmit={handleContactSubmit}
+            submitText="Send Message"
+            className="space-y-5"
+          />
         </div>
 
         {/* Contact Info */}
