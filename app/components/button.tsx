@@ -2,9 +2,10 @@
 
 import { ButtonHTMLAttributes } from "react";
 import { twMerge } from "tailwind-merge";
+import clsx from 'clsx'
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: "primary" | "secondary" ;
+  variant?: "primary" | "secondary";
   size?: "sm" | "md" | "lg";
 };
 
@@ -16,11 +17,11 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const baseStyles =
-    "rounded-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed";
+    "rounded-lg font-medium transition cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed";
 
   const variants: Record<string, string> = {
     primary: "bg-primary text-white hover:bg-primary-dark focus:ring-primary",
-    secondary: "bg-secondary text-white hover:bg-secondary-dark focus:ring-secondary",
+    secondary: "bg-gray-100 hover:bg-gray-200 focus:ring-secondary",
   };
 
   const sizes: Record<string, string> = {
@@ -30,9 +31,11 @@ export default function Button({
   };
 
   const classes = twMerge(
-    baseStyles,
-    variants[variant],
-    sizes[size],
+    clsx(
+      baseStyles,
+      variants[variant],
+      sizes[size],
+    ),
     className
   );
 

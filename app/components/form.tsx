@@ -10,6 +10,7 @@ type FieldType = {
   label: string;
   type?: "text" | "email" | "password" | "tel" | "select" | "textarea";
   placeholder?: string;
+  rows?: number;
   options?: string[]; // for select dropdown
   required?: boolean;
 };
@@ -19,6 +20,7 @@ type FormProps = {
   onSubmit: (data: Record<string, string>) => void;
   submitText?: string;
   className?: string;
+  btnClassName?: string;
 };
 
 export default function Form({
@@ -26,6 +28,7 @@ export default function Form({
   onSubmit,
   submitText = "Submit",
   className,
+  btnClassName
 }: FormProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,7 +43,7 @@ export default function Form({
   return (
     <form
       onSubmit={handleSubmit}
-      className={twMerge("space-y-4 p-6", className)}
+      className={twMerge("space-y-3", className)}
     >
       {fields.map((field) => (
         <Fragment key={field.id}>
@@ -55,14 +58,15 @@ export default function Form({
                 name={field.id}
                 placeholder={field.placeholder}
                 required={field.required}
-                className="border rounded px-3 py-3 md:py-5 focus:outline-none focus:ring focus:ring-gra-300"
+                rows={field.rows ?? 3}
+                className="border border-gray-300 focus:border-primary transition rounded px-3 py-1.5 outline-none"
               />
             ) : field.type === "select" && field.options ? (
               <select
                 id={field.id}
                 name={field.id}
                 required={field.required}
-                className="border rounded px-3 py-2 focus:outline-none focus:ring focus:ring-gray-300"
+                className="border border-gray-300 focus:border-primary transition rounded px-3 py-1.5 outline-none"
               >
                 <option value="">Select {field.label}</option>
                 {field.options.map((opt) => (
@@ -78,7 +82,7 @@ export default function Form({
                 name={field.id}
                 placeholder={field.placeholder}
                 required={field.required}
-                className="border rounded px-3 py-2 focus:outline-none focus:ring focus:ring-gray-300"
+                className="border border-gray-300 focus:border-primary transition rounded px-3 py-1.5 outline-none"
               />
             )}
           </Field>
@@ -86,7 +90,7 @@ export default function Form({
       ))}
 
       {/* Reusable Button instead of <button> */}
-      <Button type="submit" variant="primary">
+      <Button type="submit" variant="primary" className={btnClassName}>
         {submitText}
       </Button>
     </form>

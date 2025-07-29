@@ -42,13 +42,13 @@ export default function ContactPage() {
           <h2 className="text-3xl font-bold mb-6">Contact Us</h2>
           <Form
             fields={[
-              { id: "user_name", label: "Name", type: "text", placeholder: "Your Name", required: true },
-              { id: "email", label: "Email", type: "email", placeholder: "you@example.com", required: true },
+              { id: "user_name", label: "Name", type: "text", placeholder: "e.g. John Doe", required: true },
+              { id: "email", label: "Email", type: "email", placeholder: "e.g. johndoe@example.com", required: true },
               { id: "message", label: "Message", type: "textarea", placeholder: "Write your message here...", required: true },
             ]}
             onSubmit={handleContactSubmit}
             submitText="Send Message"
-            className="space-y-5"
+            btnClassName="mt-1"
           />
         </div>
 
