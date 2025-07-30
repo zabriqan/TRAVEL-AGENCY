@@ -8,7 +8,7 @@ import Button from "./button"; // ⬅️ Import your reusable Button
 type FieldType = {
   id: string;
   label: string;
-  type?: "text" | "email" | "password" | "tel" | "select" | "textarea";
+  type?: "text" | "email" | "number" | "password" | "tel" | "select" | "textarea";
   placeholder?: string;
   rows?: number;
   options?: string[]; // for select dropdown

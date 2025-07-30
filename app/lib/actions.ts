@@ -9,6 +9,8 @@ export async function signIn(formData: FormData): Promise<{ ok: true, message: s
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
 
+    // TODO: Validate email and password using zod
+
     const { error, data } = await supabase.auth.signInWithPassword({ email, password });
     if (error) throw new Error(error.message);
     
