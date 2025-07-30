@@ -3,7 +3,7 @@ import Image, { StaticImageData } from "next/image";
 import React from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { Destinationstore } from "@/lib/store/destinationstore";
+import { Destinationstore } from "@/app/lib/store/destinationstore";
 
 interface DestinationCardProps {
     id: string;
