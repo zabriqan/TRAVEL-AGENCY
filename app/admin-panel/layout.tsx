@@ -8,9 +8,9 @@ export default async function AdminPanelLayout({ children }: { children: React.R
     if (!user) return redirect('/login');
 
     return (
-        <div>
-            <h1>Admin Panel</h1>
-            <p>Welcome, {user.email}</p>
+        <div className='container mx-auto p-4'>
+            <h1 className='text-2xl font-bold'>Admin Panel</h1>
+            <p className='mb-4'>Welcome, {user.email}</p>
             {children}
         </div>
     )
