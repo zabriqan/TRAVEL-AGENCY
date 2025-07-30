@@ -13,7 +13,7 @@ import MultiSelect from './multiselecter';
 import DateRangePicker from './daterange';
 import { toast } from "sonner";
 import { Range } from 'react-date-range';
-import { Destinationstore } from '@/lib/store/destinationstore';
+import { Destinationstore } from '@/app/lib/store/destinationstore';
 
 const sliderImages = [Image1, Image2, Image3];
 

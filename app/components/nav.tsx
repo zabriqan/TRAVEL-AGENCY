@@ -5,7 +5,7 @@ import Image from 'next/image';
 // import logo from '@/public/logo.png';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { useNavStore } from '@/lib/store/navstore';
+import { useNavStore } from '@/app/lib/store/navstore';
 import { X } from 'lucide-react';
 
 

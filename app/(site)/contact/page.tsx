@@ -3,7 +3,7 @@
 import { Mail, MapPin, Phone } from "lucide-react";
 import { FormEvent } from "react";
 import { toast } from "sonner";
-import Form from "../components/form";
+import Form from "../../components/form";
 
 export default function ContactPage() {
 

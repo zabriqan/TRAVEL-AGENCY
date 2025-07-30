@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment } from "react";
+import { FormEventHandler, Fragment } from "react";
 import { Field, Label } from "@headlessui/react";
 import { twMerge } from "tailwind-merge";
 import Button from "./button"; // ⬅️ Import your reusable Button
@@ -17,32 +17,31 @@ type FieldType = {
 
 type FormProps = {
   fields: FieldType[];
-  onSubmit: (data: Record<string, string>) => void;
-  submitText?: string;
+  onSubmit?: FormEventHandler<HTMLFormElement>;
+  action?: string | ((formData: FormData) => void | Promise<void>) | undefined;
   className?: string;
-  btnClassName?: string;
+  button: {
+    className?: string;
+    children?: React.ReactNode | string;
+    type?: "submit" | "button" | "reset";
+    variant?: "primary" | "secondary";
+    size?: "sm" | "md" | "lg";
+    disabled?: boolean;
+  }
 };
 
 export default function Form({
   fields,
   onSubmit,
-  submitText = "Submit",
+  action,
   className,
-  btnClassName
+  button
 }: FormProps) {
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const formData = new FormData(e.target as HTMLFormElement);
-    const data: Record<string, string> = {};
-    formData.forEach((value, key) => {
-      data[key] = value.toString();
-    });
-    onSubmit(data);
-  };
 
   return (
     <form
-      onSubmit={handleSubmit}
+      action={action}
+      onSubmit={onSubmit}
       className={twMerge("space-y-3", className)}
     >
       {fields.map((field) => (
@@ -90,8 +89,8 @@ export default function Form({
       ))}
 
       {/* Reusable Button instead of <button> */}
-      <Button type="submit" variant="primary" className={btnClassName}>
-        {submitText}
+      <Button disabled={button.disabled} type={button.type} variant={button.variant} size={button.size} className={button.className}>
+        {button.children || "Submit"}
       </Button>
     </form>
   );

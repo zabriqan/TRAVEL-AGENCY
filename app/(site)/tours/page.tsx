@@ -1,5 +1,5 @@
 "use client";
-import TourCard from "../components/tourcard";
+import TourCard from "../../components/tourcard";
 
 const toursData = [
   {
