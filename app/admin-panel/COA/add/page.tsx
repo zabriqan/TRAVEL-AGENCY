@@ -1,7 +1,7 @@
 "use client";
 
 import Form from '@/app/components/form';
-import { createCustomer } from '@/app/lib/actions';
+import { createCoa } from '@/app/lib/actions';
 import { redirect } from 'next/navigation';
 import { FormEvent, useState, useTransition } from 'react';
 import { toast } from 'sonner';
@@ -16,14 +16,14 @@ export default function Page() {
         const fd = new FormData(e.currentTarget);
 
         start(async () => {
-            const res = await createCustomer(fd);
+            const res = await createCoa(fd);
             if (!res.ok) {
                 toast.error(res.error || 'Error');
                 setFieldErrors(res.fieldErrors ?? { errors: [] });
                 return;
             }
-            toast.success(res.message || 'Customer added successfully');
-            redirect('/admin-panel/customers');
+            toast.success(res.message || 'chart of account added successfully');
+            redirect('/admin-panel/COA');
         });
     }
 
@@ -36,13 +36,14 @@ export default function Page() {
             )}
             <Form
                 fields={[
-                    { id: "customer_name", label: "Customer Name", type: "text", required: true, error: fieldErrors?.properties?.customer_name },
-                    { id: "contact_no", label: "Contact Number", type: "text", required: true, error: fieldErrors?.properties?.contact_no },
-                    { id: "email_address", label: "Email Address", type: "email", required: true, error: fieldErrors?.properties?.email_address },
+                    { id: "account_code", label: "Account Code", type: "text", required: true, error: fieldErrors?.properties?.account_code },
+                    { id: "account_name", label: "Account Name", type: "text", required: true, error: fieldErrors?.properties?.account_name },
+                    { id: "account_type", label: "Account Type", type: "select", options: ["debit", "credit"], required: true, error: fieldErrors?.properties?.expense_type }
+
                 ]}
                 button={{
                     type: "submit",
-                    children: "Add Customer",
+                    children: "Add COA",
                     disabled: pending,
                 }}
                 onSubmit={handleSubmit}
