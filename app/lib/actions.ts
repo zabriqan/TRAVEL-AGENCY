@@ -1,7 +1,7 @@
 'use server';
 
 import { createClient } from '@/app/lib/utils/supabase/server';
-import { ExpenseBaseSchema, ExpenseCreateSchema } from './schema';
+import { ExpenseCreateSchema } from './schema';
 import z from 'zod';
 import { redirect } from 'next/navigation';
 
