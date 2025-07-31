@@ -11,7 +11,7 @@ export default async function AdminPanelLayout({ children }: { children: React.R
         <div className='container mx-auto p-4'>
             <h1 className='text-2xl font-bold'>Admin Panel</h1>
             <p className='mb-4'>Welcome, {user.email}</p>
-            {children}
+            <div className="p-2 md:p-3 lg:p-5">{children}</div>
         </div>
     )
 }

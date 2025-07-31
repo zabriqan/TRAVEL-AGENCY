@@ -13,6 +13,7 @@ type FieldType = {
   rows?: number;
   options?: string[]; // for select dropdown
   required?: boolean;
+  error?: { errors: any };
 };
 
 type FormProps = {
@@ -69,8 +70,8 @@ export default function Form({
               >
                 <option value="">Select {field.label}</option>
                 {field.options.map((opt) => (
-                  <option key={opt} value={opt}>
-                    {opt}
+                  <option key={opt} value={opt} className="text-sm">
+                    {opt.toUpperCase()}
                   </option>
                 ))}
               </select>
@@ -84,6 +85,7 @@ export default function Form({
                 className="border border-gray-300 focus:border-primary transition rounded px-3 py-1.5 outline-none"
               />
             )}
+            {field.error && <span className='text-xs text-red-500'>{String(field.error?.errors)}</span>}
           </Field>
         </Fragment>
       ))}
