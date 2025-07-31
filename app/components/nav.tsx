@@ -20,7 +20,8 @@ export default function Navbar() {
       document.body.classList.add("overflow-hidden");
     } else {
       document.body.classList.remove("overflow-hidden");
-    }})
+    }
+  }, [menuOpen])
 
 
   // ✅ Sync activeTab with route
@@ -28,19 +29,19 @@ export default function Navbar() {
     const syncTab = () => {
       if (pathname === '/contact') {
         setActiveTab('contact');
-      } ;
-        if (pathname === '/about') {
-          setActiveTab('about');
+      };
+      if (pathname === '/about') {
+        setActiveTab('about');
 
-        }if (pathname.startsWith ('/destinations')) {
-          setActiveTab('destinations');
+      } if (pathname.startsWith('/destinations')) {
+        setActiveTab('destinations');
 
-        }if (pathname === '/tours') {
-          setActiveTab('tours');
+      } if (pathname === '/tours') {
+        setActiveTab('tours');
 
-        }else if (pathname === '/') {
+      } else if (pathname === '/') {
         const hash = window.location.hash
-           if (hash === '#skardu') {
+        if (hash === '#skardu') {
           setActiveTab('destinations');
         } else {
           setActiveTab('home');
@@ -67,7 +68,7 @@ export default function Navbar() {
         {/* Logo */}
         <div className="flex items-center gap-10">
           <Link href="/">
-            <Image src={logo} alt="Logo"  className="w-50 md:w-80 h-auto" />
+            <Image src={logo} alt="Logo" className="w-50 md:w-80 h-auto" />
           </Link>
         </div>
 
@@ -79,8 +80,8 @@ export default function Navbar() {
               href={item.href}
               onClick={() => setActiveTab(item.tab)}
               className={`transition-opacity duration-300 text-[20px] font-medium hover:text-secondary hover:opacity-100 ${activeTab === item.tab
-                  ? 'text-secondary opacity-100'
-                  : 'text-secondary opacity-50'
+                ? 'text-secondary opacity-100'
+                : 'text-secondary opacity-50'
                 }`}
             >
               {item.label}
@@ -132,8 +133,8 @@ export default function Navbar() {
                 setMenuOpen(false);
               }}
               className={`text-xl font-semibold hover:text-secondary hover:opacity-100 ${activeTab === item.tab
-                  ? 'text-secondary opacity-100'
-                  : 'text-secondary opacity-50'
+                ? 'text-secondary opacity-100'
+                : 'text-secondary opacity-50'
                 }`}
             >
               {item.label}
