@@ -39,10 +39,11 @@ export default function Page() {
                     { id: "customer_name", label: "Customer Name", type: "text", required: true, error: fieldErrors?.properties?.customer_name },
                     { id: "contact_no", label: "Contact Number", type: "text", required: true, error: fieldErrors?.properties?.contact_no },
                     { id: "email_address", label: "Email Address", type: "email", required: true, error: fieldErrors?.properties?.email_address },
+
                 ]}
                 button={{
                     type: "submit",
-                    children: "Add Customer",
+                    children: "Add COA",
                     disabled: pending,
                 }}
                 onSubmit={handleSubmit}

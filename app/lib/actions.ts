@@ -104,6 +104,49 @@ export async function createCustomer(formData: FormData): Promise<{ ok: true, me
 
   return { ok: true, message: "Customer added successfully" };
 }
+export async function updateCustomer(id: string, formData: FormData): Promise< | { ok: true; message: string } | { ok: false; error: string; fieldErrors?: FieldErrorType }> {
+  const supabase = createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (!user) return redirect("/login");
+
+  // ✅ Parse and validate the form data
+  const parsed = CustomerCreateSchema.safeParse({
+    customer_name: formData.get("customer_name"),
+    contact_no: formData.get("contact_no"),
+    email_address: formData.get("email_address"),
+  });
+
+  if (!parsed.success) {
+    console.log(z.treeifyError(parsed.error));
+    return {
+      ok: false,
+      error: "Invalid data.",
+      fieldErrors: z.treeifyError(parsed.error),
+    };
+  }
+
+  
+  const { error } = await supabase
+    .from("customer_master")
+    .update({
+      customer_name: parsed.data.customer_name,
+      contact_no: parsed.data.contact_no,
+      email_address: parsed.data.email_address,
+      created_at: new Date().toISOString(),
+    })
+    .eq("id", id);
+
+  if (error) {
+    console.error(error);
+    return {
+      ok: false,
+      error: "Server error. Try again.",
+    };
+  }
+
+  return { ok: true, message: "Customer updated successfully" };
+}
 
 export async function createCoa(formData: FormData): Promise<{ ok: true, message: string } | { ok: false, error: string, fieldErrors?: FieldErrorType }> {
   const supabase = createClient();

@@ -14,6 +14,7 @@ type FieldType = {
   options?: string[]; // for select dropdown
   required?: boolean;
   error?: { errors: any };
+  defaultValue?: string | number; 
 };
 
 type FormProps = {
@@ -59,6 +60,7 @@ export default function Form({
                 placeholder={field.placeholder}
                 required={field.required}
                 rows={field.rows ?? 3}
+                defaultValue={field.defaultValue}
                 className="border border-gray-300 focus:border-primary transition rounded px-3 py-1.5 outline-none"
               />
             ) : field.type === "select" && field.options ? (
@@ -66,6 +68,7 @@ export default function Form({
                 id={field.id}
                 name={field.id}
                 required={field.required}
+                defaultValue={field.defaultValue}
                 className="border border-gray-300 focus:border-primary transition rounded px-3 py-1.5 outline-none"
               >
                 <option value="">Select {field.label}</option>
@@ -82,6 +85,7 @@ export default function Form({
                 name={field.id}
                 placeholder={field.placeholder}
                 required={field.required}
+                defaultValue={field.defaultValue}
                 className="border border-gray-300 focus:border-primary transition rounded px-3 py-1.5 outline-none"
               />
             )}
