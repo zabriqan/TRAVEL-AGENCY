@@ -13,7 +13,7 @@ export default async function AdminPanelLayout({ children }: { children: React.R
         <div className='container mx-auto p-4'>
             <div className="flex items-center justify-between p-3">
                 <div className="flex flex-col">
-                    <h1 className='text-2xl font-bold'>Admin Panel</h1>
+                    <a href="/admin-panel"> <h1 className='text-2xl font-bold'>Admin Panel</h1></a>
                     <p className='mb-4'>Welcome, {user.email}</p>
                 </div>
                 <LogoutBtn />

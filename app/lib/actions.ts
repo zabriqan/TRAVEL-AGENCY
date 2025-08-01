@@ -67,6 +67,42 @@ export async function createExpense(formData: FormData): Promise<{ ok: true, mes
   return { ok: true, message: "Expense added successfully" }
 }
 
+export async function updateExpense( id: string, formData: FormData): Promise< | { ok: true; message: string } | { ok: false; error: string; fieldErrors?: FieldErrorType }> {
+  const supabase = createClient();
+  const {data: { user }} = await supabase.auth.getUser();
+  if (!user) return redirect("/login");
+
+  const parsed = ExpenseCreateSchema.safeParse({
+    expense_type: formData.get("expense_type"),
+    amount: formData.get("amount"),
+  });
+
+  if (!parsed.success) {
+    console.log(z.treeifyError(parsed.error));
+    return {
+      ok: false,
+      error: "Invalid data.",
+      fieldErrors: z.treeifyError(parsed.error),
+    };
+  }
+
+  // ✅ Update expense
+  const { error } = await supabase
+    .from("expenses")
+    .update({
+      expense_type: parsed.data.expense_type,
+      amount: parsed.data.amount,
+    })
+    .eq("id", id);
+
+  if (error) {
+    console.error(error);
+    return { ok: false, error: "Server error. Try again." };
+  }
+
+  return { ok: true, message: "Expense updated successfully" };
+}
+
 export async function createCustomer(formData: FormData): Promise<{ ok: true, message: string } | { ok: false, error: string, fieldErrors?: FieldErrorType }> {
   const supabase = createClient();
   const { data: { user } } = await supabase.auth.getUser();
@@ -110,7 +146,6 @@ export async function updateCustomer(id: string, formData: FormData): Promise< |
 
   if (!user) return redirect("/login");
 
-  // ✅ Parse and validate the form data
   const parsed = CustomerCreateSchema.safeParse({
     customer_name: formData.get("customer_name"),
     contact_no: formData.get("contact_no"),
@@ -125,7 +160,6 @@ export async function updateCustomer(id: string, formData: FormData): Promise< |
       fieldErrors: z.treeifyError(parsed.error),
     };
   }
-
   
   const { error } = await supabase
     .from("customer_master")
@@ -184,4 +218,42 @@ export async function createCoa(formData: FormData): Promise<{ ok: true, message
   }
 
   return { ok: true, message: "Chart of Account added successfully" };
+}
+
+export async function updateCoa( id: string, formData: FormData): Promise< | { ok: true; message: string } | { ok: false; error: string; fieldErrors?: FieldErrorType }> {
+  const supabase = createClient();
+  const { data: { user }} = await supabase.auth.getUser();
+  if (!user) return redirect("/login");
+
+  const parsed = CoaCreateSchema.safeParse({
+    account_code: formData.get("account_code"),
+    account_name: formData.get("account_name"),
+    account_type: formData.get("account_type"),
+  });
+
+  if (!parsed.success) {
+    console.log(z.treeifyError(parsed.error));
+    return {
+      ok: false,
+      error: "Invalid data.",
+      fieldErrors: z.treeifyError(parsed.error),
+    };
+  }
+
+
+  const { error } = await supabase
+    .from("chart_of_accounts")
+    .update({
+      account_code: parsed.data.account_code,
+      account_name: parsed.data.account_name,
+      account_type: parsed.data.account_type,
+    })
+    .eq("id", id);
+
+  if (error) {
+    console.error(error);
+    return { ok: false, error: "Server error. Try again." };
+  }
+
+  return { ok: true, message: "Chart of Account updated successfully" };
 }
