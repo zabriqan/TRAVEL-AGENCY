@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useTransition } from 'react';
 import Form from '@/app/components/form';
-import { useRouter } from 'next/navigation';
+import { redirect } from 'next/navigation';
 import { createClient } from '@/app/lib/utils/supabase/browser';
 import { toast } from 'sonner';
 import { updateCoa } from '@/app/lib/actions';
@@ -19,7 +19,7 @@ export default function EditCoaPage({ params }: { params: { id: string } }) {
   const [coaData, setCoaData] = useState<CoaType | null>(null);
   const [fieldErrors, setFieldErrors] = useState<FieldErrorType>({ errors: [] });
   const [pending, start] = useTransition();
-  const router = useRouter();
+
 
   useEffect(() => {
     async function fetchCoa() {
@@ -55,7 +55,7 @@ export default function EditCoaPage({ params }: { params: { id: string } }) {
       }
 
       toast.success(res.message || 'Account updated successfully');
-      router.push('/admin-panel/COA'); // ✅ redirect to COA list
+      redirect('/admin-panel/chart-of-accounts'); // ✅ redirect to COA list
     });
   }
 

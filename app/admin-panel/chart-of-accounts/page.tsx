@@ -2,7 +2,7 @@ import Button from '@/app/components/button';
 import { createClient } from '@/app/lib/utils/supabase/server';
 import Link from 'next/link';
 import React from 'react';
-import Table from './coatable';
+import Table from './table';
 
 export default async function Page() {
     const supabase = createClient();
@@ -16,7 +16,7 @@ export default async function Page() {
 
     return (
         <div>
-            <Link href='/admin-panel/COA/add' className=''>
+            <Link href='/admin-panel/chart-of-accounts/add' className=''>
                 <Button size='sm'>
                     Add Chart of Account
                 </Button>

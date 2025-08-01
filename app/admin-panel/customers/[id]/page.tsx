@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState, useTransition } from 'react';
 import Form from '@/app/components/form';
-import { useRouter } from 'next/navigation';
 import { createClient } from '@/app/lib/utils/supabase/browser';
 import { toast } from 'sonner';
 import { redirect } from 'next/navigation';
@@ -20,7 +19,6 @@ export default function EditCustomerPage({ params }: { params: { id: string } })
     const [customerData, setCustomerData] = useState<CustomerType | null>(null);
     const [fieldErrors, setFieldErrors] = useState<FieldErrorType>({ errors: [] });
     const [pending, start] = useTransition();
-    const router = useRouter();
 
     useEffect(() => {
         async function fetchCustomer() {

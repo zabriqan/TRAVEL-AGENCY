@@ -127,7 +127,6 @@ export async function createCustomer(formData: FormData): Promise<{ ok: true, me
     customer_name: parsed.data.customer_name,
     contact_no: parsed.data.contact_no,
     email_address: parsed.data.email_address,
-    created_at: new Date().toISOString(), 
   });
 
   if (error) {
@@ -167,7 +166,6 @@ export async function updateCustomer(id: string, formData: FormData): Promise< |
       customer_name: parsed.data.customer_name,
       contact_no: parsed.data.contact_no,
       email_address: parsed.data.email_address,
-      created_at: new Date().toISOString(),
     })
     .eq("id", id);
 
@@ -206,7 +204,6 @@ export async function createCoa(formData: FormData): Promise<{ ok: true, message
     account_code: parsed.data.account_code,
     account_name: parsed.data.account_name,
     account_type: parsed.data.account_type,
-    created_at: new Date().toISOString(), 
   });
 
   if (error) {

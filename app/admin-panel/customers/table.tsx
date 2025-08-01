@@ -2,7 +2,7 @@
 import React from 'react'
 import StandardTable from '@/app/components/standard-table';
 import Link from 'next/link';
-type CustomersType = {
+type Customer = {
     id: string;
     created_at: string;
     customer_name: string;
@@ -11,10 +11,10 @@ type CustomersType = {
     actions?: string;
 }
 
-export default function customerTable({ data }: { data: CustomersType[] | null }) {
+export default function customerTable({ data }: { data: Customer[] | null }) {
     return (
         <div>
-            {data ? <StandardTable<CustomersType>
+            {data ? <StandardTable<Customer>
                 data={data}
                 columns={[
                     { key: 'id', title: 'ID' },

@@ -23,7 +23,7 @@ export default function Page() {
                 return;
             }
             toast.success(res.message || 'chart of account added successfully');
-            redirect('/admin-panel/COA');
+            redirect('/admin-panel/chart-of-accounts');
         });
     }
 

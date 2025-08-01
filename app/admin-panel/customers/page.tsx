@@ -2,7 +2,7 @@ import Button from '@/app/components/button';
 import { createClient } from '@/app/lib/utils/supabase/server';
 import Link from 'next/link';
 import React from 'react';
-import Table from './customerTable';
+import Table from './table';
 
 export default async function Page() {
     const supabase = createClient();
