@@ -11,10 +11,10 @@ type FieldType = {
   type?: "text" | "email" | "number" | "password" | "tel" | "select" | "textarea";
   placeholder?: string;
   rows?: number;
-  options?: string[]; // for select dropdown
+  options?: { value: string; label?: string }[]; // for select dropdown
   required?: boolean;
   error?: { errors: any };
-  defaultValue?: string | number; 
+  defaultValue?: string | number;
 };
 
 type FormProps = {
@@ -72,9 +72,9 @@ export default function Form({
                 className="border border-gray-300 focus:border-primary transition rounded px-3 py-1.5 outline-none"
               >
                 <option value="">Select {field.label}</option>
-                {field.options.map((opt) => (
-                  <option key={opt} value={opt} className="text-sm">
-                    {opt.toUpperCase()}
+                {field.options.map(({ value, label }) => (
+                  <option key={value} value={value} className="text-sm">
+                    {label ?? value.toUpperCase()}
                   </option>
                 ))}
               </select>

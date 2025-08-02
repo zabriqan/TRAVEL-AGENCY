@@ -72,7 +72,7 @@ export default function EditCustomerPage({ params }: { params: { id: string } })
                 fields={[
                     { id: "customer_name", label: "Customer Name", type: "text", required: true, defaultValue: customerData.customer_name, error: fieldErrors?.properties?.customer_name },
                     { id: "contact_no", label: "Contact Number", type: "text", required: true, defaultValue: customerData.contact_no, error: fieldErrors?.properties?.contact_no },
-                    { id: "email_address", label: "Email Address", type: "email", required: true, defaultValue: customerData.email_address, error: fieldErrors?.properties?.email_address },
+                    { id: "email_address", label: "Email Address", type: "email", defaultValue: customerData.email_address, error: fieldErrors?.properties?.email_address },
                 ]}
                 button={{
                     type: "submit",

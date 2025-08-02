@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function StandardTable<T>({ data, columns }: {
@@ -22,8 +23,11 @@ export default function StandardTable<T>({ data, columns }: {
 
     const defaultRenderer = (row: T, column: BasicColumnType<T>) => {
         const value = row[column.key];
+        if (value === "") {
+            return <span className="text-gray-500 font-mono">EMPTY</span>
+        }
         if (value === null || value === undefined) {
-            return <span className='text-gray-500'>NULL</span>;
+            return <span className='text-gray-500 font-mono'>NULL</span>;
         }
         return String(value);
     }
@@ -73,5 +77,15 @@ export default function StandardTable<T>({ data, columns }: {
                 </div>
             )}
         </>
+    )
+}
+
+export function EditButton({ href }: { href: string }) {
+    return (
+        <Link href={href}>
+            <button className="px-2 py-1 text-sm bg-gray-100 rounded-md hover:bg-gray-200 cursor-pointer">
+                Edit
+            </button>
+        </Link>
     )
 }

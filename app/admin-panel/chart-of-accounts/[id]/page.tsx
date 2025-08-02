@@ -5,7 +5,7 @@ import Form from '@/app/components/form';
 import { redirect } from 'next/navigation';
 import { createClient } from '@/app/lib/utils/supabase/browser';
 import { toast } from 'sonner';
-import { updateCoa } from '@/app/lib/actions';
+import { updateChartOfAccount } from '@/app/lib/actions';
 
 type CoaType = {
   id: string;
@@ -47,7 +47,7 @@ export default function EditCoaPage({ params }: { params: { id: string } }) {
     const fd = new FormData(e.currentTarget);
 
     start(async () => {
-      const res = await updateCoa(params.id, fd);
+      const res = await updateChartOfAccount(params.id, fd);
       if (!res.ok) {
         toast.error(res.error || 'Error');
         setFieldErrors(res.fieldErrors ?? { errors: [] });

@@ -1,7 +1,7 @@
 'use server';
 
 import { createClient } from '@/app/lib/utils/supabase/server';
-import { CoaCreateSchema, CustomerCreateSchema, ExpenseCreateSchema } from './schema';
+import { ChartOfAccountCreateSchema, CustomerCreateSchema, ExpenseCreateSchema, QuotationCreateSchema } from './schema';
 import z from 'zod';
 import { redirect } from 'next/navigation';
 
@@ -67,9 +67,9 @@ export async function createExpense(formData: FormData): Promise<{ ok: true, mes
   return { ok: true, message: "Expense added successfully" }
 }
 
-export async function updateExpense( id: string, formData: FormData): Promise< | { ok: true; message: string } | { ok: false; error: string; fieldErrors?: FieldErrorType }> {
+export async function updateExpense(id: string, formData: FormData): Promise<{ ok: true; message: string } | { ok: false; error: string; fieldErrors?: FieldErrorType }> {
   const supabase = createClient();
-  const {data: { user }} = await supabase.auth.getUser();
+  const { data: { user } } = await supabase.auth.getUser();
   if (!user) return redirect("/login");
 
   const parsed = ExpenseCreateSchema.safeParse({
@@ -86,7 +86,6 @@ export async function updateExpense( id: string, formData: FormData): Promise< |
     };
   }
 
-  // ✅ Update expense
   const { error } = await supabase
     .from("expenses")
     .update({
@@ -102,6 +101,9 @@ export async function updateExpense( id: string, formData: FormData): Promise< |
 
   return { ok: true, message: "Expense updated successfully" };
 }
+
+
+/* Customer actions ─────────────── */
 
 export async function createCustomer(formData: FormData): Promise<{ ok: true, message: string } | { ok: false, error: string, fieldErrors?: FieldErrorType }> {
   const supabase = createClient();
@@ -139,7 +141,7 @@ export async function createCustomer(formData: FormData): Promise<{ ok: true, me
 
   return { ok: true, message: "Customer added successfully" };
 }
-export async function updateCustomer(id: string, formData: FormData): Promise< | { ok: true; message: string } | { ok: false; error: string; fieldErrors?: FieldErrorType }> {
+export async function updateCustomer(id: string, formData: FormData): Promise<{ ok: true; message: string } | { ok: false; error: string; fieldErrors?: FieldErrorType }> {
   const supabase = createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
@@ -159,7 +161,7 @@ export async function updateCustomer(id: string, formData: FormData): Promise< |
       fieldErrors: z.treeifyError(parsed.error),
     };
   }
-  
+
   const { error } = await supabase
     .from("customer_master")
     .update({
@@ -180,12 +182,15 @@ export async function updateCustomer(id: string, formData: FormData): Promise< |
   return { ok: true, message: "Customer updated successfully" };
 }
 
-export async function createCoa(formData: FormData): Promise<{ ok: true, message: string } | { ok: false, error: string, fieldErrors?: FieldErrorType }> {
+
+/* Chart of account actions ─────── */
+
+export async function createChartOfAccount(formData: FormData): Promise<{ ok: true, message: string } | { ok: false, error: string, fieldErrors?: FieldErrorType }> {
   const supabase = createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return redirect('/login');
 
-  const parsed = CoaCreateSchema.safeParse({
+  const parsed = ChartOfAccountCreateSchema.safeParse({
     account_code: formData.get('account_code'),
     account_name: formData.get('account_name'),
     account_type: formData.get('account_type'),
@@ -217,12 +222,12 @@ export async function createCoa(formData: FormData): Promise<{ ok: true, message
   return { ok: true, message: "Chart of Account added successfully" };
 }
 
-export async function updateCoa( id: string, formData: FormData): Promise< | { ok: true; message: string } | { ok: false; error: string; fieldErrors?: FieldErrorType }> {
+export async function updateChartOfAccount(id: string, formData: FormData): Promise<{ ok: true; message: string } | { ok: false; error: string; fieldErrors?: FieldErrorType }> {
   const supabase = createClient();
-  const { data: { user }} = await supabase.auth.getUser();
+  const { data: { user } } = await supabase.auth.getUser();
   if (!user) return redirect("/login");
 
-  const parsed = CoaCreateSchema.safeParse({
+  const parsed = ChartOfAccountCreateSchema.safeParse({
     account_code: formData.get("account_code"),
     account_name: formData.get("account_name"),
     account_type: formData.get("account_type"),
@@ -236,7 +241,6 @@ export async function updateCoa( id: string, formData: FormData): Promise< | { o
       fieldErrors: z.treeifyError(parsed.error),
     };
   }
-
 
   const { error } = await supabase
     .from("chart_of_accounts")
@@ -253,4 +257,36 @@ export async function updateCoa( id: string, formData: FormData): Promise< | { o
   }
 
   return { ok: true, message: "Chart of Account updated successfully" };
+}
+
+
+/* Quotation actions ────────────── */
+
+export async function createQuotation(formData: FormData): Promise<{ ok: true, message: string } | { ok: false, error: string, fieldErrors?: FieldErrorType }> {
+  const supabase = createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return redirect("/login");
+
+  const parsed = QuotationCreateSchema.safeParse({
+    booking_no: formData.get('booking_no'),
+    amount: formData.get('amount')
+  })
+
+  if (!parsed.success) {
+    console.log(z.treeifyError(parsed.error));
+    return {
+      ok: false,
+      error: "Invalid data.",
+      fieldErrors: z.treeifyError(parsed.error),
+    };
+  }
+
+  const { error } = await supabase.from('quotations').insert({ booking_no: parsed.data.booking_no })
+
+  if (error) {
+    console.error(error);
+    return { ok: false, error: "Server error. Try again." };
+  }
+
+  return { ok: true, message: "Quotation created successfully" }
 }

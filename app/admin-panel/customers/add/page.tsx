@@ -38,7 +38,7 @@ export default function Page() {
                 fields={[
                     { id: "customer_name", label: "Customer Name", type: "text", required: true, error: fieldErrors?.properties?.customer_name },
                     { id: "contact_no", label: "Contact Number", type: "text", required: true, error: fieldErrors?.properties?.contact_no },
-                    { id: "email_address", label: "Email Address", type: "email", required: true, error: fieldErrors?.properties?.email_address },
+                    { id: "email_address", label: "Email Address", type: "email", error: fieldErrors?.properties?.email_address },
 
                 ]}
                 button={{

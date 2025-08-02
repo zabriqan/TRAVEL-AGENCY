@@ -6,14 +6,7 @@ import { useRouter } from "next/navigation";
 import { createClient } from "@/app/lib/utils/supabase/browser";
 import { toast } from "sonner";
 import { updateExpense } from "@/app/lib/actions";
-
-type ExpenseType = {
-  id: string;
-  amount: number;
-  expense_type: string;
-  created_at: string;
-  coa_id?: string;
-};
+import { ExpenseType } from "@/app/lib/types";
 
 export default function EditExpensePage({ params }: { params: { id: string } }) {
   const [expenseData, setExpenseData] = useState<ExpenseType | null>(null);
@@ -26,7 +19,7 @@ export default function EditExpensePage({ params }: { params: { id: string } }) 
       const supabase = createClient();
       const { data, error } = await supabase
         .from("expenses")
-        .select("id, amount, expense_type , coa_id")
+        .select("id,amount,expense_type,chart_of_account_id")
         .eq("id", params.id)
         .single();
 
@@ -76,7 +69,7 @@ export default function EditExpensePage({ params }: { params: { id: string } }) 
             id: "expense_type",
             label: "Expense Type",
             type: "select",
-            options: ["internal", "external"],
+            options: [{ value: "internal" }, { value: "external" }],
             required: true,
             defaultValue: expenseData.expense_type,
             error: fieldErrors?.properties?.expense_type,

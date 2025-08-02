@@ -1,7 +1,7 @@
 "use client";
 
 import Form from '@/app/components/form';
-import { createCoa } from '@/app/lib/actions';
+import { createChartOfAccount } from '@/app/lib/actions';
 import { redirect } from 'next/navigation';
 import { FormEvent, useState, useTransition } from 'react';
 import { toast } from 'sonner';
@@ -16,7 +16,7 @@ export default function Page() {
         const fd = new FormData(e.currentTarget);
 
         start(async () => {
-            const res = await createCoa(fd);
+            const res = await createChartOfAccount(fd);
             if (!res.ok) {
                 toast.error(res.error || 'Error');
                 setFieldErrors(res.fieldErrors ?? { errors: [] });

@@ -6,7 +6,7 @@ import Table from './table';
 
 export default async function Page() {
     const supabase = createClient();
-    const { data } = await supabase.from('expenses').select('id,amount,expense_type,created_at,coa_id').order('created_at', { ascending: false });
+    const { data } = await supabase.from('expenses').select('id,amount,expense_type,created_at,chart_of_account_id').order('created_at', { ascending: false });
 
     return (
         <div>
