@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { addDays } from 'date-fns';
 import Image1 from '@/public/chitral.jpg';
-import Image2 from '@/public/Naran.jpg';
+import Image2 from '@/public/naran.jpg';
 import Image3 from '@/public/hunza.jpg';
 import Image4 from '@/public/image4.jpg';
 import Image5 from '@/public/image5.jpg';

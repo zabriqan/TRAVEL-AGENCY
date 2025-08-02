@@ -6,7 +6,7 @@ import ProductCard from "./productcard";
 import Reviews from "./reviews";
 import { Phone, CalendarCheck } from "lucide-react";
 import chitral from "@/public/chitral.jpg";
-import kashmeer from '@/public/kashmir.jpg'
+import kashmir from '@/public/kashmir.jpg'
 import nationalpark from "@/public/nationalpark.jpg";
 import naran from "@/public/naran.jpg";
 import image4 from "@/public/image4.jpg";
@@ -22,7 +22,7 @@ export default function Main() {
       id: 'Kashmir',
       name: "Haveli Azad Kashmir, Pakistan",
       description: "Kashmir — known as \"Heaven on Earth\" — is a stunning region with lush valleys, snowy mountains, serene lakes like Dal Lake, and deep cultural roots.",
-      images: kashmeer,
+      images: kashmir,
       link: '/destinations#Kashmir'
     },
     {
