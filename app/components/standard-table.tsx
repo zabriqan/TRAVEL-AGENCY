@@ -43,7 +43,7 @@ export default function StandardTable<T>({ data, columns }: {
                 <input
                     onChange={handleSearchChange}
                     type="text" placeholder={`Search in ${data.length} records`}
-                    className="border px-3 py-2 border-gray-200 w-full rounded-md outline-none focus:border-primary transition"
+                    className="border px-3 py-1.5 text-sm border-gray-200 w-full rounded-md outline-none focus:border-primary transition"
                 />
             </div>
             {filteredData.length === 0 ? (
@@ -51,7 +51,7 @@ export default function StandardTable<T>({ data, columns }: {
                     No data found.
                 </div>
             ) : (
-                <div className='overflow-x-auto'>
+                <div className='overflow-x-auto rounded-lg'>
                     <table className="table-auto w-full">
                         <thead>
                             <tr className="bg-gray-100 border-b border-gray-200">

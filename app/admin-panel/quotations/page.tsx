@@ -10,7 +10,7 @@ export default async function Page() {
 
    return (
       <div>
-         <Link href='/admin-panel/quotations/create'>
+         <Link href='/admin-panel/quotations/add'>
             <Button size='sm'>
                Create Quotation
             </Button>

@@ -3,6 +3,7 @@ import { createClient } from '../lib/utils/supabase/server'
 import { redirect } from 'next/navigation';
 import LogoutBtn from './logout-btn';
 import Link from 'next/link';
+import Breadcrumbs from '../components/breadcrumbs';
 
 export default async function AdminPanelLayout({ children }: { children: React.ReactNode }) {
     const supabase = createClient();
@@ -20,7 +21,11 @@ export default async function AdminPanelLayout({ children }: { children: React.R
                 </div>
                 <LogoutBtn />
             </div>
-            <div className="py-2 md:py-3 lg:py-5">{children}</div>
+            <Breadcrumbs />
+            <div className="py-2 md:py-3">
+
+                {children}
+            </div>
         </div>
     )
 }
