@@ -1,18 +1,20 @@
 'use client';
 
 import { Mail, MapPin, Phone } from "lucide-react";
-import { FormEvent } from "react";
 import { toast } from "sonner";
 import Form from "../../components/form";
+import { FormEvent } from "react";
 
 export default function ContactPage() {
 
-  const handleContactSubmit = async (data: Record<string, string>) => {
-    
+  const handleContactSubmit = async (e: FormEvent<HTMLFormElement>) => {
+
+    const fd = new FormData(e.currentTarget);
+
     const payload = {
-      user_name: data.user_name,
-      email: data.email,
-      message: data.message,
+      user_name: fd.get('user_name'),
+      email: fd.get('email'),
+      message: fd.get('message'),
     };
 
     try {
@@ -47,8 +49,10 @@ export default function ContactPage() {
               { id: "message", label: "Message", type: "textarea", placeholder: "Write your message here...", required: true },
             ]}
             onSubmit={handleContactSubmit}
-            submitText="Send Message"
-            btnClassName="mt-1"
+            button={{
+              children: "Send Message",
+              className: "mt-1"
+            }}
           />
         </div>
 
