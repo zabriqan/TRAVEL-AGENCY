@@ -38,12 +38,12 @@ export default function Page() {
                 fields={[
                     { id: "account_code", label: "Account Code", type: "text", required: true, error: fieldErrors?.properties?.account_code },
                     { id: "account_name", label: "Account Name", type: "text", required: true, error: fieldErrors?.properties?.account_name },
-                    { id: "account_type", label: "Account Type", type: "select", options: ["debit", "credit"], required: true, error: fieldErrors?.properties?.expense_type }
+                    { id: "account_type", label: "Account Type", type: "select", options: [{ value: "debit" }, { value: "credit" }], required: true, error: fieldErrors?.properties?.expense_type }
 
                 ]}
                 button={{
                     type: "submit",
-                    children: "Add COA",
+                    children: "Add account",
                     disabled: pending,
                 }}
                 onSubmit={handleSubmit}

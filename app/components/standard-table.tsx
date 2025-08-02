@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { defaultTableDataRenderer } from "../lib/utils";
 
 export default function StandardTable<T>({ data, columns }: {
     data: T[];
     columns: BasicColumnType<T>[];
 }) {
-    // const [search, setSearch] = useState('');
     const [filteredData, setFilteredData] = useState<T[]>(data);
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,17 +19,6 @@ export default function StandardTable<T>({ data, columns }: {
                 return String(value).toLowerCase().includes(searchValue);
             });
         }));
-    }
-
-    const defaultRenderer = (row: T, column: BasicColumnType<T>) => {
-        const value = row[column.key];
-        if (value === "") {
-            return <span className="text-gray-500 font-mono">EMPTY</span>
-        }
-        if (value === null || value === undefined) {
-            return <span className='text-gray-500 font-mono'>NULL</span>;
-        }
-        return String(value);
     }
 
     useEffect(() => {
@@ -67,7 +56,7 @@ export default function StandardTable<T>({ data, columns }: {
                                 <tr key={i} className='group border-t border-gray-200'>
                                     {columns.map((col, j) => (
                                         <td key={j} className='group-even:bg-gray-50 group-odd:bg-white group-last:pb-2.5 px-2 md:px-3.5 py-1.5 text-nowrap text-sm md:text-base'>
-                                            {col.render ? col.render(row) : defaultRenderer(row, col)}
+                                            {col.render ? col.render(row) : defaultTableDataRenderer(row, col)}
                                         </td>
                                     ))}
                                 </tr>

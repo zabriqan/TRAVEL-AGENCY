@@ -4,19 +4,14 @@ import React, { useEffect, useState, useTransition } from 'react';
 import Form from '@/app/components/form';
 import { createClient } from '@/app/lib/utils/supabase/browser';
 import { toast } from 'sonner';
-import { redirect } from 'next/navigation';
+import { redirect, useParams } from 'next/navigation';
 import { updateCustomer } from '@/app/lib/actions';
+import { Customer } from '@/app/lib/types';
 
-type CustomerType = {
-    id: string;
-    customer_name: string;
-    contact_no: string;
-    email_address: string;
-    created_at?: string; // Optional if not used
-};
+export default function EditCustomerPage() {
+    const params: { id: string } = useParams();
 
-export default function EditCustomerPage({ params }: { params: { id: string } }) {
-    const [customerData, setCustomerData] = useState<CustomerType | null>(null);
+    const [customerData, setCustomerData] = useState<Customer | null>(null);
     const [fieldErrors, setFieldErrors] = useState<FieldErrorType>({ errors: [] });
     const [pending, start] = useTransition();
 
@@ -35,7 +30,7 @@ export default function EditCustomerPage({ params }: { params: { id: string } })
                 return;
             }
 
-            setCustomerData(data as CustomerType);
+            setCustomerData(data as Customer);
         }
 
         fetchCustomer();
@@ -52,7 +47,7 @@ export default function EditCustomerPage({ params }: { params: { id: string } })
                 setFieldErrors(res.fieldErrors ?? { errors: [] });
                 return;
             }
-            toast.success(res.message || 'Customer added successfully');
+            toast.success(res.message || 'Customer updated successfully');
             redirect('/admin-panel/customers');
         });
     }

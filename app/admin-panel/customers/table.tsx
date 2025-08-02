@@ -2,15 +2,7 @@
 
 import React from 'react'
 import StandardTable, { EditButton } from '@/app/components/standard-table';
-
-type Customer = {
-    id: string;
-    created_at: string;
-    customer_name: string;
-    contact_no: string;
-    email_address: string;
-    actions?: string;
-}
+import { Customer } from '@/app/lib/types';
 
 
 export default function customerTable({ data }: { data: Customer[] | null }) {

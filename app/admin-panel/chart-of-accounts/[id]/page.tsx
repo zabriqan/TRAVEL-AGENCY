@@ -6,23 +6,16 @@ import { redirect } from 'next/navigation';
 import { createClient } from '@/app/lib/utils/supabase/browser';
 import { toast } from 'sonner';
 import { updateChartOfAccount } from '@/app/lib/actions';
+import { ChartOfAccount } from '@/app/lib/types';
 
-type CoaType = {
-  id: string;
-  created_at: string;
-  account_code: string;
-  account_name: string;
-  account_type: string;
-};
-
-export default function EditCoaPage({ params }: { params: { id: string } }) {
-  const [coaData, setCoaData] = useState<CoaType | null>(null);
+export default function Page({ params }: { params: { id: string } }) {
+  const [chartOfAccount, setChartOfAccount] = useState<ChartOfAccount | null>(null);
   const [fieldErrors, setFieldErrors] = useState<FieldErrorType>({ errors: [] });
   const [pending, start] = useTransition();
 
 
   useEffect(() => {
-    async function fetchCoa() {
+    async function fetchChartOfAccount() {
       const supabase = createClient();
       const { data, error } = await supabase
         .from('chart_of_accounts')
@@ -31,15 +24,14 @@ export default function EditCoaPage({ params }: { params: { id: string } }) {
         .single();
 
       if (error) {
-        console.error('Error fetching COA:', error);
         toast.error('Failed to fetch account data.');
         return;
       }
 
-      setCoaData(data as CoaType);
+      setChartOfAccount(data as ChartOfAccount);
     }
 
-    fetchCoa();
+    fetchChartOfAccount();
   }, [params.id]);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -55,11 +47,11 @@ export default function EditCoaPage({ params }: { params: { id: string } }) {
       }
 
       toast.success(res.message || 'Account updated successfully');
-      redirect('/admin-panel/chart-of-accounts'); // ✅ redirect to COA list
+      redirect('/admin-panel/chart-of-accounts');
     });
   }
 
-  if (!coaData) {
+  if (!chartOfAccount) {
     return <div>Loading...</div>;
   }
 
@@ -77,7 +69,7 @@ export default function EditCoaPage({ params }: { params: { id: string } }) {
             label: "Account Code",
             type: "text",
             required: true,
-            defaultValue: coaData.account_code,
+            defaultValue: chartOfAccount.account_code,
             error: fieldErrors?.properties?.account_code,
           },
           {
@@ -85,22 +77,22 @@ export default function EditCoaPage({ params }: { params: { id: string } }) {
             label: "Account Name",
             type: "text",
             required: true,
-            defaultValue: coaData.account_name,
+            defaultValue: chartOfAccount.account_name,
             error: fieldErrors?.properties?.account_name,
           },
           {
             id: "account_type",
             label: "Account Type",
             type: "select",
-            options: ["debit", "credit"],
+            options: [{ value: "debit" }, { value: "credit" }],
             required: true,
-            defaultValue: coaData.account_type,
+            defaultValue: chartOfAccount.account_type,
             error: fieldErrors?.properties?.account_type,
           },
         ]}
         button={{
           type: "submit",
-          children: pending ? "Updating..." : "Update COA",
+          children: pending ? "Updating..." : "Update account",
           disabled: pending,
         }}
         onSubmit={handleSubmit}

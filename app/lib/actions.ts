@@ -4,6 +4,7 @@ import { createClient } from '@/app/lib/utils/supabase/server';
 import { ChartOfAccountCreateSchema, CustomerCreateSchema, ExpenseCreateSchema, QuotationCreateSchema } from './schema';
 import z from 'zod';
 import { redirect } from 'next/navigation';
+import { safeParseToJSON } from './utils';
 
 
 
@@ -38,6 +39,7 @@ export async function createExpense(formData: FormData): Promise<{ ok: true, mes
   if (!user) return redirect('/login');
 
   const parsed = ExpenseCreateSchema.safeParse({
+    chart_of_account_id: formData.get('chart_of_account_id'),
     expense_type: formData.get('expense_type'),
     amount: formData.get('amount'),
   })
@@ -52,6 +54,7 @@ export async function createExpense(formData: FormData): Promise<{ ok: true, mes
   }
 
   const { error } = await supabase.from('expenses').insert({
+    chart_of_account_id: parsed.data.chart_of_account_id,
     amount: parsed.data.amount,
     expense_type: parsed.data.expense_type
   });
@@ -73,6 +76,7 @@ export async function updateExpense(id: string, formData: FormData): Promise<{ o
   if (!user) return redirect("/login");
 
   const parsed = ExpenseCreateSchema.safeParse({
+    chart_of_account_id: formData.get('chart_of_account_id'),
     expense_type: formData.get("expense_type"),
     amount: formData.get("amount"),
   });
@@ -89,6 +93,7 @@ export async function updateExpense(id: string, formData: FormData): Promise<{ o
   const { error } = await supabase
     .from("expenses")
     .update({
+      chart_of_account_id: parsed.data.chart_of_account_id,
       expense_type: parsed.data.expense_type,
       amount: parsed.data.amount,
     })
@@ -269,11 +274,14 @@ export async function createQuotation(formData: FormData): Promise<{ ok: true, m
 
   const parsed = QuotationCreateSchema.safeParse({
     booking_no: formData.get('booking_no'),
-    amount: formData.get('amount')
+    stops: formData.get('stops'),
+    customer_id: formData.get('customer_id'),
+    prices_and_costs: safeParseToJSON(formData.get('prices_and_costs')?.toString())
   })
 
   if (!parsed.success) {
     console.log(z.treeifyError(parsed.error));
+    console.log(z.prettifyError(parsed.error));
     return {
       ok: false,
       error: "Invalid data.",
@@ -281,7 +289,12 @@ export async function createQuotation(formData: FormData): Promise<{ ok: true, m
     };
   }
 
-  const { error } = await supabase.from('quotations').insert({ booking_no: parsed.data.booking_no })
+  const { error } = await supabase.from('quotations').insert({
+    booking_no: parsed.data.booking_no,
+    stops: parsed.data.stops.split(','),
+    customer_id: parsed.data.customer_id,
+    prices_and_costs: JSON.stringify(parsed.data.prices_and_costs),
+  })
 
   if (error) {
     console.error(error);
@@ -289,4 +302,41 @@ export async function createQuotation(formData: FormData): Promise<{ ok: true, m
   }
 
   return { ok: true, message: "Quotation created successfully" }
+}
+
+export async function updateQuotation(id: string, formData: FormData): Promise<{ ok: true, message: string } | { ok: false, error: string, fieldErrors?: FieldErrorType }> {
+  const supabase = createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return redirect("/login");
+
+  const parsed = QuotationCreateSchema.safeParse({
+    booking_no: formData.get('booking_no'),
+    stops: formData.get('stops'),
+    customer_id: formData.get('customer_id'),
+    prices_and_costs: safeParseToJSON(formData.get('prices_and_costs')?.toString())
+  });
+
+  if (!parsed.success) {
+    console.log(z.treeifyError(parsed.error));
+    console.log(z.prettifyError(parsed.error));
+    return {
+      ok: false,
+      error: "Invalid data.",
+      fieldErrors: z.treeifyError(parsed.error),
+    };
+  }
+
+  const { error } = await supabase.from('quotations').update({
+    booking_no: parsed.data.booking_no,
+    stops: parsed.data.stops.split(','),
+    customer_id: parsed.data.customer_id,
+    prices_and_costs: JSON.stringify(parsed.data.prices_and_costs),
+  }).eq("id", id)
+
+  if (error) {
+    console.error(error);
+    return { ok: false, error: "Server error. Try again." };
+  }
+
+  return { ok: true, message: "Quotation updated successfully" }
 }

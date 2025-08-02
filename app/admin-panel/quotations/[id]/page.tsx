@@ -1,26 +1,46 @@
 "use client";
 
-import Button from '@/app/components/button';
-import Form from '@/app/components/form'
-import { createQuotation } from '@/app/lib/actions';
-import { Customer } from '@/app/lib/types';
+import { Customer, Quotation } from '@/app/lib/types';
 import { createClient } from '@/app/lib/utils/supabase/browser';
-import { TrashIcon } from 'lucide-react';
-import { redirect } from 'next/navigation';
-import { FormEvent, useEffect, useState, useTransition } from 'react'
+import { redirect, useParams } from 'next/navigation';
+import { useEffect, useState, useTransition } from 'react'
 import { toast } from 'sonner';
 import RowInput from '../row-input';
-import { pricesAndCostsRowStarter } from '@/app/lib/utils';
+import { TrashIcon } from 'lucide-react';
+import { pricesAndCostsRowStarter, safeParseToJSON } from '@/app/lib/utils';
+import { updateQuotation } from '@/app/lib/actions';
+import Form from '@/app/components/form';
+import Button from '@/app/components/button';
 
 export default function Page() {
+   const params: { id: string } = useParams();
+
+   const [quotation, setQuotation] = useState<Quotation | null>(null);
+
+   const [fieldErrors, setFieldErrors] = useState<FieldErrorType>({ errors: [] });
    const [pending, start] = useTransition();
-   const [fieldErrors, setFieldErrors] = useState<FieldErrorType>({ errors: [] })
 
    const [pricesAndCostsRows, setPricesAndCostsRows] = useState<({ id: string; price: string; cost: string })[]>([{ ...pricesAndCostsRowStarter }])
 
    const [customers, setCustomers] = useState<Customer[]>([])
 
    useEffect(() => {
+      async function fetchQuotation() {
+         const supabase = createClient();
+         const { data, error } = await supabase
+            .from('quotations')
+            .select('id,customer_id,stops,booking_no,prices_and_costs')
+            .eq('id', params.id)
+            .single();
+
+         if (error) {
+            toast.error('Failed to fetch quotation data.');
+            return;
+         }
+
+         setQuotation(data as Quotation);
+         setPricesAndCostsRows(safeParseToJSON(data.prices_and_costs))
+      }
       async function fetchCustomers() {
          const supabase = createClient();
          const { data, error } = await supabase.from("customer_master")
@@ -34,16 +54,18 @@ export default function Page() {
          setCustomers(data as Customer[]);
       }
 
-      fetchCustomers();
-   }, []);
+      if (params.id) {
+         fetchCustomers();
+         fetchQuotation();
+      }
+   }, [params.id]);
 
-   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
       e.preventDefault();
 
       const fd = new FormData(e.currentTarget);
-
       start(async () => {
-         const res = await createQuotation(fd);
+         const res = await updateQuotation(params.id, fd);
          if (!res.ok) {
             toast.error(res.error || 'Error');
             setFieldErrors(res.fieldErrors ?? { errors: [] });
@@ -51,7 +73,7 @@ export default function Page() {
          }
          toast.success(res.message || 'Success');
          redirect('/admin-panel/quotations');
-      })
+      });
    }
 
    function addRow() {
@@ -72,19 +94,23 @@ export default function Page() {
       })
    }
 
+   if (!quotation) {
+      return <div>Loading...</div>
+   }
+
    return (
       <div>
          {fieldErrors.errors.length > 0 && <span className="text-red-500 px-1 py-0.5 text-sm rounded-md border bg-red-100 border-red-400 mb-2">{fieldErrors.errors.join(', ')}</span>}
          <Form
             fields={[
-               { id: "booking_no", label: "Booking no.", required: true },
-               { id: "stops", label: "Stops", placeholder: "comma separated values", error: fieldErrors?.properties?.stops, required: true },
-               { id: "customer_id", type: "select", label: "Customer", options: customers.map(cust => ({ value: cust.id, label: `${cust.customer_name} - ${cust.contact_no}` })), required: true },
+               { id: "booking_no", label: "Booking no.", required: true, defaultValue: quotation.booking_no },
+               { id: "stops", label: "Stops", placeholder: "comma separated values", error: fieldErrors?.properties?.stops, required: true, defaultValue: quotation.stops.join(',') },
+               { id: "customer_id", type: "select", label: "Customer", options: customers.map(cust => ({ value: cust.id, label: `${cust.customer_name} - ${cust.contact_no}` })), defaultValue: quotation.customer_id },
                { id: "prices_and_costs", type: "hidden", value: JSON.stringify(pricesAndCostsRows) },
             ]}
             button={{
                type: "submit",
-               children: "Create Quotation",
+               children: "Update Quotation",
                disabled: pending
             }}
             onSubmit={handleSubmit}

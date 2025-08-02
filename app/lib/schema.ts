@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z, ZodPipe, ZodType, ZodTypeAny } from 'zod';
 
 const coercedInt = (type: z.ZodInt) => z.preprocess((val) => {
    if (typeof val === "string") {
@@ -7,9 +7,24 @@ const coercedInt = (type: z.ZodInt) => z.preprocess((val) => {
    return val;
 }, type);
 
+const ZeroOrPositive = z.int().gt(-1);
+
+const NullableUuid = z.preprocess(
+   (val) => val === '' ? null : val,
+   z.uuid().nullable()
+);
+
+const PricesAndCostRowSchema = z.object({
+   id: z.string(),
+   price: coercedInt(ZeroOrPositive),
+   cost: coercedInt(ZeroOrPositive),
+})
+
+
 export const ExpenseBaseSchema = z.object({
+   chart_of_account_id: NullableUuid,
    expense_type: z.enum(['internal', 'external']),
-   amount: z.int().gt(-1),
+   amount: ZeroOrPositive,
 });
 
 export const CustomerBaseSchema = z.object({
@@ -25,15 +40,20 @@ export const ChartOfAccountBaseSchema = z.object({
 });
 
 export const QuotationBaseSchema = z.object({
-   
+   booking_no: z.string(),
+   stops: z.array(z.string()),
+   customer_id: NullableUuid,
+   prices_and_costs: z.array(PricesAndCostRowSchema),
 });
 
 export const ExpenseCreateSchema = ExpenseBaseSchema.omit({ amount: true }).extend({
-   amount: coercedInt(z.int().gt(-1))
+   amount: coercedInt(ZeroOrPositive)
 });
 
 export const ChartOfAccountCreateSchema = ChartOfAccountBaseSchema
 
 export const CustomerCreateSchema = CustomerBaseSchema;
 
-export const QuotationCreateSchema = QuotationBaseSchema;
+export const QuotationCreateSchema = QuotationBaseSchema.omit({ stops: true }).extend({
+   stops: z.string(),
+});

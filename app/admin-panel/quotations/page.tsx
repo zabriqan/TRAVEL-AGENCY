@@ -6,7 +6,7 @@ import Table from './table';
 
 export default async function Page() {
    const supabase = createClient();
-   const { data } = await supabase.from('quotations').select('id,booking_no,stops,prices,costs,created_at,customer_id');
+   const { data } = await supabase.from('quotations').select('id,created_at,booking_no,stops,prices_and_costs,customer_id');
 
    return (
       <div>

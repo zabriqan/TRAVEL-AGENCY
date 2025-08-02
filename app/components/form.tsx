@@ -1,20 +1,21 @@
 "use client";
 
-import { FormEventHandler, Fragment } from "react";
+import { FormEventHandler, Fragment, ReactNode } from "react";
 import { Field, Label } from "@headlessui/react";
 import { twMerge } from "tailwind-merge";
 import Button from "./button"; // ⬅️ Import your reusable Button
 
 type FieldType = {
   id: string;
-  label: string;
-  type?: "text" | "email" | "number" | "password" | "tel" | "select" | "textarea";
+  label?: string;
+  type?: "hidden" | "text" | "email" | "number" | "password" | "tel" | "select" | "textarea";
   placeholder?: string;
   rows?: number;
   options?: { value: string; label?: string }[]; // for select dropdown
   required?: boolean;
   error?: { errors: any };
   defaultValue?: string | number;
+  value?: string;
 };
 
 type FormProps = {
@@ -30,6 +31,7 @@ type FormProps = {
     size?: "sm" | "md" | "lg";
     disabled?: boolean;
   }
+  children?: ReactNode
 };
 
 export default function Form({
@@ -37,7 +39,8 @@ export default function Form({
   onSubmit,
   action,
   className,
-  button
+  button,
+  children
 }: FormProps) {
 
   return (
@@ -46,55 +49,59 @@ export default function Form({
       onSubmit={onSubmit}
       className={twMerge("space-y-3", className)}
     >
-      {fields.map((field) => (
-        <Fragment key={field.id}>
-          <Field className="flex flex-col gap-1">
-            <Label htmlFor={field.id} className="text-sm font-medium text-gray-700">
-              {field.label}
-            </Label>
+      {fields.map((field) => {
+        const isVisible = field.type !== "hidden"
+        return (
+          <Fragment key={field.id}>
+            <Field className="flex flex-col gap-1">
+              {isVisible && <Label htmlFor={field.id} className="text-sm font-medium text-gray-700">
+                {field.label}
+              </Label>}
 
-            {field.type === "textarea" ? (
-              <textarea
-                id={field.id}
-                name={field.id}
-                placeholder={field.placeholder}
-                required={field.required}
-                rows={field.rows ?? 3}
-                defaultValue={field.defaultValue}
-                className="border border-gray-300 focus:border-primary transition rounded px-3 py-1.5 outline-none"
-              />
-            ) : field.type === "select" && field.options ? (
-              <select
-                id={field.id}
-                name={field.id}
-                required={field.required}
-                defaultValue={field.defaultValue}
-                className="border border-gray-300 focus:border-primary transition rounded px-3 py-1.5 outline-none"
-              >
-                <option value="">Select {field.label}</option>
-                {field.options.map(({ value, label }) => (
-                  <option key={value} value={value} className="text-sm">
-                    {label ?? value.toUpperCase()}
-                  </option>
-                ))}
-              </select>
-            ) : (
-              <input
-                type={field.type || "text"}
-                id={field.id}
-                name={field.id}
-                placeholder={field.placeholder}
-                required={field.required}
-                defaultValue={field.defaultValue}
-                className="border border-gray-300 focus:border-primary transition rounded px-3 py-1.5 outline-none"
-              />
-            )}
-            {field.error && <span className='text-xs text-red-500'>{String(field.error?.errors)}</span>}
-          </Field>
-        </Fragment>
-      ))}
+              {field.type === "textarea" ? (
+                <textarea
+                  id={field.id}
+                  name={field.id}
+                  placeholder={field.placeholder}
+                  required={field.required}
+                  rows={field.rows ?? 3}
+                  defaultValue={field.defaultValue}
+                  className="border border-gray-300 focus:border-primary transition rounded px-3 py-1.5 outline-none"
+                />
+              ) : field.type === "select" && field.options ? (
+                <select
+                  id={field.id}
+                  name={field.id}
+                  required={field.required}
+                  defaultValue={field.defaultValue}
+                  className="border border-gray-300 focus:border-primary transition rounded px-3 py-1.5 outline-none"
+                >
+                  <option value="">Select {field.label}</option>
+                  {field.options.map(({ value, label }) => (
+                    <option key={value} value={value} className="text-sm">
+                      {label ?? value.toUpperCase()}
+                    </option>
+                  ))}
+                </select>
+              ) : (
+                <input
+                  type={field.type || "text"}
+                  id={field.id}
+                  name={field.id}
+                  placeholder={field.placeholder}
+                  required={field.required}
+                  value={field.value}
+                  defaultValue={field.defaultValue}
+                  className="border border-gray-300 focus:border-primary transition rounded px-3 py-1.5 outline-none"
+                />
+              )}
+              {(field.error && isVisible) && <span className='text-xs text-red-500'>{String(field.error?.errors)}</span>}
+            </Field>
+          </Fragment>
+        )
+      })}
+      {children}
 
-      {/* Reusable Button instead of <button> */}
       <Button disabled={button.disabled} type={button.type} variant={button.variant} size={button.size} className={button.className}>
         {button.children || "Submit"}
       </Button>

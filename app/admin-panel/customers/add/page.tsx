@@ -43,7 +43,7 @@ export default function Page() {
                 ]}
                 button={{
                     type: "submit",
-                    children: "Add COA",
+                    children: "Add Customer",
                     disabled: pending,
                 }}
                 onSubmit={handleSubmit}

@@ -14,6 +14,7 @@ export default function Button({
   className,
   variant = "primary",
   size = "md",
+  type = "button",
   ...props
 }: ButtonProps) {
   const baseStyles =
@@ -40,7 +41,7 @@ export default function Button({
   );
 
   return (
-    <button className={classes} {...props}>
+    <button className={classes} type={type} {...props}>
       {children}
     </button>
   );
