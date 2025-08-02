@@ -2,13 +2,15 @@
 
 import React, { useEffect, useState, useTransition } from 'react';
 import Form from '@/app/components/form';
-import { redirect } from 'next/navigation';
+import { redirect, useParams } from 'next/navigation';
 import { createClient } from '@/app/lib/utils/supabase/browser';
 import { toast } from 'sonner';
 import { updateChartOfAccount } from '@/app/lib/actions';
 import { ChartOfAccount } from '@/app/lib/types';
 
-export default function Page({ params }: { params: { id: string } }) {
+export default function Page() {
+  const params: { id: string } = useParams();
+
   const [chartOfAccount, setChartOfAccount] = useState<ChartOfAccount | null>(null);
   const [fieldErrors, setFieldErrors] = useState<FieldErrorType>({ errors: [] });
   const [pending, start] = useTransition();

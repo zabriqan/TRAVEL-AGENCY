@@ -1,17 +1,19 @@
 'use client';
+
 import { useRouter } from 'next/navigation';
 import Image from "next/image";
 import ProductCard from "./productcard";
 import Reviews from "./reviews";
 import { Phone, CalendarCheck } from "lucide-react";
 import chitral from "@/public/chitral.jpg";
-import kashmeer from '@/public/kashmeer.jpg'
+import kashmeer from '@/public/kashmir.jpg'
 import nationalpark from "@/public/nationalpark.jpg";
-import naran from "@/public/Naran.jpg";
+import naran from "@/public/naran.jpg";
 import image4 from "@/public/image4.jpg";
 import image5 from "@/public/image5.jpg";
 import image6 from "@/public/image6.jpg";
 import image7 from "@/public/image7.jpg";
+
 export default function Main() {
   const router = useRouter();
 

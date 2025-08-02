@@ -2,13 +2,15 @@
 
 import React, { useEffect, useState, useTransition } from "react";
 import Form from "@/app/components/form";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { createClient } from "@/app/lib/utils/supabase/browser";
 import { toast } from "sonner";
 import { updateExpense } from "@/app/lib/actions";
 import { ExpenseType } from "@/app/lib/types";
 
-export default function EditExpensePage({ params }: { params: { id: string } }) {
+export default function EditExpensePage() {
+  const params: { id: string } = useParams();
+
   const [expenseData, setExpenseData] = useState<ExpenseType | null>(null);
   const [fieldErrors, setFieldErrors] = useState<FieldErrorType>({ errors: [] });
   const [pending, startTransition] = useTransition();
