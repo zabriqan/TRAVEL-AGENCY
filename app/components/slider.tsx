@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
+import Script from "next/script";
 import { addDays } from 'date-fns';
 import Image1 from '@/public/chitral.jpg';
 import Image2 from '@/public/naran.jpg';
@@ -53,7 +54,7 @@ export default function Slider() {
     key: 'selection',
   });
   const globalDestinations = Destinationstore((state) => state.selectedDestinations);
-  const destinationOptions = ['Karachi', 'Lahore', "Kashmir",'Hunza', 'Skardu', 'Islamabad', 'Murree', 'Naran', 'Kaghan Valley',"Chitral", "Nationalpark", 'Hunza Valley', 'Skardu', 'Fairy Meadows', 'Swat Valley', 'Kalam', 'Shogran', 'Siri Paye', 'Neelum Valley', 'Ratti Gali Lake', 'Lake Saif-ul-Malook', 'Khunjerab Pass', 'Gojal Valley', 'Deosai National Park', 'Attabad Lake', 'Lahore Fort', 'Badshahi Mosque', 'Mohenjo Daro', 'Ziarat', 'Hingol National Park', 'Makli Necropolis', ' Gorakh Hill Station', 'Islamabad (Daman-e-Koh, Faisal Mosque)']
+  const destinationOptions = ['Karachi', 'Lahore', "Kashmir", 'Hunza', 'Skardu', 'Islamabad', 'Murree', 'Naran', 'Kaghan Valley', "Chitral", "Nationalpark", 'Hunza Valley', 'Skardu', 'Fairy Meadows', 'Swat Valley', 'Kalam', 'Shogran', 'Siri Paye', 'Neelum Valley', 'Ratti Gali Lake', 'Lake Saif-ul-Malook', 'Khunjerab Pass', 'Gojal Valley', 'Deosai National Park', 'Attabad Lake', 'Lahore Fort', 'Badshahi Mosque', 'Mohenjo Daro', 'Ziarat', 'Hingol National Park', 'Makli Necropolis', ' Gorakh Hill Station', 'Islamabad (Daman-e-Koh, Faisal Mosque)']
   const [selectedDestinations, setSelectedDestinations] = useState<string[]>((globalDestinations));
   useEffect(() => {
     setSelectedDestinations(globalDestinations);
@@ -91,9 +92,28 @@ export default function Slider() {
     heightClass = 'h-[40vh]';
     backgroundImage = Image5;
   }
+  useEffect(() => {
+    const checkFB = setInterval(() => {
+      if (typeof window !== "undefined" && (window as any).FB) {
+        (window as any).FB.XFBML.parse();
+        clearInterval(checkFB);
+      }
+    }, 500);
+
+    return () => clearInterval(checkFB);
+  }, []);
+
 
   return (
     <section className={`relative w-full ${heightClass}`}>
+      <div id="fb-root"></div>
+      <Script
+        async
+        defer
+        crossOrigin="anonymous"
+        src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0"
+
+      />
       {/* Image background */}
       <div className="absolute inset-0 z-0">
         {isHome ? (
@@ -131,6 +151,17 @@ export default function Slider() {
             <h2 className="text-4xl md:text-5xl font-bold mb-4">{heading}</h2>
             <p className="mb-6 text-lg">{description}</p>
 
+            
+            <div className="fb-like mb-6"
+              data-href="https://www.facebook.com/majesticpaths?rdid=ndfWzm8vN4ccjjL2&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F15618jrjkxU%2F#"
+              data-width=""
+              data-layout="button_count"
+              data-action="like"
+              data-size="large"
+              data-share="false">
+            </div>
+            
+
             {showButton && (
               <div className="space-y-4">
                 <div className="flex flex-col sm:flex-row gap-4 items-center w-full">
@@ -167,6 +198,8 @@ export default function Slider() {
           </div>
         </div>
       </div>
+
+
     </section>
   );
 }
