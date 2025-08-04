@@ -3,7 +3,7 @@ import { Star } from "lucide-react";
 
 const reviews = [
   {
-    name: "Sarah Johnson",
+    name: "Ayesha Siddiqui",
     review: "This place is absolutely stunning. The view, the staff, everything was perfect!",
   },
   {
@@ -11,22 +11,23 @@ const reviews = [
     review: "I had a great time here with my family. Highly recommended for a peaceful vacation.",
   },
   {
-    name: "Emily Brown",
+    name: "Fatima Zahra",
     review: "The service was top-notch and the location is just breathtaking.",
   },
   {
-    name: "John Smith",
+    name: "Bilal Ahmed",
     review: "A truly magical place. Can't wait to return!",
   },
   {
-    name: "Fatima Zahra",
+    name: "Zainab Ali",
     review: "Perfect for a quiet getaway with a breathtaking view.",
   },
   {
-    name: "Liam Wilson",
+    name: "Usman Malik",
     review: "Friendly staff, great food, and a cozy environment.",
   },
 ];
+
 
 export default function Reviews() {
   return (
