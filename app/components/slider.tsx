@@ -150,18 +150,6 @@ export default function Slider() {
           <div className="text-left text-white max-w-xl">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">{heading}</h2>
             <p className="mb-6 text-lg">{description}</p>
-
-            
-            <div className="fb-like mb-6"
-              data-href="https://www.facebook.com/majesticpaths?rdid=ndfWzm8vN4ccjjL2&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F15618jrjkxU%2F#"
-              data-width=""
-              data-layout="button_count"
-              data-action="like"
-              data-size="large"
-              data-share="false">
-            </div>
-            
-
             {showButton && (
               <div className="space-y-4">
                 <div className="flex flex-col sm:flex-row gap-4 items-center w-full">
@@ -195,6 +183,15 @@ export default function Slider() {
                 />
               </div>
             )}
+            <h3 className='mt-6'>Stay Connected — Follow Our Journey on Facebook</h3>
+            <div className="fb-like mt-2 -ml-2"
+              data-href="https://www.facebook.com/majesticpaths?rdid=ndfWzm8vN4ccjjL2&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F15618jrjkxU%2F#"
+              data-width=""
+              data-layout="button_count"
+              data-action="like"
+              data-size="large"
+              data-share="false">
+            </div>
           </div>
         </div>
       </div>
