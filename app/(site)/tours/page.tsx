@@ -1,57 +1,76 @@
 "use client";
-import TourCard from "../../components/tourcard";
+import TourCard from "../../components/new-tourcard";
 
 const toursData = [
   {
     title: "Hunza Spring Tour",
-    date: "2025-04-15 → 2025-04-22",
-    status: "upcoming",
-    description: "Explore the cherry blossoms and serene mountains of Hunza in spring.",
-    days: 8,
-    fromDate: "2025-04-15",
-    toDate: "2025-04-22",
-    peopleCount: 25,
-    travelMode: "Bus + Van",
-    detail:
-      "This 8-day guided tour takes you through the beautiful valleys of Hunza during peak cherry blossom season. Enjoy sightseeing, local culture, and majestic mountain views with our experienced guides. Accommodations and meals included.",
+    image: "/hunza.jpg",
+    route: "Islamabad → Gilgit → Hunza → Karimabad → Khunjerab Pass",
+    duration: "8 Days / 7 Nights",
+    from: "Islamabad",
+    to: "Khunjerab",
+    inclusions: ["Luxury Transport", "7 Nights Hotel", "Breakfast & Dinner", "Tour Guide"],
+    exclusions: ["Lunch", "Personal Shopping", "Entry Tickets"],
+    pdf: 'hunzaPdf',
   },
   {
     title: "Skardu Autumn Adventure",
-    date: "2025-10-10 → 2025-10-17",
-    status: "upcoming",
-    description: "Witness the golden hues of autumn in Skardu on this immersive tour.",
-    days: 8,
-    fromDate: "2025-10-10",
-    toDate: "2025-10-17",
-    peopleCount: 32,
-    travelMode: "Coaster + 4x4 Jeeps",
-    detail:
-      "Join our 8-day autumn tour to Skardu and nearby lakes. Experience the surreal fall foliage, boat rides, Deosai plains, and warm hospitality. This package includes lodging, transport, meals, and guided activities.",
+    image: "/skardu.jpg",
+    route: "Islamabad → Skardu → Shangrila → Deosai Plains",
+    duration: "8 Days / 7 Nights",
+    from: "Islamabad",
+    to: "Skardu",
+    inclusions: ["Transport", "Accommodation", "Meals", "Deosai Jeep Ride"],
+    exclusions: ["Personal Expenses", "Room Service"],
+    pdf: 'skarduPdf',
   },
   {
     title: "Winter Swat Escape",
-    date: "2026-01-05 → 2026-01-10",
-    status: "upcoming",
-    description: "Enjoy a snowy retreat in Swat Valley with guided treks and bonfires.",
-    days: 6,
-    fromDate: "2026-01-05",
-    toDate: "2026-01-10",
-    peopleCount: 20,
-    travelMode: "Train + Van",
-    detail:
-      "Escape the hustle and experience a cozy winter tour in Swat. Enjoy snow-covered scenery, traditional food, and campfires. This 6-day trip includes comfortable stay, heating arrangements, and group activities.",
+    image: "/neelum.jpg",
+    route: "Islamabad → Swat → Malam Jabba → Kalam",
+    duration: "6 Days / 5 Nights",
+    from: "Islamabad",
+    to: "Kalam",
+    inclusions: ["Transport", "5 Nights Stay", "Meals", "Bonfire Arrangements"],
+    exclusions: ["Ski Equipment", "Extra Meals"],
+    pdf: 'swatPdf',
+  },
+  {
+    title: "Neelum & Arang Kel Escape",
+    image: "/neelum.jpg",
+    route: "Islamabad → Muzaffarabad → Sharda → Kel → Arang Kel",
+    duration: "3 Days / 2 Nights",
+    from: "Islamabad",
+    to: "Arang Kel",
+    inclusions: [
+      "Private AC Transport",
+      "2 Nights Hotel Stay",
+      "Breakfast & Dinner",
+      "Shared Jeep to Kel",
+      "Cable Car for Arang Kel",
+    ],
+    exclusions: ["Lunch & Snacks", "Entry Tickets", "Personal Shopping"],
+    pdf: 'neelumPdf',
   },
 ] as const;
-
 
 export default function ToursPage() {
   return (
     <div className="md:w-4xl lg:w-7xl w-80 mx-auto py-26">
-      <h1 className="md:text-3xl text-2xl font-bold text-center text-secondary mb-6">Our Upcoming Tours</h1>
+      <h1 className="md:text-3xl text-2xl font-bold text-center text-secondary mb-6">
+        Our Upcoming Packages
+      </h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {toursData.map((tour, i) => (
-          <TourCard key={i} {...tour} />
+          <TourCard
+          key={i}
+          {...{
+            ...tour,
+            inclusions: [...tour.inclusions],
+            exclusions: [...tour.exclusions],
+          }}
+        />
         ))}
       </div>
     </div>
