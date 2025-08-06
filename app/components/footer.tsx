@@ -15,7 +15,7 @@ export default function Footer() {
             <p>
               Email:{" "}
               <a href="mailto:Info@majesticpaths.com">
-              Info@majesticpaths.com
+                Info@majesticpaths.com
               </a>
             </p >
             <p>Phone:{""}
@@ -31,11 +31,11 @@ export default function Footer() {
         <div className="hidden md:block">
           <h4 className="font-semibold text-lg mb-2">Quick Links</h4>
           <ul className="space-y-1">
-            <li><Link href="/" >Home</Link></li>
-            <li><Link href="/about" >About Us</Link></li>
-            <li><Link href="/destinations" >Destinations</Link></li>
-            <li><Link href="/tours" >Tours</Link></li>
-            <li><Link href="/contact" >Contacts</Link></li>
+            <li><Link href="/">Home</Link></li>
+            <li><Link href="/about">About Us</Link></li>
+            <li><Link href="/destinations">Destinations</Link></li>
+            <li><Link href="/tours">Tours</Link></li>
+            <li><Link href="/contact">Contacts</Link></li>
           </ul>
         </div>
 
@@ -43,11 +43,15 @@ export default function Footer() {
         <div>
           <h4 className="font-semibold text-lg mb-2">Follow Majestic Paths </h4>
           <p className="mb-4">
-          Discover the wonders of Pakistan with Majestic Paths — your trusted travel partner. We blend cultural heritage, natural beauty, and personalized service to make your journeys truly unforgettable.
+            Discover the wonders of Pakistan with Majestic Paths — your trusted travel partner. We blend cultural heritage, natural beauty, and personalized service to make your journeys truly unforgettable.
           </p>
           <div className="flex flex-wrap justify-center md:justify-start md: gap-3">
-              <a href="https://www.facebook.com/share/15618jrjkxU/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center text-white hover:bg-secondary-dark rounded-full p-2 hover:opacity-90 transition"><Facebook size={20} /></a>           
-            <a href="https://www.instagram.com/majesticpaths?igsh=ZzNzdWZkbXBxYXo=" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center text-white hover:bg-secondary-dark rounded-full p-2 hover:opacity-90 transition"> <Instagram size={20} /> </a>
+            <a href="https://www.facebook.com/share/15618jrjkxU/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center text-white hover:bg-secondary-dark rounded-full p-2 hover:opacity-90 transition">
+              <Facebook size={20} />
+            </a>
+            <a href="https://www.instagram.com/majesticpaths?igsh=ZzNzdWZkbXBxYXo=" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center text-white hover:bg-secondary-dark rounded-full p-2 hover:opacity-90 transition">
+              <Instagram size={20} />
+            </a>
           </div>
         </div>
       </div>

@@ -1,4 +1,5 @@
 'use client';
+
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
@@ -19,11 +20,20 @@ import { Destinationstore } from '@/app/lib/store/destinationstore';
 const sliderImages = [Image1, Image2, Image3];
 
 export default function Slider() {
-  
+  const globalDestinations = Destinationstore((state) => state.selectedDestinations);
+
   const [current, setCurrent] = useState(0);
   const [openDialog, setOpenDialog] = useState(false);
-  
+  const [selectedDestinations, setSelectedDestinations] = useState<string[]>((globalDestinations));
+
+  const [selectedRange, setSelectedRange] = useState<Range>({
+    startDate: new Date(),
+    endDate: addDays(new Date(0), 7),
+    key: 'selection',
+  });
+
   const pathname = usePathname();
+
   const isHome = pathname === '/';
   const isAbout = pathname === '/about';
   const isContact = pathname === '/contact';
@@ -48,18 +58,12 @@ export default function Slider() {
     return () => clearInterval(interval);
   }, [isHome]);
 
-  // 🟢 Single valid state
-  const [selectedRange, setSelectedRange] = useState<Range>({
-    startDate: new Date(),
-    endDate: addDays(new Date(0), 7),
-    key: 'selection',
-  });
-  const globalDestinations = Destinationstore((state) => state.selectedDestinations);
-  const destinationOptions = ['Karachi', 'Lahore', "Kashmir", 'Hunza', 'Skardu', 'Islamabad', 'Murree', 'Naran', 'Kaghan Valley', "Chitral", "Nationalpark", 'Hunza Valley', 'Skardu', 'Fairy Meadows', 'Swat Valley', 'Kalam', 'Shogran', 'Siri Paye', 'Neelum Valley', 'Ratti Gali Lake', 'Lake Saif-ul-Malook', 'Khunjerab Pass', 'Gojal Valley', 'Deosai National Park', 'Attabad Lake', 'Lahore Fort', 'Badshahi Mosque', 'Mohenjo Daro', 'Ziarat', 'Hingol National Park', 'Makli Necropolis', ' Gorakh Hill Station', 'Islamabad (Daman-e-Koh, Faisal Mosque)']
-  const [selectedDestinations, setSelectedDestinations] = useState<string[]>((globalDestinations));
+  const destinationOptions = ['Karachi', 'Lahore', "Kashmir", 'Hunza', 'Skardu', 'Islamabad', 'Murree', 'Naran', 'Kaghan Valley', "Chitral", "Nationalpark", 'Hunza Valley', 'Skardu', 'Fairy Meadows', 'Swat Valley', 'Kalam', 'Shogran', 'Siri Paye', 'Neelum Valley', 'Ratti Gali Lake', 'Lake Saif-ul-Malook', 'Khunjerab Pass', 'Gojal Valley', 'Deosai National Park', 'Attabad Lake', 'Lahore Fort', 'Badshahi Mosque', 'Mohenjo Daro', 'Ziarat', 'Hingol National Park', 'Makli Necropolis', ' Gorakh Hill Station', 'Islamabad (Daman-e-Koh, Faisal Mosque)'];
+
   useEffect(() => {
     setSelectedDestinations(globalDestinations);
   }, [globalDestinations]);
+
   let heading = 'Discover New Horizons';
   let description =
     'If you are looking for a perfect holiday experience with memories to cherish you are at the right place. Let\'s plan a reasonable stay for you.';
@@ -93,6 +97,7 @@ export default function Slider() {
     heightClass = 'h-[40vh]';
     backgroundImage = Image5;
   }
+  
   useEffect(() => {
     const checkFB = setInterval(() => {
       if (typeof window !== "undefined" && (window as any).FB) {
