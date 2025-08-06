@@ -26,15 +26,15 @@ export default function TourCard({
   detail,
 }: Tour) {
   return (
-    <div className="border rounded-xl shadow p-6 bg-white dark:bg-gray-900 flex flex-col justify-between">
+    <div className="border border-gray-400 rounded-xl shadow p-6 bg-white flex flex-col justify-between">
       <div>
         <h2 className="text-xl font-bold text-secondary">{title}</h2>
         <p className="text-sm text-gray-500 mt-1">{date}</p>
       </div>
 
-      <div className="my-2 text-sm text-gray-700 dark:text-gray-300">{description}</div>
+      <div className="my-2 text-sm text-gray-700">{description}</div>
 
-      <div className="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+      <div className="text-sm text-gray-600 space-y-1">
         <p><strong>Duration:</strong> {days} days</p>
         <p><strong>From:</strong> {fromDate}</p>
         <p><strong>To:</strong> {toDate}</p>
