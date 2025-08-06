@@ -19,10 +19,11 @@ import { Destinationstore } from '@/app/lib/store/destinationstore';
 const sliderImages = [Image1, Image2, Image3];
 
 export default function Slider() {
+  
   const [current, setCurrent] = useState(0);
-  const pathname = usePathname();
   const [openDialog, setOpenDialog] = useState(false);
-
+  
+  const pathname = usePathname();
   const isHome = pathname === '/';
   const isAbout = pathname === '/about';
   const isContact = pathname === '/contact';
@@ -142,7 +143,7 @@ export default function Slider() {
       </div>
 
       {/* Overlay */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#013D64]/90 via-[#034a50]/50 to-transparent" />
+      <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#013D64]/80 via-20% via-[#034a50]/30 to-80% to-[#034a50]/60" />
 
       {/* Content */}
       <div id='slider' className="absolute inset-0 z-20 flex items-center justify-center">
@@ -195,8 +196,6 @@ export default function Slider() {
           </div>
         </div>
       </div>
-
-
     </section>
   );
 }
