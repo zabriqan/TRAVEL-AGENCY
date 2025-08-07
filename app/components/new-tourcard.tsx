@@ -5,39 +5,32 @@ import Image from "next/image";
 import {
   Download,
   Map,
-  CalendarDays,
   Clock,
-  CheckCircle,
-  XCircle,
   ChevronDown,
   ChevronUp,
+  Info,
 } from "lucide-react";
 
 type Tour = {
-  title: string;
-  image: string;
+  heading: string;
+  subheading: string;
   route: string;
   duration: string;
-  from: string;
-  to: string;
-  inclusions: string[];
-  exclusions: string[];
-  pdf: string;
+  pdf_url: string;
+  poster_url: string;
+  misc_text?: string;
 };
 
 export default function TourCard({
-  title,
-  image,
+  heading,
+  subheading,
   route,
   duration,
-  from,
-  to,
-  inclusions,
-  exclusions,
-  pdf,
+  pdf_url,
+  poster_url,
+  misc_text,
 }: Tour) {
   const [hovered, setHovered] = useState(false);
-  const [expanded, setExpanded] = useState(false);
 
   return (
     <div
@@ -47,24 +40,24 @@ export default function TourCard({
     >
       {/* Background Image */}
       <div className="relative h-[60vh]">
-        <Image src={image} alt={title} fill className="object-cover" />
-        {/* Dark Overlay */}
+        <Image src={poster_url} alt={heading} fill className="object-cover" />
         <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-all duration-1000" />
       </div>
 
-      {/* Tour Info */}
+      {/* Card Info */}
       <div
-        className={`absolute bottom-0  left-0 right-0 bg-white p-6 shadow-xl transition-all duration-1000 ${
-          hovered  ? "translate-y-0 " : "translate-y-1/3"
+        className={`absolute bottom-0 left-0 right-0 bg-white p-6 transition-all duration-1000 ${
+          hovered ? "translate-y-0" : "translate-y-1/3"
         }`}
       >
         <div className="flex justify-between items-center">
           <div>
-            <h2 className="text-2xl font-bold text-secondary">{title}</h2>
-            <p className="text-sm text-gray-500">{duration}</p>
+            <h2 className="text-2xl font-bold text-secondary">{heading}</h2>
+            <p className="text-sm text-gray-500">{subheading}</p>
+            <p className="text-xs text-gray-400">{duration}</p>
           </div>
 
-          {/* Expand Button for Mobile */}
+          {/* Expand toggle for mobile */}
           <button
             onClick={() => setHovered(!hovered)}
             className="sm:hidden flex items-center text-secondary"
@@ -77,7 +70,7 @@ export default function TourCard({
           </button>
         </div>
 
-        {/* Details */}
+        {/* Detail Section */}
         <div className="mt-4 space-y-3 text-gray-700 text-sm">
           <div className="flex items-center gap-2">
             <Map className="text-secondary w-5 h-5" />
@@ -85,53 +78,33 @@ export default function TourCard({
               <strong>Route:</strong> {route}
             </p>
           </div>
-          <div className="flex items-center gap-2">
-            <CalendarDays className="text-secondary w-5 h-5" />
-            <p>
-              Departure: {from} → Return: {to}
-            </p>
-          </div>
+
           <div className="flex items-center gap-2">
             <Clock className="text-secondary w-5 h-5" />
-            <p>Duration: {duration}</p>
+            <p>
+              <strong>Duration:</strong> {duration}
+            </p>
           </div>
 
-          {(hovered || expanded) && (
-            <>
-              {/* Inclusions */}
-              <div>
-                <h3 className="font-semibold flex items-center gap-2">
-                  <CheckCircle className="text-green-600 w-5 h-5" /> Package
-                  Inclusions
-                </h3>
-                <ul className="list-disc pl-6 text-sm mt-1">
-                  {inclusions.map((item, i) => (
-                    <li key={i}>{item}</li>
-                  ))}
-                </ul>
+          {hovered && misc_text && (
+            <div className="text-sm mt-4">
+              <h3 className="font-semibold flex items-center gap-2 mb-2">
+                <Info className="text-primary w-5 h-5" /> <strong>Details</strong>
+              </h3>
+              <div className="whitespace-pre-line leading-relaxed text-gray-600">
+                {misc_text}
               </div>
+            </div>
+          )}
 
-              {/* Exclusions */}
-              <div>
-                <h3 className="font-semibold flex items-center gap-2">
-                  <XCircle className="text-red-600 w-5 h-5" /> Exclusions
-                </h3>
-                <ul className="list-disc pl-6 text-sm mt-1">
-                  {exclusions.map((item, i) => (
-                    <li key={i}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Download Button */}
-              <a
-                href={pdf}
-                download={`${title.replace(/\s+/g, "")}.pdf`}
-                className="inline-flex items-center gap-2 bg-primary text-white px-5 py-2 rounded-md mt-4 hover:bg-primary-dark transition"
-              >
-                <Download className="w-5 h-5" /> Download Package PDF
-              </a>
-            </>
+          {hovered && (
+            <a
+              href={pdf_url}
+              download={`${heading.replace(/\s+/g, "")}.pdf`}
+              className="inline-flex items-center gap-2 bg-primary text-white px-5 py-2 rounded-md mt-4 hover:bg-primary-dark transition"
+            >
+              <Download className="w-5 h-5" /> Package Details
+            </a>
           )}
         </div>
       </div>

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useRouter } from 'next/navigation';
 import Image from "next/image";
@@ -13,9 +13,36 @@ import image4 from "@/public/image4.jpg";
 import image5 from "@/public/image5.jpg";
 import image6 from "@/public/image6.jpg";
 import image7 from "@/public/image7.jpg";
+import { createClient } from "@/app/lib/utils/supabase/browser";
+import { useEffect, useState } from 'react';
+import TourCard from './new-tourcard';
+
+const supabase = createClient();
+
 
 export default function Main() {
   const router = useRouter();
+
+  // Fetch top 3 packages
+  const [packages, setPackages] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchPackages = async () => {
+      const { data, error } = await supabase
+        .from("packages")
+        .select("*")
+        .limit(3)
+        .order("created_at", { ascending: true });
+
+      if (error) console.error("Error fetching packages:", error);
+      else setPackages(data || []);
+    };
+
+    fetchPackages();
+  }, []);
+
+  
+
 
   const destinationss = [
     {
@@ -43,6 +70,23 @@ export default function Main() {
   return (
     <div>
       <main className="w-80 lg:w-7xl md:w-4xl mx-auto pt-20 space-y-20">
+      <section>
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="md:text-2xl text-xl font-bold">Top Packages</h2>
+            <button
+              onClick={() => router.push('/tours')}
+              className="text-sm border border-primary-light md:px-4 px-2 md:py-1 hover:bg-secondary"
+            >
+              View More
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {packages.map((pkg, i) => (
+              <TourCard key={i} {...pkg} />
+            ))}
+          </div>
+        </section>
         {/* Section: Experience Mykonos */}
         <section className="grid md:grid-cols-2 gap-8 items-center">
           <div>

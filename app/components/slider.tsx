@@ -182,17 +182,17 @@ export default function Slider() {
                   destinations={selectedDestinations}
                   dateRange={selectedRange}
                 />
-              </div>
-            )}
             <h3 className='mt-6'>Stay Connected — Follow Our Journey on Facebook</h3>
             <div className="fb-like mt-2 -ml-2"
-              data-href="https://www.facebook.com/majesticpaths?rdid=ndfWzm8vN4ccjjL2&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F15618jrjkxU%2F#"
-              data-width=""
-              data-layout="button_count"
-              data-action="like"
-              data-size="large"
-              data-share="false">
+            data-href="https://www.facebook.com/majesticpaths?rdid=ndfWzm8vN4ccjjL2&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F15618jrjkxU%2F#"
+            data-width=""
+            data-layout="button_count"
+            data-action="like"
+            data-size="large"
+            data-share="false">
             </div>
+              </div>
+              )}
           </div>
         </div>
       </div>
