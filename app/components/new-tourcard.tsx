@@ -73,14 +73,14 @@ export default function TourCard({
         {/* Detail Section */}
         <div className="mt-4 space-y-3 text-gray-700 text-sm">
           <div className="flex items-center gap-2">
-            <Map className="text-secondary w-5 h-5" />
+            <Map className="text-secondary w-5 h-5 flex-none" />
             <p>
               <strong>Route:</strong> {route}
             </p>
           </div>
 
           <div className="flex items-center gap-2">
-            <Clock className="text-secondary w-5 h-5" />
+            <Clock className="text-secondary w-5 h-5 flex-none" />
             <p>
               <strong>Duration:</strong> {duration}
             </p>
@@ -89,7 +89,7 @@ export default function TourCard({
           {hovered && misc_text && (
             <div className="text-sm mt-4">
               <h3 className="font-semibold flex items-center gap-2 mb-2">
-                <Info className="text-primary w-5 h-5" /> <strong>Details</strong>
+                <Info className="text-primary w-5 h-5 flex-none" /> <strong>Details</strong>
               </h3>
               <div className="whitespace-pre-line leading-relaxed text-gray-600">
                 {misc_text}
@@ -103,7 +103,7 @@ export default function TourCard({
               download={`${heading.replace(/\s+/g, "")}.pdf`}
               className="inline-flex items-center gap-2 bg-primary text-white px-5 py-2 rounded-md mt-4 hover:bg-primary-dark transition"
             >
-              <Download className="w-5 h-5" /> Package Details
+              <Download className="w-5 h-5 flex-none" /> Package Details
             </a>
           )}
         </div>

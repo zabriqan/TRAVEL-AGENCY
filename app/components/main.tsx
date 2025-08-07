@@ -5,14 +5,14 @@ import Image from "next/image";
 import ProductCard from "./productcard";
 import Reviews from "./reviews";
 import { Phone, CalendarCheck } from "lucide-react";
-import chitral from "@/public/chitral.jpg";
-import kashmir from '@/public/kashmir.jpg'
-import nationalpark from "@/public/nationalpark.jpg";
-import naran from "@/public/naran.jpg";
-import image4 from "@/public/image4.jpg";
-import image5 from "@/public/image5.jpg";
-import image6 from "@/public/image6.jpg";
-import image7 from "@/public/image7.jpg";
+import chitral from "@/public/images/chitral.jpg";
+import kashmir from '@/public/images/kashmir.jpg'
+import nationalpark from "@/public/images/nationalpark.jpg";
+import naran from "@/public/images/naran.jpg";
+import image4 from "@/public/images/image4.jpg";
+import image5 from "@/public/images/image5.jpg";
+import image6 from "@/public/images/image6.jpg";
+import image7 from "@/public/images/image7.jpg";
 import { createClient } from "@/app/lib/utils/supabase/browser";
 import { useEffect, useState } from 'react';
 import TourCard from './new-tourcard';
@@ -72,7 +72,7 @@ export default function Main() {
       <main className="w-80 lg:w-7xl md:w-4xl mx-auto pt-20 space-y-20">
       <section>
           <div className="flex justify-between items-center mb-6">
-            <h2 className="md:text-2xl text-xl font-bold">Top Packages</h2>
+            <h2 className="md:text-2xl text-xl font-bold">Featured Packages</h2>
             <button
               onClick={() => router.push('/tours')}
               className="text-sm border border-primary-light md:px-4 px-2 md:py-1 hover:bg-secondary"
@@ -81,7 +81,7 @@ export default function Main() {
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {packages.map((pkg, i) => (
               <TourCard key={i} {...pkg} />
             ))}

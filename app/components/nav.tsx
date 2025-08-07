@@ -1,8 +1,7 @@
 'use client';
-import logo from '@/public/logo.png'
+import logo from '@/public/images/logo.png'
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
-// import logo from '@/public/logo.png';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useNavStore } from '@/app/lib/store/navstore';
