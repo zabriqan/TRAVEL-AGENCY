@@ -46,9 +46,8 @@ export default function TourCard({
 
       {/* Card Info */}
       <div
-        className={`absolute bottom-0 left-0 right-0 bg-white p-6 transition-all duration-1000 ${
-          hovered ? "translate-y-0" : "translate-y-1/3"
-        }`}
+        className={`absolute bottom-0 left-0 right-0 bg-white p-6 transition-all duration-1000 ${hovered ? "translate-y-0" : "translate-y-1/3"
+          }`}
       >
         <div className="flex justify-between items-center">
           <div>
@@ -73,14 +72,14 @@ export default function TourCard({
         {/* Detail Section */}
         <div className="mt-4 space-y-3 text-gray-700 text-sm">
           <div className="flex items-center gap-2">
-            <Map className="text-secondary w-5 h-5" />
+            <Map className="text-secondary w-5 flex-none" />
             <p>
               <strong>Route:</strong> {route}
             </p>
           </div>
 
           <div className="flex items-center gap-2">
-            <Clock className="text-secondary w-5 h-5" />
+            <Clock className="text-secondary w-5 flex-none" />
             <p>
               <strong>Duration:</strong> {duration}
             </p>
@@ -89,7 +88,7 @@ export default function TourCard({
           {hovered && misc_text && (
             <div className="text-sm mt-4">
               <h3 className="font-semibold flex items-center gap-2 mb-2">
-                <Info className="text-primary w-5 h-5" /> <strong>Details</strong>
+                <Info className="text-primary w-5 flex-none" /> <strong>Details</strong>
               </h3>
               <div className="whitespace-pre-line leading-relaxed text-gray-600">
                 {misc_text}
