@@ -16,6 +16,7 @@ import image7 from "@/public/images/image7.jpg";
 import { createClient } from "@/app/lib/utils/supabase/browser";
 import { useEffect, useState } from 'react';
 import TourCard from './new-tourcard';
+import Link from 'next/link';
 
 const supabase = createClient();
 
@@ -41,7 +42,7 @@ export default function Main() {
     fetchPackages();
   }, []);
 
-  
+
 
 
   const destinationss = [
@@ -70,15 +71,15 @@ export default function Main() {
   return (
     <div>
       <main className="w-80 lg:w-7xl md:w-4xl mx-auto pt-20 space-y-20">
-      <section>
+        <section>
           <div className="flex justify-between items-center mb-6">
-            <h2 className="md:text-2xl text-xl font-bold">Featured Packages</h2>
-            <button
-              onClick={() => router.push('/tours')}
-              className="text-sm border border-primary-light md:px-4 px-2 md:py-1 hover:bg-secondary"
+            <h2 className="md:text-2xl text-xl font-bold">Top Packages</h2>
+            <Link
+              href="/tours"
+              className="text-sm rounded-md px-3 py-1.5 hover:bg-primary hover:text-white cursor-pointer transition"
             >
               View More
-            </button>
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -100,7 +101,7 @@ export default function Main() {
           <div className="flex flex-col md:flex-col-reverse justify-between h-full">
             {/* Image (will appear first on mobile due to flex-col-reverse) */}
             <div>
-              <Image src={image7}alt="Scenery" className="rounded-lg shadow-md w-full h-64 md:h-[370px] lg:h-[520px] object-cover"/>
+              <Image src={image7} alt="Scenery" className="rounded-lg shadow-md w-full h-64 md:h-[370px] lg:h-[520px] object-cover" />
             </div>
 
             {/* Text Content */}
@@ -119,7 +120,12 @@ export default function Main() {
         <section>
           <div className="flex justify-between items-center mb-6">
             <h2 className="md:text-2xl text-xl font-bold">Destinations</h2>
-            <button onClick={() => router.push('/destinations')} className="text-sm border border-primary-light md:px-4 px-2 md:py-1 hover:bg-secondary">View All</button>
+            <Link
+              href="/destinations"
+              className="text-sm rounded-md px-3 py-1.5 hover:bg-primary hover:text-white cursor-pointer transition"
+            >
+              View More
+            </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {destinationss.map((dest) => (

@@ -64,7 +64,7 @@ export default function Slider() {
   let description =
     'If you are looking for a perfect holiday experience with memories to cherish you are at the right place. Let\'s plan a reasonable stay for you.';
   let showButton = true;
-  let heightClass = 'h-[92vh]';
+  let heightClass = 'h-[90vh] md:h-[92vh] ';
   let backgroundImage = sliderImages[current];
 
   if (isAbout) {
