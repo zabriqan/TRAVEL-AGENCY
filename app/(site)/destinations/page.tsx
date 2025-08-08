@@ -1,15 +1,15 @@
 import DestinationCard from "@/app/components/destinycard";
-import chitral from "@/public/chitral.jpg";
-import nationalpark from "@/public/nationalpark.jpg";
-import naran from "@/public/naran.jpg";
-import kaghan from "@/public/kaghan.jpg";
-import kalam from "@/public/kalam.jpg";
-import murree from '@/public/murree.jpg'
-import hunza from '@/public/hunza.jpg'
-import skardu from '@/public/skardu.jpg'
-import swat from '@/public/sawat.jpg'
-import neelum from '@/public/neelum.jpg'
-import attabad from '@/public/attabad.jpg'
+import chitral from "@/public/images/chitral.jpg";
+import nationalpark from "@/public/images/nationalpark.jpg";
+import naran from "@/public/images/naran.jpg";
+import kaghan from "@/public/images/kaghan.jpg";
+import kalam from "@/public/images/kalam.jpg";
+import murree from '@/public/images/murree.jpg'
+import hunza from '@/public/images/hunza.jpg'
+import skardu from '@/public/images/skardu.jpg'
+import swat from '@/public/images/sawat.jpg'
+import neelum from '@/public/images/neelum.jpg'
+import attabad from '@/public/images/attabad.jpg'
 
 
 const destinations = [

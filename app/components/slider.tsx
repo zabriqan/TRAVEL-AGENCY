@@ -5,11 +5,11 @@ import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Script from "next/script";
 import { addDays } from 'date-fns';
-import Image1 from '@/public/chitral.jpg';
-import Image2 from '@/public/naran.jpg';
-import Image3 from '@/public/hunza.jpg';
-import Image4 from '@/public/image4.jpg';
-import Image5 from '@/public/image5.jpg';
+import Image1 from '@/public/images/chitral.jpg';
+import Image2 from '@/public/images/naran.jpg';
+import Image3 from '@/public/images/hunza.jpg';
+import Image4 from '@/public/images/image4.jpg';
+import Image5 from '@/public/images/image5.jpg';
 import BookingDialog from './bookingdailog';
 import MultiSelect from './multiselecter';
 import DateRangePicker from './daterange';
@@ -68,7 +68,7 @@ export default function Slider() {
   let description =
     'If you are looking for a perfect holiday experience with memories to cherish you are at the right place. Let\'s plan a reasonable stay for you.';
   let showButton = true;
-  let heightClass = 'h-[92vh]';
+  let heightClass = 'h-[90vh] md:h-[92vh] ';
   let backgroundImage = sliderImages[current];
 
   if (isAbout) {

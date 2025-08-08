@@ -59,7 +59,7 @@ export default function TourCard({
           {/* Expand toggle for mobile */}
           <button
             onClick={() => setHovered(!hovered)}
-            className="sm:hidden flex items-center text-secondary"
+            className="md:hidden flex items-center text-secondary"
           >
             {hovered ? (
               <ChevronDown className="w-6 h-6" />
@@ -102,7 +102,7 @@ export default function TourCard({
               download={`${heading.replace(/\s+/g, "")}.pdf`}
               className="inline-flex items-center gap-2 bg-primary text-white px-5 py-2 rounded-md mt-4 hover:bg-primary-dark transition"
             >
-              <Download className="w-5 h-5" /> Package Details
+              <Download className="w-5 h-5 flex-none" /> Package Details
             </a>
           )}
         </div>
