@@ -15,12 +15,12 @@ export default async function ToursPage() {
   }
 
   return (
-    <div className="md:w-4xl lg:w-7xl w-80 mx-auto py-26">
+    <div className="container px-4 mx-auto py-12">
       <h1 className="md:text-3xl text-2xl font-bold text-center text-secondary mb-6">
         All Packages
       </h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {packages?.map((pkg, i) => (
           <TourCard key={i} {...pkg} />
         ))}

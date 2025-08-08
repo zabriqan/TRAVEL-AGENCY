@@ -59,7 +59,7 @@ export default function TourCard({
           {/* Expand toggle for mobile */}
           <button
             onClick={() => setHovered(!hovered)}
-            className="sm:hidden flex items-center text-secondary"
+            className="md:hidden flex items-center text-secondary"
           >
             {hovered ? (
               <ChevronDown className="w-6 h-6" />
