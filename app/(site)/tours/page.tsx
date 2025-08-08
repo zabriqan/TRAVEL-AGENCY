@@ -7,7 +7,7 @@ const supabase = createClient();
 export default async function ToursPage() {
   const { data: packages, error } = await supabase
     .from("packages")
-    .select("*");
+    .select("heading, subheading, route, duration, pdf_url, poster_url, misc_text");
 
   if (error) {
     console.error("Error fetching packages:", error.message);
