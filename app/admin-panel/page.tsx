@@ -8,6 +8,7 @@ export default async function AdminPanelHome() {
             <LinkCard href='/admin-panel/customers' title='Customers' subtext='Manage customers and their info' />
             <LinkCard href='/admin-panel/quotations' title='Quotations' subtext='Create and update quotations for customers' />
             <LinkCard href='/admin-panel/chart-of-accounts' title='Chart of Accounts' subtext='Manage accounts to be used in expenses etc.' />
+            <LinkCard href='/admin-panel/packages' title='Packages' subtext='Manage packages and their info' />
         </div>
     )
 }

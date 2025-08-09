@@ -46,6 +46,16 @@ export const QuotationBaseSchema = z.object({
    prices_and_costs: z.array(PricesAndCostRowSchema),
 });
 
+export const packagebaseSchema = z.object({
+   heading: z.string().min(2, "Heading is required").max(50, "Heading is too long"),
+   subheading: z.string().max(50, "Subheading is too long").optional(),
+   route: z.string().min(1, "Route is required").max(100, "Route is too long"),
+   duration: z.string().min(1, "Duration is required").max(50, "Duration is too long"),
+   misc_text: z.string().max(200, "Miscellaneous text is too long").optional(),
+   pdf_url: z.string().url("PDF URL must be a valid URL"),
+   poster_url: z.string().url("Poster URL must be a valid URL"),
+});
+
 export const ExpenseCreateSchema = ExpenseBaseSchema.omit({ amount: true }).extend({
    amount: coercedInt(ZeroOrPositive)
 });
@@ -53,6 +63,7 @@ export const ExpenseCreateSchema = ExpenseBaseSchema.omit({ amount: true }).exte
 export const ChartOfAccountCreateSchema = ChartOfAccountBaseSchema
 
 export const CustomerCreateSchema = CustomerBaseSchema;
+export const packageCreateSchema = packagebaseSchema;
 
 export const QuotationCreateSchema = QuotationBaseSchema.omit({ stops: true }).extend({
    stops: z.string(),

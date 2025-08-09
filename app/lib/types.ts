@@ -34,3 +34,15 @@ export type Customer = {
    email_address: string;
    actions?: string;
 }
+export type packages = {
+   id: string;
+   created_at: string;
+   heading: string;
+   subheading: string;
+   route: string;
+   duration: string;
+   misc_text: string;
+   pdf_url: string;
+   poster_url: string;
+   actions?: string;
+}
