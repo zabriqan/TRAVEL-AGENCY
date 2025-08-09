@@ -69,7 +69,7 @@ export default function EditPackagePage() {
                     { id: "sub_heading", label: "Sub Heading", type: "text", required: true,  defaultValue: PackageData.subheading, error: fieldErrors?.properties?.sub_heading },
                     { id: "route", label: "Route", type: "text", required: true,defaultValue: PackageData.route, error: fieldErrors?.properties?.route },
                     { id: "duration", label: "Duration", type: "text", required: true, defaultValue: PackageData.duration, error: fieldErrors?.properties?.duration},
-                    { id: "misc_text", label: "Misc_Text", type: "text", required: true, defaultValue: PackageData.misc_text, error: fieldErrors?.properties?.misc_text },
+                    { id: "misc_text", label: "Misc_Text", type: "textarea", required: true, defaultValue: PackageData.misc_text, error: fieldErrors?.properties?.misc_text },
                     { id: "pdf_url", label: "pdf_url", type: "text", required: true, defaultValue: PackageData.pdf_url, error: fieldErrors?.properties?.pdf_url },
                     { id: "poster_url", label: "poster_url", type: "text", required: true, defaultValue: PackageData.poster_url, error: fieldErrors?.properties?.poster_url },
                 ]}

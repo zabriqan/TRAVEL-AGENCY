@@ -41,7 +41,7 @@ export default function Page() {
                     { id: "route", label: "Route", type: "text", required: true, error: fieldErrors?.properties?.route },
                     { id: "duration", label: "Duration", type: "text", required: true, error: fieldErrors?.properties?.duration},
                     { id: "misc_text", label: "Misc_Text", type: "text", required: true, error: fieldErrors?.properties?.misc_text },
-                    { id: "pdf_url", label: "pdf_url", type: "text", required: true, error: fieldErrors?.properties?.pdf_url },
+                    { id: "pdf_url", label: "pdf_url", type: "textarea", required: true, error: fieldErrors?.properties?.pdf_url },
                     { id: "poster_url", label: "poster_url", type: "text", required: true, error: fieldErrors?.properties?.poster_url },
 
                 ]}

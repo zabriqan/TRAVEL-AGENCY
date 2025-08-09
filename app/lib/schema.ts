@@ -48,7 +48,7 @@ export const QuotationBaseSchema = z.object({
 
 export const packagebaseSchema = z.object({
    heading: z.string().min(2, "Heading is required").max(50, "Heading is too long"),
-   subheading: z.string().max(100, "Subheading is too long").optional(),
+   subheading: z.string().min(2, "Subheading is too short").optional(),
    route: z.string().min(1, "Route is required").max(100, "Route is too long"),
    duration: z.string().min(1, "Duration is required").max(50, "Duration is too long"),
    misc_text: z.string().max(500, "Miscellaneous text is too long").optional(),
