@@ -66,7 +66,7 @@ export default function EditPackagePage() {
             <Form
                 fields={[
                     { id: "heading", label: "Customer Name", type: "text", required: true, defaultValue: PackageData.heading ,error: fieldErrors?.properties?.heading },
-                    { id: "sub_heading", label: "Sub Heading", type: "text", required: true,  defaultValue: PackageData.subheading, error: fieldErrors?.properties?.sub_heading },
+                    { id: "subheading", label: "Sub Heading", type: "text", required: true,  defaultValue: PackageData.subheading, error: fieldErrors?.properties?.sub_heading },
                     { id: "route", label: "Route", type: "text", required: true,defaultValue: PackageData.route, error: fieldErrors?.properties?.route },
                     { id: "duration", label: "Duration", type: "text", required: true, defaultValue: PackageData.duration, error: fieldErrors?.properties?.duration},
                     { id: "misc_text", label: "Misc_Text", type: "textarea", required: true, defaultValue: PackageData.misc_text, error: fieldErrors?.properties?.misc_text },

@@ -37,7 +37,7 @@ export default function Page() {
             <Form
                 fields={[
                     { id: "heading", label: "Customer Name", type: "text", required: true, error: fieldErrors?.properties?.heading },
-                    { id: "sub_heading", label: "Sub Heading", type: "text", required: true, error: fieldErrors?.properties?.sub_heading },
+                    { id: "subheading", label: "Sub Heading", type: "text", required: true, error: fieldErrors?.properties?.sub_heading },
                     { id: "route", label: "Route", type: "text", required: true, error: fieldErrors?.properties?.route },
                     { id: "duration", label: "Duration", type: "text", required: true, error: fieldErrors?.properties?.duration},
                     { id: "misc_text", label: "Misc_Text", type: "text", required: true, error: fieldErrors?.properties?.misc_text },
