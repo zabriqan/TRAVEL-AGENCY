@@ -11,7 +11,7 @@ import { packages } from '@/app/lib/types';
 export default function EditPackagePage() {
     const params: { id: string } = useParams();
 
-    const [PackageData, setPackageData] = useState<packages | null>(null);
+    const [packageData, setPackageData] = useState<packages | null>(null);
     const [fieldErrors, setFieldErrors] = useState<FieldErrorType>({ errors: [] });
     const [pending, start] = useTransition();
 
@@ -52,7 +52,7 @@ export default function EditPackagePage() {
         });
     }
 
-    if (!PackageData) {
+    if (!packageData) {
         return <div>Loading...</div>;
     }
 
@@ -65,13 +65,13 @@ export default function EditPackagePage() {
             )}
             <Form
                 fields={[
-                    { id: "heading", label: "Customer Name", type: "text", required: true, defaultValue: PackageData.heading ,error: fieldErrors?.properties?.heading },
-                    { id: "subheading", label: "Sub Heading", type: "text", required: true,  defaultValue: PackageData.subheading, error: fieldErrors?.properties?.sub_heading },
-                    { id: "route", label: "Route", type: "text", required: true,defaultValue: PackageData.route, error: fieldErrors?.properties?.route },
-                    { id: "duration", label: "Duration", type: "text", required: true, defaultValue: PackageData.duration, error: fieldErrors?.properties?.duration},
-                    { id: "misc_text", label: "Misc_Text", type: "textarea", required: true, defaultValue: PackageData.misc_text, error: fieldErrors?.properties?.misc_text },
-                    { id: "pdf_url", label: "pdf_url", type: "text", required: true, defaultValue: PackageData.pdf_url, error: fieldErrors?.properties?.pdf_url },
-                    { id: "poster_url", label: "poster_url", type: "text", required: true, defaultValue: PackageData.poster_url, error: fieldErrors?.properties?.poster_url },
+                    { id: "heading", label: "Package Title", placeholder: "e.g. Weekend Getaway Trip", type: "text", required: true, defaultValue: packageData.heading, error: fieldErrors?.properties?.heading },
+                    { id: "subheading", label: "Sub Heading", placeholder: "e.g. A small 3 day trip to Murree and Nathia Gali", type: "text", required: true, defaultValue: packageData.subheading, error: fieldErrors?.properties?.sub_heading },
+                    { id: "route", label: "Route", placeholder: "e.g. Murree → Nathia Gali", type: "text", required: true, defaultValue: packageData.route, error: fieldErrors?.properties?.route },
+                    { id: "duration", label: "Duration", placeholder: "e.g. 2 Days/3 Nights", type: "text", required: true, defaultValue: packageData.duration, error: fieldErrors?.properties?.duration },
+                    { id: "misc_text", label: "Description", type: "textarea", required: true, defaultValue: packageData.misc_text, error: fieldErrors?.properties?.misc_text },
+                    { id: "pdf_url", label: "PDF URL", type: "text", required: true, defaultValue: packageData.pdf_url, error: fieldErrors?.properties?.pdf_url, disabled: true },
+                    { id: "poster_url", label: "Poster URL", type: "text", required: true, defaultValue: packageData.poster_url, error: fieldErrors?.properties?.poster_url, disabled: true },
                 ]}
                 button={{
                     type: "submit",

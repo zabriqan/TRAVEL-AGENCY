@@ -11,13 +11,11 @@ export default async function Page() {
         .select("id, created_at, heading, subheading, route, duration, pdf_url, poster_url, misc_text")
         .order('created_at', { ascending: false });
 
-
-
     return (
         <div>
             <Link href='/admin-panel/packages/add' className=''>
                 <Button size='sm' className=''>
-                    Add package
+                    Add Package
                 </Button>
             </Link>
             <Table data={data} />

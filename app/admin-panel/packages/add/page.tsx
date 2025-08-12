@@ -22,7 +22,7 @@ export default function Page() {
                 setFieldErrors(res.fieldErrors ?? { errors: [] });
                 return;
             }
-            toast.success(res.message || 'Package added successfully');
+            toast.success(res.message || 'Success');
             redirect('/admin-panel/packages');
         });
     }
@@ -36,14 +36,11 @@ export default function Page() {
             )}
             <Form
                 fields={[
-                    { id: "heading", label: "Customer Name", type: "text", required: true, error: fieldErrors?.properties?.heading },
-                    { id: "subheading", label: "Sub Heading", type: "text", required: true, error: fieldErrors?.properties?.sub_heading },
-                    { id: "route", label: "Route", type: "text", required: true, error: fieldErrors?.properties?.route },
-                    { id: "duration", label: "Duration", type: "text", required: true, error: fieldErrors?.properties?.duration},
-                    { id: "misc_text", label: "Misc_Text", type: "text", required: true, error: fieldErrors?.properties?.misc_text },
-                    { id: "pdf_url", label: "pdf_url", type: "textarea", required: true, error: fieldErrors?.properties?.pdf_url },
-                    { id: "poster_url", label: "poster_url", type: "text", required: true, error: fieldErrors?.properties?.poster_url },
-
+                    { id: "heading", label: "Package Title", placeholder: "e.g. Weekend Getaway Trip", type: "text", required: true, error: fieldErrors?.properties?.heading },
+                    { id: "subheading", label: "Sub Heading", placeholder: "e.g. A small 3 day trip to Murree and Nathia Gali", type: "text", required: true, error: fieldErrors?.properties?.sub_heading },
+                    { id: "route", label: "Route", placeholder: 'e.g. Murree → Nathia Gali', type: "text", required: true, error: fieldErrors?.properties?.route },
+                    { id: "duration", label: "Duration", placeholder: 'e.g. 2 Days/3 Nights', type: "text", required: true, error: fieldErrors?.properties?.duration},
+                    { id: "misc_text", label: "Description", type: "textarea", required: true, error: fieldErrors?.properties?.misc_text },
                 ]}
                 button={{
                     type: "submit",
