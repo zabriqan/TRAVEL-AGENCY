@@ -1,7 +1,7 @@
 'use server';
 
 import { createClient } from '@/app/lib/utils/supabase/server';
-import { ChartOfAccountCreateSchema, CustomerCreateSchema, ExpenseCreateSchema, QuotationCreateSchema } from './schema';
+import { ChartOfAccountCreateSchema, CustomerCreateSchema, ExpenseCreateSchema, PackageCreateSchema, QuotationCreateSchema } from './schema';
 import z from 'zod';
 import { redirect } from 'next/navigation';
 import { safeParseToJSON } from './utils';
@@ -339,4 +339,88 @@ export async function updateQuotation(id: string, formData: FormData): Promise<{
   }
 
   return { ok: true, message: "Quotation updated successfully" }
+}
+
+export async function createPackage(formData: FormData): Promise<{ ok: true, message: string } | { ok: false, error: string, fieldErrors?: FieldErrorType }> {
+  const supabase = createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return redirect('/login');
+
+  const parsed = PackageCreateSchema.safeParse({
+    heading: formData.get('heading'),
+    subheading: formData.get('subheading'),
+    route: formData.get('route'),
+    duration: formData.get('duration'),
+    misc_text: formData.get('misc_text'),
+    pdf_url: formData.get('pdf_url'),
+    poster_url: formData.get('poster_url'),
+  });
+
+  if (!parsed.success) {
+    console.log(z.treeifyError(parsed.error));
+    return {
+      ok: false,
+      error: "Invalid data.",
+      fieldErrors: z.treeifyError(parsed.error),
+    };
+  }
+
+  const { error } = await supabase.from('packages').insert({
+    heading: parsed.data.heading,
+    subheading: parsed.data.subheading,
+    route: parsed.data.route,
+    duration: parsed.data.duration,
+    misc_text: parsed.data.misc_text
+  });
+
+  if (error) {
+    console.log(error);
+    return {
+      ok: false,
+      error: "Server error. Try again.",
+    };
+  }
+
+  return { ok: true, message: "Package added successfully" };
+}
+
+export async function updatePackage(id: string, formData: FormData): Promise<{ ok: true; message: string } | { ok: false; error: string; fieldErrors?: FieldErrorType }> {
+  const supabase = createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return redirect("/login");
+
+  const parsed = PackageCreateSchema.safeParse({
+    heading: formData.get('heading'),
+    subheading: formData.get('subheading'),
+    route: formData.get('route'),
+    duration: formData.get('duration'),
+    misc_text: formData.get('misc_text')
+  });
+
+  if (!parsed.success) {
+    console.log(z.treeifyError(parsed.error));
+    return {
+      ok: false,
+      error: "Invalid data.",
+      fieldErrors: z.treeifyError(parsed.error),
+    };
+  }
+
+  const { error } = await supabase
+    .from("packages")
+    .update({
+      heading: parsed.data.heading,
+      subheading: parsed.data.subheading,
+      route: parsed.data.route,
+      duration: parsed.data.duration,
+      misc_text: parsed.data.misc_text
+    })
+    .eq("id", id);
+
+  if (error) {
+    console.error(error);
+    return { ok: false, error: "Server error. Try again." };
+  }
+
+  return { ok: true, message: "Package updated successfully" };
 }
