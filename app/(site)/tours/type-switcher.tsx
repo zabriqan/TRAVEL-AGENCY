@@ -13,7 +13,7 @@ export default function TypeSwitcher() {
    const urlParamType = searchParams.get('type');
 
    return (
-      <div className={clsx('flex flex-col gap-0.5', { 'opacity-40 cursor-not-allowed': pending })}>
+      <div className={clsx('flex flex-col gap-0.5 text-sm md:text-base', { 'opacity-40 cursor-not-allowed': pending })}>
          Filters:
          <div className="flex items-center gap-1.5">
             {types.map(type => (

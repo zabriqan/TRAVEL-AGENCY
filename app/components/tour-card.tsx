@@ -9,7 +9,7 @@ export default function TourCard({ pkg }: { pkg: Omit<Package, 'id'> }) {
   const [isExpanded, setIsExpanded] = useState(false)
 
   return (
-    <div className='relative h-96 border rounded-xl border-gray-200 overflow-hidden flex items-end'>
+    <div className='relative h-[28rem] border rounded-xl border-gray-200 overflow-hidden flex items-end'>
       <div className='absolute inset-0 bg-cover bg-center' style={{ backgroundImage: `url(${pkg.poster_url})` }}></div>
       <div className='relative bg-white max-h-full overflow-y-auto px-5 py-4 backdrop-blur-md flex flex-col w-full'>
         <div className="mb-0.5">

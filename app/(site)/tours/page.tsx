@@ -20,11 +20,10 @@ export default async function ToursPage({ searchParams }: { searchParams: { type
 
   return (
     <div className="container px-4 mx-auto py-12">
-      <div className="flex justify-between mb-8">
+      <div className="flex flex-col gap-3 md:flex-row justify-between mb-5 md:mb-8">
         <h1 className="lg:text-4xl md:text-3xl text-2xl font-bold text-secondary">
-          ⫸ All Packages
+          Our Packages
         </h1>
-
         <TypeSwitcher />
       </div>
 
