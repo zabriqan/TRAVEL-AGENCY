@@ -11,7 +11,7 @@ export default function customerTable({ data }: { data: Customer[] | null }) {
             {data ? <StandardTable<Customer>
                 data={data}
                 columns={[
-                    { key: 'id', title: 'ID' },
+                    { key: 'id', title: 'ID', render: (row) => <span className='font-mono'>{row.id}</span> },
                     { key: 'customer_name', title: 'Customer Name', searchable: true },
                     { key: 'contact_no', title: 'Contact no.', searchable: true },
                     { key: 'email_address', title: 'Email Address', searchable: true },

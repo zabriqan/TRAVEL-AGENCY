@@ -20,7 +20,7 @@ export default function EditPackagePage() {
             const supabase = createClient();
             const { data, error } = await supabase
                 .from('packages')
-                .select("id, created_at, heading, subheading, route, duration, pdf_url, poster_url, misc_text")
+                .select("id, created_at, heading, subheading, route, duration, pdf_url, poster_url, package_type, misc_text")
                 .eq('id', params.id)
                 .single();
 
@@ -69,6 +69,13 @@ export default function EditPackagePage() {
                     { id: "subheading", label: "Sub Heading", placeholder: "e.g. A small 3 day trip to Murree and Nathia Gali", type: "text", required: true, defaultValue: packageData.subheading, error: fieldErrors?.properties?.sub_heading },
                     { id: "route", label: "Route", placeholder: "e.g. Murree → Nathia Gali", type: "text", required: true, defaultValue: packageData.route, error: fieldErrors?.properties?.route },
                     { id: "duration", label: "Duration", placeholder: "e.g. 2 Days/3 Nights", type: "text", required: true, defaultValue: packageData.duration, error: fieldErrors?.properties?.duration },
+                    {
+                        id: "package_type", label: "Package Type", type: "select", required: true, defaultValue: packageData.package_type, error: fieldErrors?.properties?.package_type, options: [
+                            { value: "domestic", label: "Domestic" },
+                            { value: "international", label: "International" },
+                            { value: "umrah", label: "Umrah" }
+                        ]
+                    },
                     { id: "misc_text", label: "Description", type: "textarea", required: true, defaultValue: packageData.misc_text, error: fieldErrors?.properties?.misc_text },
                     { id: "pdf_url", label: "PDF URL", type: "text", required: true, defaultValue: packageData.pdf_url, error: fieldErrors?.properties?.pdf_url, disabled: true },
                     { id: "poster_url", label: "Poster URL", type: "text", required: true, defaultValue: packageData.poster_url, error: fieldErrors?.properties?.poster_url, disabled: true },

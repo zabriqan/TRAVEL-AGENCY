@@ -16,7 +16,8 @@ export default function customerTable({ data }: { data: Package[] | null }) {
                             <EditButton href={`/admin-panel/packages/${row.id}`} />
                         )
                     },
-                    { key: 'id', title: 'ID' },
+                    { key: 'id', title: 'ID', render: (row) => <span className='font-mono'>{row.id}</span> },
+                    { key: 'package_type', title: 'Package Type', searchable: true },
                     { key: 'heading', title: 'Heading', searchable: true },
                     { key: 'subheading', title: 'Sub Heading', searchable: true },
                     { key: 'route', title: 'Route', searchable: true },

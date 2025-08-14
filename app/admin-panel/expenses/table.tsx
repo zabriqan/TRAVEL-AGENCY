@@ -13,7 +13,7 @@ export default function Table({ data }: { data: ExpenseType[] | null }) {
             {data ? <StandardTable<ExpenseType>
                 data={data}
                 columns={[
-                    { key: 'id', title: 'ID' },
+                    { key: 'id', title: 'ID', render: (row) => <span className='font-mono'>{row.id}</span> },
                     { key: 'amount', title: 'Amount', searchable: true },
                     { key: 'expense_type', title: 'Expense Type', searchable: true },
                     { key: 'created_at', title: 'Created At', render: (row) => new Date(row.created_at).toLocaleString(), searchable: true },

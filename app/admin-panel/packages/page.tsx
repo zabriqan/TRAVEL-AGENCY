@@ -8,7 +8,7 @@ export default async function Page() {
     const supabase = createClient();
 
     const { data } = await supabase.from('packages')
-        .select("id, created_at, heading, subheading, route, duration, pdf_url, poster_url, misc_text")
+        .select("id, created_at, heading, subheading, route, duration, pdf_url, poster_url, package_type, misc_text")
         .order('created_at', { ascending: false });
 
     return (

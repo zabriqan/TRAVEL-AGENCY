@@ -354,6 +354,7 @@ export async function createPackage(formData: FormData): Promise<{ ok: true, mes
     misc_text: formData.get('misc_text'),
     pdf_url: formData.get('pdf_url'),
     poster_url: formData.get('poster_url'),
+    package_type: formData.get('package_type'),
   });
 
   if (!parsed.success) {
@@ -370,7 +371,8 @@ export async function createPackage(formData: FormData): Promise<{ ok: true, mes
     subheading: parsed.data.subheading,
     route: parsed.data.route,
     duration: parsed.data.duration,
-    misc_text: parsed.data.misc_text
+    misc_text: parsed.data.misc_text,
+    package_type: parsed.data.package_type,
   });
 
   if (error) {
@@ -394,7 +396,8 @@ export async function updatePackage(id: string, formData: FormData): Promise<{ o
     subheading: formData.get('subheading'),
     route: formData.get('route'),
     duration: formData.get('duration'),
-    misc_text: formData.get('misc_text')
+    misc_text: formData.get('misc_text'),
+    package_type: formData.get('package_type'),
   });
 
   if (!parsed.success) {
@@ -413,7 +416,8 @@ export async function updatePackage(id: string, formData: FormData): Promise<{ o
       subheading: parsed.data.subheading,
       route: parsed.data.route,
       duration: parsed.data.duration,
-      misc_text: parsed.data.misc_text
+      misc_text: parsed.data.misc_text,
+      package_type: parsed.data.package_type,
     })
     .eq("id", id);
 

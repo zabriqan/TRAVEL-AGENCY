@@ -39,7 +39,14 @@ export default function Page() {
                     { id: "heading", label: "Package Title", placeholder: "e.g. Weekend Getaway Trip", type: "text", required: true, error: fieldErrors?.properties?.heading },
                     { id: "subheading", label: "Sub Heading", placeholder: "e.g. A small 3 day trip to Murree and Nathia Gali", type: "text", required: true, error: fieldErrors?.properties?.sub_heading },
                     { id: "route", label: "Route", placeholder: 'e.g. Murree → Nathia Gali', type: "text", required: true, error: fieldErrors?.properties?.route },
-                    { id: "duration", label: "Duration", placeholder: 'e.g. 2 Days/3 Nights', type: "text", required: true, error: fieldErrors?.properties?.duration},
+                    { id: "duration", label: "Duration", placeholder: 'e.g. 2 Days/3 Nights', type: "text", required: true, error: fieldErrors?.properties?.duration },
+                    {
+                        id: "package_type", label: "Package Type", type: "select", error: fieldErrors?.properties?.package_type, options: [
+                            { value: "umrah", label: "Umrah" },
+                            { value: "domestic", label: "Domestic" },
+                            { value: "international", label: "International" }
+                        ]
+                    },
                     { id: "misc_text", label: "Description", type: "textarea", required: true, error: fieldErrors?.properties?.misc_text },
                 ]}
                 button={{

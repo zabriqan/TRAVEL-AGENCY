@@ -52,8 +52,9 @@ export const PackageBaseSchema = z.object({
    route: z.string().min(1, "Route is required").max(100, "Route is too long"),
    duration: z.string().min(1, "Duration is required").max(50, "Duration is too long"),
    misc_text: z.string().max(500, "Miscellaneous text is too long").optional(),
-   pdf_url: z.string().min(2,"PDF URL must be a valid URL"),
-   poster_url: z.string().min(2,"Poster URL must be a valid URL"),
+   pdf_url: z.string().min(2, "PDF URL must be a valid URL"),
+   poster_url: z.string().min(2, "Poster URL must be a valid URL"),
+   package_type: z.enum(['domestic', 'international', 'umrah'], "Package type must be either 'domestic', 'international', or 'umrah'")
 });
 
 export const ExpenseCreateSchema = ExpenseBaseSchema.omit({ amount: true }).extend({
@@ -63,7 +64,7 @@ export const ExpenseCreateSchema = ExpenseBaseSchema.omit({ amount: true }).exte
 export const ChartOfAccountCreateSchema = ChartOfAccountBaseSchema
 
 export const CustomerCreateSchema = CustomerBaseSchema;
-export const PackageCreateSchema = PackageBaseSchema.omit({poster_url: true, pdf_url: true});
+export const PackageCreateSchema = PackageBaseSchema.omit({ poster_url: true, pdf_url: true });
 
 export const QuotationCreateSchema = QuotationBaseSchema.omit({ stops: true }).extend({
    stops: z.string(),

@@ -12,7 +12,7 @@ export default function Table({ data }: { data: Quotation[] | null }) {
          {data ? <StandardTable<Quotation>
             data={data}
             columns={[
-               { key: 'id', title: 'ID' },
+               { key: 'id', title: 'ID', render: (row) => <span className='font-mono'>{row.id}</span> },
                { key: 'booking_no', title: 'Booking no.', searchable: true },
                { key: 'stops', title: 'Stops', searchable: true, render: (row) => row.stops.join(',') },
                { key: 'created_at', title: 'Created At', render: (row) => new Date(row.created_at).toLocaleString() },

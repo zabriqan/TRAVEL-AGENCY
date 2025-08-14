@@ -10,7 +10,7 @@ export default function Table({ data }: { data: ChartOfAccount[] | null }) {
             {data ? <StandardTable<ChartOfAccount>
                 data={data}
                 columns={[
-                    { key: 'id', title: 'ID' },
+                    { key: 'id', title: 'ID', render: (row) => <span className='font-mono'>{row.id}</span> },
                     { key: 'account_code', title: 'Account_Code', searchable: true },
                     { key: 'account_name', title: 'Account_Name', searchable: true },
                     { key: 'account_type', title: 'Account_Type', searchable: true },
