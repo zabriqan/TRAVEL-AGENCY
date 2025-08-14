@@ -1,17 +1,17 @@
 import TourCard from "@/app/components/tour-card";
-import { createClient } from "@/app/lib/utils/supabase/browser";
 import TypeSwitcher from "./type-switcher";
-
-const supabase = createClient();
+import { createClient } from "@/app/lib/utils/supabase/server";
 
 export default async function ToursPage({ searchParams }: {
   searchParams?: Promise<{
     type?: string;
   }>;
 }) {
+  const supabase = createClient();
+
   const { data: packages, error } = await supabase
     .from("packages")
-    .select("heading, subheading, route, duration, pdf_url, poster_url, misc_text, package_type, created_at");
+    .select("id, heading, subheading, route, duration, pdf_url, poster_url, misc_text, package_type, created_at");
 
   const { type } = await searchParams ?? { type: "" };
 
@@ -36,7 +36,7 @@ export default async function ToursPage({ searchParams }: {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredPackages.map((pkg, i) => (
-            <TourCard key={i} pkg={pkg} />
+            <TourCard key={pkg.id} pkg={pkg} />
           ))}
         </div>
       )}
