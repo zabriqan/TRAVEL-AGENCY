@@ -4,12 +4,16 @@ import TypeSwitcher from "./type-switcher";
 
 const supabase = createClient();
 
-export default async function ToursPage({ searchParams }: { searchParams: { type?: string } }) {
+export default async function ToursPage({ searchParams }: {
+  searchParams?: Promise<{
+    type?: string;
+  }>;
+}) {
   const { data: packages, error } = await supabase
     .from("packages")
     .select("heading, subheading, route, duration, pdf_url, poster_url, misc_text, package_type, created_at");
 
-  const { type } = searchParams;
+  const { type } = await searchParams ?? { type: "" };
 
   if (error) {
     console.error("Error fetching packages:", error.message);
