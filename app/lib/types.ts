@@ -34,7 +34,10 @@ export type Customer = {
    email_address: string;
    actions?: string;
 }
-export type packages = {
+
+type PackageType = 'domestic' | 'international' | 'umrah';
+
+export type Package = {
    id: string;
    created_at: string;
    heading: string;
@@ -44,5 +47,6 @@ export type packages = {
    misc_text: string;
    pdf_url: string;
    poster_url: string;
+   package_type: PackageType;
    actions?: string;
 }

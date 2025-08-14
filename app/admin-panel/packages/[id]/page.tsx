@@ -6,12 +6,12 @@ import { createClient } from '@/app/lib/utils/supabase/browser';
 import { toast } from 'sonner';
 import { redirect, useParams } from 'next/navigation';
 import { updatePackage } from '@/app/lib/actions';
-import { packages } from '@/app/lib/types';
+import { Package } from '@/app/lib/types';
 
 export default function EditPackagePage() {
     const params: { id: string } = useParams();
 
-    const [packageData, setPackageData] = useState<packages | null>(null);
+    const [packageData, setPackageData] = useState<Package | null>(null);
     const [fieldErrors, setFieldErrors] = useState<FieldErrorType>({ errors: [] });
     const [pending, start] = useTransition();
 
@@ -30,7 +30,7 @@ export default function EditPackagePage() {
                 return;
             }
 
-            setPackageData(data as packages);
+            setPackageData(data as Package);
         }
 
         fetchPackage();

@@ -15,7 +15,7 @@ import image6 from "@/public/images/image6.jpg";
 import image7 from "@/public/images/image7.jpg";
 import { createClient } from "@/app/lib/utils/supabase/browser";
 import { useEffect, useState } from 'react';
-import TourCard from './new-tourcard';
+import TourCard from './tour-card';
 import Link from 'next/link';
 
 const supabase = createClient();
@@ -31,7 +31,7 @@ export default function Main() {
     const fetchPackages = async () => {
       const { data, error } = await supabase
         .from("packages")
-        .select("*")
+        .select("heading, subheading, route, duration, pdf_url, poster_url, misc_text, package_type, created_at")
         .limit(3)
         .order("created_at", { ascending: true });
 
@@ -84,7 +84,7 @@ export default function Main() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {packages.map((pkg, i) => (
-              <TourCard key={i} {...pkg} />
+              <TourCard key={i} pkg={pkg} />
             ))}
           </div>
         </section>

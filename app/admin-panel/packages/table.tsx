@@ -2,13 +2,13 @@
 
 import React from 'react'
 import StandardTable, { EditButton } from '@/app/components/standard-table';
-import { packages } from '@/app/lib/types';
+import { Package } from '@/app/lib/types';
 
 
-export default function customerTable({ data }: { data: packages[] | null }) {
+export default function customerTable({ data }: { data: Package[] | null }) {
     return (
         <div>
-            {data ? <StandardTable<packages>
+            {data ? <StandardTable<Package>
                 data={data}
                 columns={[
                     {
