@@ -5,8 +5,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useNavStore } from '@/app/lib/store/navstore';
-import { X } from 'lucide-react';
-
+import { X, ChevronDown } from 'lucide-react';
+import { Menu } from '@headlessui/react';
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -14,32 +14,32 @@ export default function Navbar() {
   const activeTab = useNavStore((state) => state.activeTab);
 
   const [menuOpen, setMenuOpen] = useState(false);
+  const [mobileToursOpen, setMobileToursOpen] = useState(false);
+
   useEffect(() => {
     if (menuOpen) {
       document.body.classList.add("overflow-hidden");
     } else {
       document.body.classList.remove("overflow-hidden");
     }
-  }, [menuOpen])
-
+  }, [menuOpen]);
 
   // ✅ Sync activeTab with route
   useEffect(() => {
     const syncTab = () => {
       if (pathname === '/contact') {
         setActiveTab('contact');
-      };
+      }
       if (pathname === '/about') {
         setActiveTab('about');
-
-      } if (pathname.startsWith('/destinations')) {
+      }
+      if (pathname.startsWith('/destinations')) {
         setActiveTab('destinations');
-
-      } if (pathname === '/tours') {
+      }
+      if (pathname.startsWith('/tours')) {
         setActiveTab('tours');
-
       } else if (pathname === '/') {
-        const hash = window.location.hash
+        const hash = window.location.hash;
         if (hash === '#skardu') {
           setActiveTab('destinations');
         } else {
@@ -49,16 +49,25 @@ export default function Navbar() {
     };
 
     syncTab();
-
-    // also re-run on hashchange (e.g. clicking #about links)
     window.addEventListener('hashchange', syncTab);
     return () => window.removeEventListener('hashchange', syncTab);
   }, [pathname, setActiveTab]);
+
   const navItems = [
     { label: 'Home', href: '/', tab: 'home' },
     { label: 'About', href: '/about', tab: 'about' },
     { label: 'Destinations', href: '/destinations', tab: 'destinations' },
-    { label: 'Tours', href: '/tours', tab: 'tours' },
+    {
+      label: 'Tours',
+      href: '/tours',
+      tab: 'tours',
+      children: [
+        { label: 'Domestic', href: '/tours?type=domestic', tab: 'tours-national' },
+        { label: 'International', href: '/tours?type=international', tab: 'tours-international' },
+        { label: 'Umrah', href: '/tours?type=umrah', tab: 'tours-umrah' },
+        { label: 'View All', href: '/tours', tab: 'tours' }
+      ]
+    },
   ];
 
   return (
@@ -73,32 +82,65 @@ export default function Navbar() {
 
         {/* Desktop Links */}
         <div className="hidden md:flex gap-10 ml-10 flex-1">
-          {navItems.map((item) => (
-            <Link
-              key={item.tab}
-              href={item.href}
-              onClick={() => setActiveTab(item.tab)}
-              className={`transition-opacity duration-300 text-[20px] font-medium hover:text-secondary hover:opacity-100 ${activeTab === item.tab
-                ? 'text-secondary opacity-100'
-                : 'text-secondary opacity-50'
+          {navItems.map((item) =>
+            item.children ? (
+              // Tours Dropdown
+              <Menu as="div" key={item.tab} className="relative">
+                <Menu.Button
+                  className={`flex items-center gap-2  transition-opacity duration-300 text-[20px] font-medium hover:text-secondary hover:opacity-100 ${
+                    activeTab === item.tab
+                      ? 'text-secondary opacity-100'
+                      : 'text-secondary opacity-50'
+                  }`}
+                >
+                  {item.label}
+                  <ChevronDown size={18} />
+                </Menu.Button>
+                <Menu.Items className="absolute mt-2 w-48 bg-white border border-gray-200 shadow-lg rounded-lg focus:outline-none">
+                  {item.children.map((child) => (
+                    <Menu.Item key={child.tab}>
+                      {({ active }) => (
+                        <Link
+                          href={child.href}
+                          onClick={() => setActiveTab(child.tab)}
+                          className={`block px-4 py-2 text-sm rounded ${
+                            active ? 'text-secondary opacity-100' : 'text-secondary opacity-50'
+                          }`}
+                        >
+                          {child.label}
+                        </Link>
+                      )}
+                    </Menu.Item>
+                  ))}
+                </Menu.Items>
+              </Menu>
+            ) : (
+              <Link
+                key={item.tab}
+                href={item.href}
+                onClick={() => setActiveTab(item.tab)}
+                className={`transition-opacity duration-300 text-[20px] font-medium hover:text-secondary hover:opacity-100 ${
+                  activeTab === item.tab
+                    ? 'text-secondary opacity-100'
+                    : 'text-secondary opacity-50'
                 }`}
-            >
-              {item.label}
-            </Link>
-          ))}
+              >
+                {item.label}
+              </Link>
+            )
+          )}
         </div>
 
         {/* Contact Button */}
         <div className="hidden md:block">
-          <Link key='contact'
+          <Link
+            key="contact"
             onClick={() => setActiveTab('contact')}
             href="/contact"
-            className={`  text-white bg-secondary-light font-bold text-[20px] hover:bg-secondary p-3  rounded-lg transition`}
+            className={`text-white bg-secondary-light font-bold text-[20px] hover:bg-secondary p-3 rounded-lg transition`}
           >
             Contact
           </Link>
-
-
         </div>
 
         {/* Hamburger */}
@@ -124,20 +166,63 @@ export default function Navbar() {
           </button>
 
           {navItems.map((item) => (
-            <Link
-              key={item.tab}
-              href={item.href!}
-              onClick={() => {
-                setActiveTab(item.tab);
-                setMenuOpen(false);
-              }}
-              className={`text-xl font-semibold hover:text-secondary hover:opacity-100 ${activeTab === item.tab
-                ? 'text-secondary opacity-100'
-                : 'text-secondary opacity-50'
-                }`}
-            >
-              {item.label}
-            </Link>
+            <div key={item.tab} className="w-full text-center">
+              {item.children ? (
+                <>
+                  {/* Toggle Button */}
+                  <button
+                    onClick={() => setMobileToursOpen((prev) => !prev)}
+                    className={`flex items-center justify-center gap-2 w-full text-xl font-semibold ${
+                      activeTab === item.tab
+                        ? 'text-secondary opacity-100'
+                        : 'text-secondary opacity-50'
+                    }`}
+                  >
+                    {item.label}
+                    <ChevronDown
+                      size={18}
+                      className={`transition-transform ${
+                        mobileToursOpen ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </button>
+
+                  {/* Collapsible Sub-links */}
+                  {mobileToursOpen && (
+                    <div className="mt-2 space-y-2">
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.tab}
+                          href={child.href}
+                          onClick={() => {
+                            setActiveTab(child.tab);
+                            setMenuOpen(false);
+                          }}
+                          className="block text-lg text-gray-700 hover:text-secondary"
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </>
+              ) : (
+                <Link
+                  href={item.href}
+                  onClick={() => {
+                    setActiveTab(item.tab);
+                    setMenuOpen(false);
+                  }}
+                  className={`text-xl font-semibold hover:text-secondary hover:opacity-100 ${
+                    activeTab === item.tab
+                      ? 'text-secondary opacity-100'
+                      : 'text-secondary opacity-50'
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              )}
+            </div>
           ))}
 
           <Link
@@ -152,7 +237,6 @@ export default function Navbar() {
           </Link>
         </div>
       )}
-
     </nav>
   );
 }
