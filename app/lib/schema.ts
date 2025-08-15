@@ -46,7 +46,7 @@ export const QuotationBaseSchema = z.object({
    prices_and_costs: z.array(PricesAndCostRowSchema),
 });
 
-export const packagebaseSchema = z.object({
+export const PackageBaseSchema = z.object({
    heading: z.string().min(2, "Heading is required").max(50, "Heading is too long"),
    subheading: z.string().min(2, "Subheading is too short").optional(),
    route: z.string().min(1, "Route is required").max(100, "Route is too long"),
@@ -63,7 +63,7 @@ export const ExpenseCreateSchema = ExpenseBaseSchema.omit({ amount: true }).exte
 export const ChartOfAccountCreateSchema = ChartOfAccountBaseSchema
 
 export const CustomerCreateSchema = CustomerBaseSchema;
-export const packageCreateSchema = packagebaseSchema;
+export const PackageCreateSchema = PackageBaseSchema.omit({poster_url: true, pdf_url: true});
 
 export const QuotationCreateSchema = QuotationBaseSchema.omit({ stops: true }).extend({
    stops: z.string(),

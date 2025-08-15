@@ -1,7 +1,7 @@
 'use server';
 
 import { createClient } from '@/app/lib/utils/supabase/server';
-import { ChartOfAccountCreateSchema, CustomerCreateSchema, ExpenseCreateSchema, packageCreateSchema, QuotationCreateSchema } from './schema';
+import { ChartOfAccountCreateSchema, CustomerCreateSchema, ExpenseCreateSchema, PackageCreateSchema, QuotationCreateSchema } from './schema';
 import z from 'zod';
 import { redirect } from 'next/navigation';
 import { safeParseToJSON } from './utils';
@@ -346,7 +346,7 @@ export async function createPackage(formData: FormData): Promise<{ ok: true, mes
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return redirect('/login');
 
-  const parsed = packageCreateSchema.safeParse({
+  const parsed = PackageCreateSchema.safeParse({
     heading: formData.get('heading'),
     subheading: formData.get('subheading'),
     route: formData.get('route'),
@@ -370,9 +370,7 @@ export async function createPackage(formData: FormData): Promise<{ ok: true, mes
     subheading: parsed.data.subheading,
     route: parsed.data.route,
     duration: parsed.data.duration,
-    misc_text: parsed.data.misc_text,
-    pdf_url: parsed.data.pdf_url,
-    poster_url: parsed.data.poster_url,
+    misc_text: parsed.data.misc_text
   });
 
   if (error) {
@@ -383,7 +381,7 @@ export async function createPackage(formData: FormData): Promise<{ ok: true, mes
     };
   }
 
-  return { ok: true, message: "package added successfully" };
+  return { ok: true, message: "Package added successfully" };
 }
 
 export async function updatePackage(id: string, formData: FormData): Promise<{ ok: true; message: string } | { ok: false; error: string; fieldErrors?: FieldErrorType }> {
@@ -391,14 +389,12 @@ export async function updatePackage(id: string, formData: FormData): Promise<{ o
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return redirect("/login");
 
-  const parsed = packageCreateSchema.safeParse({
+  const parsed = PackageCreateSchema.safeParse({
     heading: formData.get('heading'),
     subheading: formData.get('subheading'),
     route: formData.get('route'),
     duration: formData.get('duration'),
-    misc_text: formData.get('misc_text'),
-    pdf_url: formData.get('pdf_url'),
-    poster_url: formData.get('poster_url'),
+    misc_text: formData.get('misc_text')
   });
 
   if (!parsed.success) {
@@ -417,9 +413,7 @@ export async function updatePackage(id: string, formData: FormData): Promise<{ o
       subheading: parsed.data.subheading,
       route: parsed.data.route,
       duration: parsed.data.duration,
-      misc_text: parsed.data.misc_text,
-      pdf_url: parsed.data.pdf_url,
-      poster_url: parsed.data.poster_url,
+      misc_text: parsed.data.misc_text
     })
     .eq("id", id);
 
@@ -428,5 +422,5 @@ export async function updatePackage(id: string, formData: FormData): Promise<{ o
     return { ok: false, error: "Server error. Try again." };
   }
 
-  return { ok: true, message: "package updated successfully" };
+  return { ok: true, message: "Package updated successfully" };
 }

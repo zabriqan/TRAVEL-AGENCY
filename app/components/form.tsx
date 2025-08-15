@@ -16,6 +16,7 @@ type FieldType = {
   error?: { errors: any };
   defaultValue?: string | number;
   value?: string;
+  disabled?: boolean;
 };
 
 type FormProps = {
@@ -60,21 +61,23 @@ export default function Form({
 
               {field.type === "textarea" ? (
                 <textarea
+                  disabled={field.disabled}
                   id={field.id}
                   name={field.id}
                   placeholder={field.placeholder}
                   required={field.required}
                   rows={field.rows ?? 3}
                   defaultValue={field.defaultValue}
-                  className="border border-gray-300 focus:border-primary transition rounded px-3 py-1.5 outline-none"
+                  className="text-sm border border-gray-300 focus:border-primary transition rounded px-2.5 py-1.5 outline-none disabled:opacity-50"
                 />
               ) : field.type === "select" && field.options ? (
                 <select
+                  disabled={field.disabled}
                   id={field.id}
                   name={field.id}
                   required={field.required}
                   defaultValue={field.defaultValue}
-                  className="border border-gray-300 focus:border-primary transition rounded px-3 py-1.5 outline-none"
+                  className="text-sm border border-gray-300 focus:border-primary transition rounded px-2.5 py-1.5 outline-none disabled:opacity-50"
                 >
                   <option value="">Select {field.label}</option>
                   {field.options.map(({ value, label }) => (
@@ -85,6 +88,7 @@ export default function Form({
                 </select>
               ) : (
                 <input
+                  disabled={field.disabled}
                   type={field.type || "text"}
                   id={field.id}
                   name={field.id}
@@ -92,7 +96,7 @@ export default function Form({
                   required={field.required}
                   value={field.value}
                   defaultValue={field.defaultValue}
-                  className="border border-gray-300 focus:border-primary transition rounded px-3 py-1.5 outline-none"
+                  className="text-sm border border-gray-300 focus:border-primary transition rounded px-2.5 py-1.5 outline-none disabled:opacity-50"
                 />
               )}
               {(field.error && isVisible) && <span className='text-xs text-red-500'>{String(field.error?.errors)}</span>}
