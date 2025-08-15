@@ -41,7 +41,7 @@ export default function TourCard({
       {/* Background Image */}
       <div className="relative h-[60vh]">
         <Image src={poster_url} alt={heading} fill className="object-cover" />
-        <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-all duration-1000" />
+        <div className="absolute inset-0 bg-black/10 group-hover:bg-black/60 transition-all duration-1000" />
       </div>
 
       {/* Card Info */}
