@@ -87,14 +87,14 @@ export default function Navbar() {
               // Tours Dropdown
               <Menu as="div" key={item.tab} className="relative">
                 <Menu.Button
-                  className={`flex items-center gap-2  transition-opacity duration-300 text-[20px] font-medium hover:text-secondary hover:opacity-100 ${
+                  className={`flex items-center gap-1 transition-opacity duration-300 text-[20px] font-medium hover:text-secondary hover:opacity-100 ${
                     activeTab === item.tab
                       ? 'text-secondary opacity-100'
                       : 'text-secondary opacity-50'
                   }`}
                 >
                   {item.label}
-                  <ChevronDown size={18} />
+                  <ChevronDown size={18}  className='mt-1.5'/>
                 </Menu.Button>
                 <Menu.Items className="absolute mt-2 w-48 bg-white border border-gray-200 shadow-lg rounded-lg focus:outline-none">
                   {item.children.map((child) => (
@@ -102,10 +102,8 @@ export default function Navbar() {
                       {({ active }) => (
                         <Link
                           href={child.href}
-                          onClick={() => setActiveTab(child.tab)}
-                          className={`block px-4 py-2 text-sm rounded ${
-                            active ? 'text-secondary opacity-100' : 'text-secondary opacity-50'
-                          }`}
+                          onClick={() => setActiveTab('tours')}
+                          className={`block px-4 py-2 text-sm rounded text-secondary opacity-50 hover:text-secondary-dark hover:opacity-100`}
                         >
                           {child.label}
                         </Link>
@@ -137,7 +135,7 @@ export default function Navbar() {
             key="contact"
             onClick={() => setActiveTab('contact')}
             href="/contact"
-            className={`text-white bg-secondary-light font-bold text-[20px] hover:bg-secondary p-3 rounded-lg transition`}
+            className='text-white bg-secondary-light font-bold text-[20px] hover:bg-secondary p-3 rounded-lg transition'
           >
             Contact
           </Link>
@@ -172,7 +170,7 @@ export default function Navbar() {
                   {/* Toggle Button */}
                   <button
                     onClick={() => setMobileToursOpen((prev) => !prev)}
-                    className={`flex items-center justify-center gap-2 w-full text-xl font-semibold ${
+                    className={`flex items-center justify-center gap-1 w-full text-xl font-semibold ${
                       activeTab === item.tab
                         ? 'text-secondary opacity-100'
                         : 'text-secondary opacity-50'
@@ -181,7 +179,7 @@ export default function Navbar() {
                     {item.label}
                     <ChevronDown
                       size={18}
-                      className={`transition-transform ${
+                      className={`transition-transform mt-1 ${
                         mobileToursOpen ? 'rotate-180' : ''
                       }`}
                     />
@@ -195,10 +193,10 @@ export default function Navbar() {
                           key={child.tab}
                           href={child.href}
                           onClick={() => {
-                            setActiveTab(child.tab);
+                            setActiveTab('tours');
                             setMenuOpen(false);
                           }}
-                          className="block text-lg text-gray-700 hover:text-secondary"
+                          className='block text-lg text-secondary opacity-50 hover:text-secondary-dark hover:opacity-100'
                         >
                           {child.label}
                         </Link>
