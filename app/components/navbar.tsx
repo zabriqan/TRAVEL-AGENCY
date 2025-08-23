@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useNavStore } from '@/app/lib/store/navstore';
-import { X, ChevronDown } from 'lucide-react';
+import { X, ChevronDown, HamburgerIcon, MenuIcon } from 'lucide-react';
 import { Menu } from '@headlessui/react';
 
 export default function Navbar() {
@@ -71,90 +71,68 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="w-full sticky top-0 z-40 bg-white">
-      <div className="w-80 md:w-4xl lg:w-7xl mx-auto flex items-center justify-between h-20">
-        {/* Logo */}
-        <div className="flex items-center gap-10">
-          <Link href="/">
-            <Image src={logo} alt="Logo" className="w-50 md:w-80 h-auto" />
-          </Link>
-        </div>
-
-        {/* Desktop Links */}
-        <div className="hidden md:flex gap-10 ml-10 flex-1">
-          {navItems.map((item) =>
-            item.children ? (
-              // Tours Dropdown
-              <Menu as="div" key={item.tab} className="relative">
-                <Menu.Button
-                  className={`flex items-center gap-1 transition-opacity duration-300 text-[20px] font-medium hover:text-secondary hover:opacity-100 ${
-                    activeTab === item.tab
-                      ? 'text-secondary opacity-100'
-                      : 'text-secondary opacity-50'
+    <nav className='fixed top-0 z-50 flex p-2 lg:py-3 lg:px-6 items-center justify-between w-screen'>
+      <div className="bg-white shadow-lg rounded-full px-4.5 h-11 lg:h-14 grid place-items-center">
+        <Link href="/">
+          <Image src={logo} alt="Logo" className="w-40 lg:w-56 h-auto" />
+        </Link>
+      </div>
+      <div className="px-6 h-14 bg-white shadow-lg rounded-full hidden lg:flex items-center gap-8 text-lg absolute left-1/2 -translate-x-1/2">
+        {navItems.map((item) =>
+          item.children ? (
+            // Tours Dropdown
+            <Menu as="div" key={item.tab} className="relative">
+              <Menu.Button
+                className={`flex cursor-pointer items-center gap-1 transition font-medium hover:text-secondary hover:opacity-100 ${activeTab === item.tab
+                  ? 'text-secondary opacity-100'
+                  : 'text-secondary opacity-50'
                   }`}
-                >
-                  {item.label}
-                  <ChevronDown size={18}  className='mt-1.5'/>
-                </Menu.Button>
-                <Menu.Items className="absolute mt-2 w-48 bg-white border border-gray-200 shadow-lg rounded-lg focus:outline-none">
-                  {item.children.map((child) => (
-                    <Menu.Item key={child.tab}>
-                      {({ active }) => (
-                        <Link
-                          href={child.href}
-                          onClick={() => setActiveTab('tours')}
-                          className={`block px-4 py-2 text-sm rounded text-secondary opacity-50 hover:text-secondary-dark hover:opacity-100`}
-                        >
-                          {child.label}
-                        </Link>
-                      )}
-                    </Menu.Item>
-                  ))}
-                </Menu.Items>
-              </Menu>
-            ) : (
-              <Link
-                key={item.tab}
-                href={item.href}
-                onClick={() => setActiveTab(item.tab)}
-                className={`transition-opacity duration-300 text-[20px] font-medium hover:text-secondary hover:opacity-100 ${
-                  activeTab === item.tab
-                    ? 'text-secondary opacity-100'
-                    : 'text-secondary opacity-50'
-                }`}
               >
                 {item.label}
-              </Link>
-            )
-          )}
-        </div>
-
-        {/* Contact Button */}
-        <div className="hidden md:block">
-          <Link
-            key="contact"
-            onClick={() => setActiveTab('contact')}
-            href="/contact"
-            className='text-white bg-secondary-light font-bold text-[20px] hover:bg-secondary p-3 rounded-lg transition'
-          >
-            Contact
-          </Link>
-        </div>
-
-        {/* Hamburger */}
-        <div className="md:hidden">
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="text-3xl text-secondary-light"
-          >
-            ☰
-          </button>
-        </div>
+                <ChevronDown size={18} className='mt-1.5' />
+              </Menu.Button>
+              <Menu.Items className="absolute mt-2 w-48 bg-white border border-gray-200 shadow-lg rounded-lg focus:outline-none">
+                {item.children.map((child) => (
+                  <Menu.Item key={child.tab}>
+                    {({ active }) => (
+                      <Link
+                        href={child.href}
+                        onClick={() => setActiveTab('tours')}
+                        className={`block px-4 py-2 text-sm rounded text-secondary opacity-50 hover:text-secondary-dark hover:opacity-100`}
+                      >
+                        {child.label}
+                      </Link>
+                    )}
+                  </Menu.Item>
+                ))}
+              </Menu.Items>
+            </Menu>
+          ) : (
+            <Link
+              key={item.tab}
+              href={item.href}
+              onClick={() => setActiveTab(item.tab)}
+              className={`transition font-medium hover:text-secondary hover:opacity-100 ${activeTab === item.tab
+                ? 'text-secondary opacity-100'
+                : 'text-secondary opacity-50'
+                }`}
+            >
+              {item.label}
+            </Link>
+          )
+        )}
       </div>
-
-      {/* Mobile Menu */}
+      <Link href="/contact" onClick={() => setActiveTab('contact')} className={`transition font-medium bg-primary hover:bg-primary-dark px-6 text-lg h-14 hidden lg:flex items-center rounded-full text-white shadow-lg`}>
+        Contact Us
+      </Link>
+      <button
+        onClick={() => setMenuOpen(!menuOpen)}
+        className="transition font-medium bg-white h-11 w-11 grid place-items-center lg:hidden rounded-full text-gray-800 shadow-lg"
+      >
+        <MenuIcon className='w-5' />
+      </button>
       {menuOpen && (
-        <div className="md:hidden fixed inset-0 bg-white z-50 flex flex-col items-center justify-center gap-6 px-4">
+        <div className="lg:hidden fixed inset-0 bg-white z-50 flex flex-col items-center justify-center gap-6 px-4">
           {/* Close Button */}
           <button
             onClick={() => setMenuOpen(false)}
@@ -170,18 +148,16 @@ export default function Navbar() {
                   {/* Toggle Button */}
                   <button
                     onClick={() => setMobileToursOpen((prev) => !prev)}
-                    className={`flex items-center justify-center gap-1 w-full text-xl font-semibold ${
-                      activeTab === item.tab
-                        ? 'text-secondary opacity-100'
-                        : 'text-secondary opacity-50'
-                    }`}
+                    className={`flex items-center justify-center gap-1 w-full text-xl font-semibold ${activeTab === item.tab
+                      ? 'text-secondary opacity-100'
+                      : 'text-secondary opacity-50'
+                      }`}
                   >
                     {item.label}
                     <ChevronDown
                       size={18}
-                      className={`transition-transform mt-1 ${
-                        mobileToursOpen ? 'rotate-180' : ''
-                      }`}
+                      className={`transition-transform mt-1 ${mobileToursOpen ? 'rotate-180' : ''
+                        }`}
                     />
                   </button>
 
@@ -211,11 +187,10 @@ export default function Navbar() {
                     setActiveTab(item.tab);
                     setMenuOpen(false);
                   }}
-                  className={`text-xl font-semibold hover:text-secondary hover:opacity-100 ${
-                    activeTab === item.tab
-                      ? 'text-secondary opacity-100'
-                      : 'text-secondary opacity-50'
-                  }`}
+                  className={`text-xl font-semibold hover:text-secondary hover:opacity-100 ${activeTab === item.tab
+                    ? 'text-secondary opacity-100'
+                    : 'text-secondary opacity-50'
+                    }`}
                 >
                   {item.label}
                 </Link>
