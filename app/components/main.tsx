@@ -71,7 +71,7 @@ export default function Main() {
 
   return (
     <>
-      <main className="container space-y-20 mx-auto">
+      <main className="container mt-20 space-y-20 mx-auto">
         <section className=''>
           <div className="flex justify-between items-center mb-6">
             <h2 className="xl:text-3xl md:text-2xl text-xl font-bold">Top Packages</h2>
@@ -135,8 +135,8 @@ export default function Main() {
 
         {/* Section: Inside Pictures */}
         <section>
-          <h2 className="md:text-2xl text-xl font-bold text-center mb-6">Our Inside Gallery</h2>
-          <p className="text-center text-gray-600 mb-10">Take a look at some pretty pictures captured in and around our premises.</p>
+          <h2 className="xl:text-3xl md:text-2xl text-xl font-bold text-center mb-1">Our Inside Gallery</h2>
+          <p className="text-center text-gray-600 mb-10 font-medium">Take a look at some pretty pictures captured in and around our premises.</p>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-2">
             {[chitral, image5, image4,].map((img, i) => (
               <Image

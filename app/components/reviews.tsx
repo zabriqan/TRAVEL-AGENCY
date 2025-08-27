@@ -35,7 +35,7 @@ export default function Reviews() {
       <h2 className="md:text-3xl text-2xl font-bold mb-10">What Our Guests Say</h2>
 
       {/* MOBILE (max 3 reviews) */}
-      <div className="w-80 mx-auto grid grid-cols-1 gap-6 md:hidden">
+      <div className="grid grid-cols-1 gap-6 md:hidden">
         {reviews.slice(0, 3).map((r, idx) => (
           <div
             key={idx}
@@ -53,7 +53,7 @@ export default function Reviews() {
       </div>
 
       {/* DESKTOP (all reviews) */}
-      <div className="hidden md:grid md:w-4xl lg:w-7xl mx-auto grid-cols-3 gap-6">
+      <div className="hidden md:grid grid-cols-3 gap-6">
         {reviews.map((r, idx) => (
           <div
             key={idx}
