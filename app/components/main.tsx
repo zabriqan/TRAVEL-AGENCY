@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import Image from "next/image";
 import ProductCard from "./productcard";
 import Reviews from "./reviews";
-import { Phone, CalendarCheck } from "lucide-react";
+import { Phone, CalendarCheck, ArrowRightIcon } from "lucide-react";
 import chitral from "@/public/images/chitral.jpg";
 import kashmir from '@/public/images/kashmir.jpg'
 import nationalpark from "@/public/images/nationalpark.jpg";
@@ -68,18 +68,14 @@ export default function Main() {
       link: '/destinations#Nationalpark'
     }
   ];
+
   return (
-    <div>
-      <main className="w-80 lg:w-7xl md:w-4xl mx-auto pt-20 space-y-20">
-        <section>
+    <>
+      <main className="container space-y-20 mx-auto">
+        <section className=''>
           <div className="flex justify-between items-center mb-6">
-            <h2 className="md:text-2xl text-xl font-bold">Top Packages</h2>
-            <Link
-              href="/tours"
-              className="text-sm rounded-md px-3 py-1.5 hover:bg-primary hover:text-white cursor-pointer transition"
-            >
-              View More
-            </Link>
+            <h2 className="xl:text-3xl md:text-2xl text-xl font-bold">Top Packages</h2>
+            <ViewMoreButton href='/tours' />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -119,13 +115,8 @@ export default function Main() {
         {/* Section: Amenities */}
         <section>
           <div className="flex justify-between items-center mb-6">
-            <h2 className="md:text-2xl text-xl font-bold">Destinations</h2>
-            <Link
-              href="/destinations"
-              className="text-sm rounded-md px-3 py-1.5 hover:bg-primary hover:text-white cursor-pointer transition"
-            >
-              View More
-            </Link>
+            <h2 className="xl:text-3xl md:text-2xl text-xl font-bold">Destinations</h2>
+            <ViewMoreButton href='/destinations' />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {destinationss.map((dest) => (
@@ -175,9 +166,9 @@ export default function Main() {
           {/* Content */}
           <div className="md:w-4xl lg:w-7xl w-80 relative z-10 flex flex-col justify-center items-center h-full px-4 text-center">
             <h2 className="text-2xl md:text-4xl font-bold mb-4">
-              Plan an Unforgettable Experience in Kashmir Today!
+              Plan an Unforgettable Experience at Your Favorite Spot Today!
             </h2>
-            <p className="mb-6 text-sm md:text-base font-light max-w-xl">
+            <p className="mx-auto w-fit mb-8 md:text-lg bg-black/10 text-white backdrop-blur-md font-medium py-2.5 px-5 rounded-full">
               We can help you fit your stay and experience within your allotted budget.
             </p>
 
@@ -193,6 +184,18 @@ export default function Main() {
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
+}
+
+function ViewMoreButton({ href }: { href: string }) {
+  return (
+    <Link
+      href={href}
+      className="px-3.5 py-1.5 bg-gray-100 rounded-full hover:bg-primary hover:text-white cursor-pointer transition font-medium flex items-center gap-1.5"
+    >
+      View More
+      <ArrowRightIcon className='size-4.5' />
+    </Link>
+  )
 }

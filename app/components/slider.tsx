@@ -251,14 +251,14 @@ export default function Slider() {
       </div>
 
       {/* Overlay */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#013D64]/80 via-20% via-[#034a50]/30 to-80% to-[#034a50]/60" />
+      <div className="absolute inset-0 z-10 bg-gradient-to-b from-gray-800/80 via-20% via-gray-800/30 to-80% to-gray-800/60" />
 
       {/* Content */}
       <div id='slider' className="absolute inset-0 z-20 flex items-center justify-center">
         <div className="container mx-auto">
           <div className="">
             <h2 className="text-center text-4xl md:text-5xl lg:text-7xl font-extrabold mb-4 text-white">{heading}</h2>
-            <p className="mx-auto w-fit mb-8 text-lg bg-black/10 text-white backdrop-blur-md font-medium py-2.5 px-5 rounded-full">{description}</p>
+            <p className="mx-auto w-fit mb-8 md:text-lg bg-black/10 text-white backdrop-blur-md font-medium py-2.5 px-5 rounded-full">{description}</p>
             {showButton && (
               <form onSubmit={handleSubmit} className="md:p-7 xl:py-9 xl:px-8 rounded-3xl bg-white flex flex-col gap-3 lg:mx-8 shadow-lg">
                 <h5 className='text-2xl leading-3 font-bold'>Let's get you started</h5>

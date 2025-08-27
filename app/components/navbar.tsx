@@ -72,9 +72,9 @@ export default function Navbar() {
 
   return (
     <nav className='fixed top-0 z-50 flex p-2 lg:py-3 lg:px-6 items-center justify-between w-screen'>
-      <div className="bg-white shadow-lg rounded-full px-4.5 h-11 lg:h-14 grid place-items-center">
+      <div className="bg-white shadow-lg rounded-full px-5.5 h-11 lg:h-14 grid place-items-center">
         <Link href="/">
-          <Image src={logo} alt="Logo" className="w-40 lg:w-56 h-auto" />
+          <Image src={logo} alt="Logo" className="w-40 lg:w-[13rem] h-auto" />
         </Link>
       </div>
       <div className="px-6 h-14 bg-white shadow-lg rounded-full hidden lg:flex items-center gap-8 text-lg absolute left-1/2 -translate-x-1/2">
