@@ -323,7 +323,7 @@ export default function Slider() {
                     We will get back to you shortly
                     <ArrowDownIcon className='size-4' />
                   </span>
-                  <button className="w-3/5 bg-primary hover:bg-primary-dark transition text-white flex items-center justify-between gap-1.5 py-1.5 px-4 rounded-full cursor-pointer font-semibold">
+                  <button className="w-3/5 md:w-full bg-primary hover:bg-primary-dark transition text-white flex items-center justify-between gap-1.5 py-1.5 px-4 rounded-full cursor-pointer font-semibold">
                     Get Quote
                     <ReceiptText className='size-5' />
                   </button>
