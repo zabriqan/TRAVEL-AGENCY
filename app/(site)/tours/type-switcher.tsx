@@ -31,7 +31,7 @@ export default function TypeSwitcher() {
                         router.push(`?${params.toString()}`);
                      })
                   }}
-                  className={clsx('capitalize px-2 py-1 rounded-md', urlParamType === type ? 'bg-primary text-white' : 'bg-gray-200')}
+                  className={clsx('capitalize font-medium px-3.5 py-1 rounded-full transition', urlParamType === type ? 'bg-primary hover:bg-primary-dark text-white' : 'bg-gray-200 hover:bg-gray-300')}
                >
                   {type}
                </button>

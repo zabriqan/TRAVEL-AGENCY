@@ -9,7 +9,7 @@ export default function TourCard({ pkg }: { pkg: Omit<Package, 'id'> }) {
   const [isExpanded, setIsExpanded] = useState(false)
 
   return (
-    <div className='relative h-[28rem] border rounded-xl border-gray-200 overflow-hidden flex items-end'>
+    <div className='relative h-[28rem] border rounded-3xl border-gray-200 overflow-hidden flex items-end'>
       <div className='absolute inset-0 bg-cover bg-center' style={{ backgroundImage: `url(${pkg.poster_url})` }}></div>
       <div className='relative bg-white max-h-full overflow-y-auto px-5 py-4 backdrop-blur-md flex flex-col w-full'>
         <div className="mb-0.5">
@@ -20,7 +20,7 @@ export default function TourCard({ pkg }: { pkg: Omit<Package, 'id'> }) {
             <h2 className='text-xl font-bold'>{pkg.heading}</h2>
             <p className={clsx('-mt-0.5 text-gray-700', isExpanded ? 'line-clamp-2' : 'line-clamp-1')}>{pkg.subheading}</p>
           </div>
-          <button onClick={() => setIsExpanded(prev => !prev)} className='flex items-center gap-1 text-nowrap text-sm bg-gray-100 hover:bg-gray-200 transition py-1 px-3.5 rounded-full'>
+          <button onClick={() => setIsExpanded(prev => !prev)} className='flex items-center gap-1 text-nowrap text-sm bg-gray-100 hover:bg-gray-200 transition py-1 px-3.5 rounded-full font-medium'>
             {isExpanded ? "Hide details" : "View details"}
             <ChevronUpIcon className={clsx('w-4.5', {'rotate-180': isExpanded})} />
           </button>

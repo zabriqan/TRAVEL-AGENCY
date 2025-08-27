@@ -45,7 +45,7 @@ export default function MultiSelector<
         onChange={(value: any) => setSelected(value)}
         onClose={() => setQuery('')}
       >
-        <div className={twMerge('flex gap-1 pl-3.5 pr-1.5 py-1.5 flex-1 rounded-full border border-gray-300 focus-within:border-primary outline-none transition', className)}>
+        <div className={twMerge('flex text-sm md:text-base gap-1 pl-2.5 md:pl-3.5 pr-1.5 py-1.5 flex-1 rounded-full border border-gray-300 focus-within:border-primary outline-none transition', className)}>
           <ComboboxInput
             displayValue={(value: any | any[]) =>(
               multiple

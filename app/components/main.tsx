@@ -42,9 +42,6 @@ export default function Main() {
     fetchPackages();
   }, []);
 
-
-
-
   const destinationss = [
     {
       id: 'Kashmir',
@@ -71,14 +68,14 @@ export default function Main() {
 
   return (
     <>
-      <main className="container mt-20 space-y-20 mx-auto">
+      <main className="container mt-10 md:mt-20 space-y-10 md:space-y-20 px-4 mx-auto">
         <section className=''>
           <div className="flex justify-between items-center mb-6">
             <h2 className="xl:text-3xl md:text-2xl text-xl font-bold">Top Packages</h2>
             <ViewMoreButton href='/tours' />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2.5 md:gap-6">
             {packages.map((pkg, i) => (
               <TourCard key={i} pkg={pkg} />
             ))}
@@ -168,7 +165,7 @@ export default function Main() {
             <h2 className="text-2xl md:text-4xl font-bold mb-4">
               Plan an Unforgettable Experience at Your Favorite Spot Today!
             </h2>
-            <p className="mx-auto w-fit mb-8 md:text-lg bg-black/10 text-white backdrop-blur-md font-medium py-2.5 px-5 rounded-full">
+            <p className="mx-auto w-fit mb-8 md:text-lg bg-black/10 text-white backdrop-blur-md font-medium py-2.5 px-5 rounded-3xl lg:rounded-full">
               We can help you fit your stay and experience within your allotted budget.
             </p>
 
@@ -192,7 +189,7 @@ function ViewMoreButton({ href }: { href: string }) {
   return (
     <Link
       href={href}
-      className="px-3.5 py-1.5 bg-gray-100 rounded-full hover:bg-primary hover:text-white cursor-pointer transition font-medium flex items-center gap-1.5"
+      className="px-3.5 py-1.5 text-sm md:text-base bg-gray-100 rounded-full hover:bg-primary hover:text-white cursor-pointer transition font-medium flex items-center gap-1.5"
     >
       View More
       <ArrowRightIcon className='size-4.5' />

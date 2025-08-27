@@ -17,6 +17,7 @@ import { toast } from "sonner";
 import { Range } from 'react-date-range';
 import { Destinationstore } from '@/app/lib/store/destinationstore';
 import { ArrowDownIcon, ReceiptText } from 'lucide-react';
+import clsx from 'clsx';
 
 type Destination = { id: number, label: string }
 
@@ -172,7 +173,7 @@ export default function Slider() {
   let description =
     'If you are looking for a perfect holiday experience with memories to cherish you are at the right place. Let\'s plan a reasonable stay for you.';
   let showButton = true;
-  let heightClass = 'h-[110vh]';
+  let heightClass = 'h-[160vh] md:h-[110vh] lg:h-screen';
   let backgroundImage = sliderImages[current];
 
   if (isAbout) {
@@ -180,25 +181,25 @@ export default function Slider() {
     description =
       'We are passionate about connecting travelers with the beauty and culture of Pakistan. From breathtaking valleys to historic landmarks, our mission is to create unforgettable travel experiences tailored to your dreams.';
     showButton = false;
-    heightClass = 'h-[40vh]';
+    heightClass = 'h-[85vh] lg:h-[50vh]';
     backgroundImage = Image4;
   } else if (isDestinations) {
     heading = 'Destinations';
     description = 'Explore the most stunning destinations across Pakistan — from snow-capped mountains to serene valleys and historic landmarks. Discover the beauty, culture, and adventure that awaits you.';
     showButton = false;
-    heightClass = 'h-[40vh]';
+    heightClass = 'h-[85vh] lg:h-[50vh]';
     backgroundImage = Image2;
   } else if (isTours) {
     heading = 'Tours';
     description = 'Embark on unforgettable tours designed to showcase the natural wonders, cultural treasures, and hidden gems of Pakistan. Whether you\'re seeking adventure or relaxation, we have the perfect journey for you.';
     showButton = false;
-    heightClass = 'h-[40vh]';
+    heightClass = 'h-[85vh] lg:h-[50vh]';
     backgroundImage = Image2;
   } else if (isContact) {
     heading = 'Contact Us';
     description = 'Have questions or ready to plan your trip? Get in touch with us — we\'re here to help you every step of the way.';
     showButton = false;
-    heightClass = 'h-[40vh]';
+    heightClass = 'h-[85vh] lg:h-[50vh]';
     backgroundImage = Image5;
   }
 
@@ -254,76 +255,82 @@ export default function Slider() {
       <div className="absolute inset-0 z-10 bg-gradient-to-b from-gray-800/80 via-20% via-gray-800/30 to-80% to-gray-800/60" />
 
       {/* Content */}
-      <div id='slider' className="absolute inset-0 z-20 flex items-center justify-center">
+      <div id='slider' className="absolute inset-0 z-20 flex items-center md:items-end xl:items-center justify-center">
         <div className="container mx-auto">
-          <div className="">
-            <h2 className="text-center text-4xl md:text-5xl lg:text-7xl font-extrabold mb-4 text-white">{heading}</h2>
-            <p className="mx-auto w-fit mb-8 md:text-lg bg-black/10 text-white backdrop-blur-md font-medium py-2.5 px-5 rounded-full">{description}</p>
-            {showButton && (
-              <form onSubmit={handleSubmit} className="md:p-7 xl:py-9 xl:px-8 rounded-3xl bg-white flex flex-col gap-3 lg:mx-8 shadow-lg">
-                <h5 className='text-2xl leading-3 font-bold'>Let's get you started</h5>
-                <p className="text-gray-600 text-sm font-semibold mb-4">
-                  Just fill out the necessary details and we'll get back to you with a perfect quote.
-                </p>
-                <div className='grid grid-cols-4 gap-x-5 gap-y-3'>
-                  <div className='flex flex-col gap-1'>
-                    <label htmlFor="starting_point" className="text-sm font-semibold">Starting Point</label>
-                    <MultiSelect options={destinations} keyField='id' displayField='label' name="starting_point" />
-                  </div>
-                  <div className='flex flex-col gap-1'>
-                    <label htmlFor="stops" className="text-sm font-semibold">Stops</label>
-                    <MultiSelect options={destinations} keyField='id' displayField='label' multiple name="stops" />
-                  </div>
-                  <div className='flex flex-col gap-1'>
-                    <label htmlFor="date_start" className="text-sm font-semibold">Start Date</label>
-                    <input type="date" name='date_start' className='px-3.5 py-1.5 flex-1 rounded-full border border-gray-300 focus:border-primary outline-none transition' />
-                  </div>
-                  <div className='flex flex-col gap-1'>
-                    <label htmlFor="date_end" className="text-sm font-semibold">End Date</label>
-                    <input type="date" name='date_end' className='px-3.5 py-1.5 flex-1 rounded-full border border-gray-300 focus:border-primary outline-none transition' />
-                  </div>
+          <h2 className="text-center text-5xl md:text-6xl lg:text-7xl font-extrabold mb-4 text-white">{heading}</h2>
+          <p className={clsx(
+            "rounded-3xl lg:rounded-full text-center mx-4 md:mx-6 lg:mx-auto w-fit md:text-lg bg-black/10 text-white backdrop-blur-md font-medium py-2.5 px-5",
+            {
+              "mb-4": isHome,
+              "mb-24": !isHome
+            }
+          )}>
+            {description}
+          </p>
+          {showButton && (
+            <form onSubmit={handleSubmit} className="px-4 py-4.5 md:py-7 md:px-6 xl:py-9 xl:px-8 rounded-3xl bg-white flex flex-col gap-3 mx-4 md:mx-6 lg:mx-8 shadow-lg mb-6 md:mb-0">
+              <h5 className='text-lg md:text-xl lg:text-2xl leading-3 font-bold -mb-1 md:mb-0'>Let's get you started</h5>
+              <p className="text-gray-600 md:text-sm leading-3 text-xs font-semibold mb-1.5 md:mb-4">
+                Just fill out the necessary details and we'll get back to you with a perfect quote.
+              </p>
+              <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-3'>
+                <div className='flex flex-col gap-1'>
+                  <label htmlFor="starting_point" className="text-sm font-semibold">Starting Point</label>
+                  <MultiSelect options={destinations} keyField='id' displayField='label' name="starting_point" />
+                </div>
+                <div className='flex flex-col gap-1'>
+                  <label htmlFor="stops" className="text-sm font-semibold">Stops</label>
+                  <MultiSelect options={destinations} keyField='id' displayField='label' multiple name="stops" />
+                </div>
+                <div className='flex flex-col gap-1'>
+                  <label htmlFor="date_start" className="text-sm font-semibold">Start Date</label>
+                  <input type="date" name='date_start' className='px-2.5 md:px-3.5 py-1.5 text-sm md:text-base flex-1 rounded-full border border-gray-300 focus:border-primary outline-none transition' />
+                </div>
+                <div className='flex flex-col gap-1'>
+                  <label htmlFor="date_end" className="text-sm font-semibold">End Date</label>
+                  <input type="date" name='date_end' className='px-2.5 md:px-3.5 py-1.5 text-sm md:text-base flex-1 rounded-full border border-gray-300 focus:border-primary outline-none transition' />
+                </div>
 
-                  <div className='flex flex-col gap-1'>
-                    <label htmlFor="full_name" className="text-sm font-semibold">Name</label>
-                    <input type="text" name='full_name' className='px-3.5 py-1.5 flex-1 rounded-full border border-gray-300 focus:border-primary outline-none transition' placeholder='e.g. John Doe' />
-                  </div>
-                  <div className='flex flex-col gap-1'>
-                    <label htmlFor="email" className="text-sm font-semibold">Email</label>
-                    <input type="email" name='email' className='px-3.5 py-1.5 flex-1 rounded-full border border-gray-300 focus:border-primary outline-none transition' placeholder='e.g. john@example.com' />
-                  </div>
-                  <div className='flex flex-col gap-1'>
-                    <label htmlFor="phone" className="text-sm font-semibold">Phone</label>
-                    <div className="flex items-center gap-1.5">
-                      <MultiSelect
-                        options={[
-                          { id: '+92', label: '🇵🇰 +92' },
-                          { id: '+91', label: '🇮🇳 +91' },
-                          { id: '+1', label: '🇺🇸 +1' }
-                        ]}
-                        keyField='id'
-                        displayField='label'
-                        name='phone_code'
-                        className='w-24 flex-0'
-                      />
-                      <input type="text" name='phone' className='px-3.5 py-1.5 flex-1 min-w-0 rounded-full border border-gray-300 focus:border-primary outline-none transition' placeholder='e.g. 300 1234567' />
-                    </div>
-                  </div>
-
-
-                  <div className='flex flex-col gap-1 justify-end'>
-                    <span className="text-xs font-semibold text-gray-500 flex items-center gap-1">
-                      We will get back to you shortly
-                      <ArrowDownIcon className='size-4' />
-                    </span>
-                    <button className="bg-primary hover:bg-primary-dark transition text-white flex items-center justify-between gap-1.5 py-1.5 px-4 rounded-full cursor-pointer font-semibold">
-                      Get Quote
-                      <ReceiptText className='size-5' />
-                    </button>
+                <div className='flex flex-col gap-1'>
+                  <label htmlFor="full_name" className="text-sm font-semibold">Name</label>
+                  <input type="text" name='full_name' className='px-2.5 md:px-3.5 py-1.5 text-sm md:text-base flex-1 rounded-full border border-gray-300 focus:border-primary outline-none transition' placeholder='e.g. John Doe' />
+                </div>
+                <div className='flex flex-col gap-1'>
+                  <label htmlFor="email" className="text-sm font-semibold">Email</label>
+                  <input type="email" name='email' className='px-2.5 md:px-3.5 py-1.5 text-sm md:text-base flex-1 rounded-full border border-gray-300 focus:border-primary outline-none transition' placeholder='e.g. john@example.com' />
+                </div>
+                <div className='flex flex-col gap-1'>
+                  <label htmlFor="phone" className="text-sm font-semibold">Phone</label>
+                  <div className="flex items-center gap-1.5">
+                    <MultiSelect
+                      options={[
+                        { id: '+92', label: '🇵🇰 +92' },
+                        { id: '+91', label: '🇮🇳 +91' },
+                        { id: '+1', label: '🇺🇸 +1' }
+                      ]}
+                      keyField='id'
+                      displayField='label'
+                      name='phone_code'
+                      className='w-24 flex-0'
+                    />
+                    <input type="text" name='phone' className='px-2.5 md:px-3.5 py-1.5 text-sm md:text-base flex-1 min-w-0 rounded-full border border-gray-300 focus:border-primary outline-none transition' placeholder='e.g. 300 1234567' />
                   </div>
                 </div>
-              </form>
-            )}
-          </div>
+
+
+                <div className='flex flex-col gap-1 md:justify-end items-center md:items-start mt-2 md:mt-0'>
+                  <span className="text-xs font-semibold text-gray-500 flex items-center gap-1">
+                    We will get back to you shortly
+                    <ArrowDownIcon className='size-4' />
+                  </span>
+                  <button className="w-3/5 bg-primary hover:bg-primary-dark transition text-white flex items-center justify-between gap-1.5 py-1.5 px-4 rounded-full cursor-pointer font-semibold">
+                    Get Quote
+                    <ReceiptText className='size-5' />
+                  </button>
+                </div>
+              </div>
+            </form>
+          )}
         </div>
       </div>
     </section>
