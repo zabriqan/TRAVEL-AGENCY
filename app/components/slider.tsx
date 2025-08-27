@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Script from "next/script";
@@ -10,12 +10,51 @@ import Image2 from '@/public/images/naran.jpg';
 import Image3 from '@/public/images/hunza.jpg';
 import Image4 from '@/public/images/image4.jpg';
 import Image5 from '@/public/images/image5.jpg';
-import BookingDialog from './bookingdailog';
-import MultiSelect from './multiselecter';
-import DateRangePicker from './daterange';
+// import BookingDialog from './bookingdailog';
+import MultiSelect from './multi-selector';
+// import DateRangePicker from './daterange';
 import { toast } from "sonner";
 import { Range } from 'react-date-range';
 import { Destinationstore } from '@/app/lib/store/destinationstore';
+import { ArrowDownIcon, ReceiptText } from 'lucide-react';
+
+type Destination = { id: number, label: string }
+
+const destinations: Destination[] = [
+  { id: 1, label: 'Karachi' },
+  { id: 2, label: 'Lahore' },
+  { id: 3, label: 'Kashmir' },
+  { id: 4, label: 'Hunza' },
+  { id: 5, label: 'Skardu' },
+  { id: 6, label: 'Islamabad' },
+  { id: 7, label: 'Murree' },
+  { id: 8, label: 'Naran' },
+  { id: 9, label: 'Kaghan Valley' },
+  { id: 10, label: 'Chitral' },
+  { id: 11, label: 'Nationalpark' },
+  { id: 12, label: 'Hunza Valley' },
+  { id: 13, label: 'Skardu' },
+  { id: 14, label: 'Fairy Meadows' },
+  { id: 15, label: 'Swat Valley' },
+  { id: 16, label: 'Kalam' },
+  { id: 17, label: 'Shogran' },
+  { id: 18, label: 'Siri Paye' },
+  { id: 19, label: 'Neelum Valley' },
+  { id: 20, label: 'Ratti Gali Lake' },
+  { id: 21, label: 'Lake Saif-ul-Malook' },
+  { id: 22, label: 'Khunjerab Pass' },
+  { id: 23, label: 'Gojal Valley' },
+  { id: 24, label: 'Deosai National Park' },
+  { id: 25, label: 'Attabad Lake' },
+  { id: 26, label: 'Lahore Fort' },
+  { id: 27, label: 'Badshahi Mosque' },
+  { id: 28, label: 'Mohenjo Daro' },
+  { id: 29, label: 'Ziarat' },
+  { id: 30, label: 'Hingol National Park' },
+  { id: 31, label: 'Makli Necropolis' },
+  { id: 32, label: ' Gorakh Hill Station' },
+  { id: 33, label: 'Islamabad (Daman-e-Koh, Faisal Mosque)' }
+]
 
 const sliderImages = [Image1, Image2, Image3];
 
@@ -40,13 +79,78 @@ export default function Slider() {
   const isDestinations = pathname === '/destinations';
   const isTours = pathname === '/tours';
 
-  const handleBookNow = () => {
-    if (!selectedDestinations.length || !selectedRange.startDate || !selectedRange.endDate) {
-      toast.error("Please select destinations and date range first.");
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    // TODO: Implement validation with Zod
+    e.preventDefault();
+
+    const fd = new FormData(e.currentTarget);
+
+    const fullName = fd.get("full_name") as string;
+    const email = fd.get("email") as string;
+    const countryCode = JSON.parse(fd.get("phone_code") as string)?.id ?? '' as string;
+    const phone = fd.get("phone") as string;
+    const startingPoint = fd.get("starting_point") as string;
+    const stops = fd.get("stops") as string;
+    const startDate = fd.get("date_start") as string;
+    const endDate = fd.get("date_end") as string;
+
+    if (!fullName || !email || !phone) {
+      toast.error("Please fill all required fields.");
       return;
     }
-    setOpenDialog(true);
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^[0-9]{7,15}$/;
+
+    if (!emailRegex.test(email)) {
+      toast.error("Please enter a valid email.");
+      return;
+    }
+
+    if (!phoneRegex.test(phone)) {
+      toast.error("Please enter a valid phone number (7–15 digits, no spaces or +).");
+      return;
+    }
+
+    const fullPhone = `${countryCode}${phone}`;
+
+    const payload = {
+      fullName: fullName,
+      email: email,
+      phone: fullPhone,
+      pickup: startingPoint,
+      destinations: stops,
+      dateRange: {
+        startDate,
+        endDate
+      }
+    };
+
+    try {
+      const res = await fetch("/api/booking", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to submit booking.");
+      }
+
+      toast.success("Booking submitted successfully!");
+
+    } catch {
+      toast.error("There was an error submitting the booking.");
+    }
   };
+
+  // const handleBookNow = () => {
+  //   if (!selectedDestinations.length || !selectedRange.startDate || !selectedRange.endDate) {
+  //     toast.error("Please select destinations and date range first.");
+  //     return;
+  //   }
+  //   setOpenDialog(true);
+  // };
 
   useEffect(() => {
     if (!isHome) return;
@@ -68,7 +172,7 @@ export default function Slider() {
   let description =
     'If you are looking for a perfect holiday experience with memories to cherish you are at the right place. Let\'s plan a reasonable stay for you.';
   let showButton = true;
-  let heightClass = 'h-[90vh] md:h-[92vh] ';
+  let heightClass = 'h-[110vh]';
   let backgroundImage = sliderImages[current];
 
   if (isAbout) {
@@ -97,7 +201,7 @@ export default function Slider() {
     heightClass = 'h-[40vh]';
     backgroundImage = Image5;
   }
-  
+
   useEffect(() => {
     const checkFB = setInterval(() => {
       if (typeof window !== "undefined" && (window as any).FB) {
@@ -118,7 +222,6 @@ export default function Slider() {
         defer
         crossOrigin="anonymous"
         src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0"
-
       />
       {/* Image background */}
       <div className="absolute inset-0 z-0">
@@ -152,52 +255,74 @@ export default function Slider() {
 
       {/* Content */}
       <div id='slider' className="absolute inset-0 z-20 flex items-center justify-center">
-        <div className="w-80 md:w-4xl lg:w-7xl mx-auto">
-          <div className="text-left text-white max-w-xl">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">{heading}</h2>
-            <p className="mb-6 text-lg">{description}</p>
+        <div className="container mx-auto">
+          <div className="">
+            <h2 className="text-center text-4xl md:text-5xl lg:text-7xl font-extrabold mb-4 text-white">{heading}</h2>
+            <p className="mx-auto w-fit mb-8 text-lg bg-black/10 text-white backdrop-blur-md font-medium py-2.5 px-5 rounded-full">{description}</p>
             {showButton && (
-              <div className="space-y-4">
-                <div className="flex flex-col sm:flex-row gap-4 items-center w-full">
-                  <div className="w-full sm:w-1/2">
-                    <MultiSelect
-                      options={destinationOptions}
-                      selected={selectedDestinations}
-                      setSelected={setSelectedDestinations}
-                      label="Select Destinations"
-                    />
+              <form onSubmit={handleSubmit} className="md:p-7 xl:py-9 xl:px-8 rounded-3xl bg-white flex flex-col gap-3 lg:mx-8 shadow-lg">
+                <h5 className='text-2xl leading-3 font-bold'>Let's get you started</h5>
+                <p className="text-gray-600 text-sm font-semibold mb-4">
+                  Just fill out the necessary details and we'll get back to you with a perfect quote.
+                </p>
+                <div className='grid grid-cols-4 gap-x-5 gap-y-3'>
+                  <div className='flex flex-col gap-1'>
+                    <label htmlFor="starting_point" className="text-sm font-semibold">Starting Point</label>
+                    <MultiSelect options={destinations} keyField='id' displayField='label' name="starting_point" />
                   </div>
-                  <div className="w-full sm:w-1/2">
-                    <DateRangePicker
-                      selectedRange={selectedRange}
-                      setSelectedRange={setSelectedRange}
-                    />
+                  <div className='flex flex-col gap-1'>
+                    <label htmlFor="stops" className="text-sm font-semibold">Stops</label>
+                    <MultiSelect options={destinations} keyField='id' displayField='label' multiple name="stops" />
+                  </div>
+                  <div className='flex flex-col gap-1'>
+                    <label htmlFor="date_start" className="text-sm font-semibold">Start Date</label>
+                    <input type="date" name='date_start' className='px-3.5 py-1.5 flex-1 rounded-full border border-gray-300 focus:border-primary outline-none transition' />
+                  </div>
+                  <div className='flex flex-col gap-1'>
+                    <label htmlFor="date_end" className="text-sm font-semibold">End Date</label>
+                    <input type="date" name='date_end' className='px-3.5 py-1.5 flex-1 rounded-full border border-gray-300 focus:border-primary outline-none transition' />
+                  </div>
+
+                  <div className='flex flex-col gap-1'>
+                    <label htmlFor="full_name" className="text-sm font-semibold">Name</label>
+                    <input type="text" name='full_name' className='px-3.5 py-1.5 flex-1 rounded-full border border-gray-300 focus:border-primary outline-none transition' placeholder='e.g. John Doe' />
+                  </div>
+                  <div className='flex flex-col gap-1'>
+                    <label htmlFor="email" className="text-sm font-semibold">Email</label>
+                    <input type="email" name='email' className='px-3.5 py-1.5 flex-1 rounded-full border border-gray-300 focus:border-primary outline-none transition' placeholder='e.g. john@example.com' />
+                  </div>
+                  <div className='flex flex-col gap-1'>
+                    <label htmlFor="phone" className="text-sm font-semibold">Phone</label>
+                    <div className="flex items-center gap-1.5">
+                      <MultiSelect
+                        options={[
+                          { id: '+92', label: '🇵🇰 +92' },
+                          { id: '+91', label: '🇮🇳 +91' },
+                          { id: '+1', label: '🇺🇸 +1' }
+                        ]}
+                        keyField='id'
+                        displayField='label'
+                        name='phone_code'
+                        className='w-24 flex-0'
+                      />
+                      <input type="text" name='phone' className='px-3.5 py-1.5 flex-1 min-w-0 rounded-full border border-gray-300 focus:border-primary outline-none transition' placeholder='e.g. 300 1234567' />
+                    </div>
+                  </div>
+
+
+                  <div className='flex flex-col gap-1 justify-end'>
+                    <span className="text-xs font-semibold text-gray-500 flex items-center gap-1">
+                      We will get back to you shortly
+                      <ArrowDownIcon className='size-4' />
+                    </span>
+                    <button className="bg-primary hover:bg-primary-dark transition text-white flex items-center justify-between gap-1.5 py-1.5 px-4 rounded-full cursor-pointer font-semibold">
+                      Get Quote
+                      <ReceiptText className='size-5' />
+                    </button>
                   </div>
                 </div>
-                <button
-                  onClick={handleBookNow}
-                  className="bg-secondary text-white px-6 py-2 rounded hover:bg-secondary-dark"
-                >
-                  Book Now
-                </button>
-
-                <BookingDialog
-                  open={openDialog}
-                  setOpen={setOpenDialog}
-                  destinations={selectedDestinations}
-                  dateRange={selectedRange}
-                />
-            <h3 className='mt-6'>Stay Connected — Follow Our Journey on Facebook</h3>
-            <div className="fb-like mt-2 -ml-2"
-            data-href="https://www.facebook.com/majesticpaths?rdid=ndfWzm8vN4ccjjL2&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F15618jrjkxU%2F#"
-            data-width=""
-            data-layout="button_count"
-            data-action="like"
-            data-size="large"
-            data-share="false">
-            </div>
-              </div>
-              )}
+              </form>
+            )}
           </div>
         </div>
       </div>

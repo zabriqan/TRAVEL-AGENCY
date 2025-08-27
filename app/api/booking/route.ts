@@ -3,12 +3,11 @@ import nodemailer from 'nodemailer';
 import { z } from 'zod'
 
 const BookingSchema = z.object({
-  name: z.string().min(1, { message: "Name is required" }),
+  fullName: z.string().min(1, { message: "Name is required" }),
   email: z.email().min(1, { message: "Email is required" }),
   phone: z.string().refine(phone => /^\+?[0-9]{7,15}$/.test(phone), { message: "Invalid phone number format" }),
   pickup: z.string().optional(),
-  drop: z.string().optional(),
-  destinations: z.array(z.string()).min(1),
+  destinations: z.string(),
   dateRange: z.object({
     startDate: z.string().min(1),
     endDate: z.string().min(1)
@@ -28,11 +27,10 @@ export async function POST(req: Request) {
   }
 
   const {
-    name,
+    fullName,
     email,
     phone,
     pickup,
-    drop,
     destinations,
     dateRange
   } = parsed.data;
@@ -59,34 +57,14 @@ export async function POST(req: Request) {
     to: process.env.ADMIN_EMAIL!,
     subject: 'Majestic Paths Booking Query',
     html: `
-      <h2>Booking query received from ${name}. Email: ${email}</h2>
-      <p><strong>Destinations:</strong> ${destinations.join(', ')}</p>
+      <h2>Booking query received from ${fullName}. Email: ${email}</h2>
+      <p><strong>Destinations:</strong> ${destinations}</p>
       <p><strong>Travel Dates:</strong> ${dateFrom} → ${dateTo}</p>
       <p><strong>Phone:</strong> ${phone}</p>
       ${pickup ? `<p><strong>Pickup:</strong> ${pickup}</p>` : ''}
-      ${drop ? `<p><strong>Drop-off:</strong> ${drop}</p>` : ''}
       <hr />
-      <p>We'll contact you soon for confirmation.</p>
     `
   };
-
-  // Email to Admin (You)
-  // const adminMail = {
-  //   from: `"Travel Website" <${process.env.EMAIL_USER}>`,
-  //   to: process.env.ADMIN_EMAIL!,
-  //   subject: `Majestic  New Booking from ${name}`,
-  //   html: `
-  //     <h2>New Booking Received</h2>
-  //     <p><strong>Name:</strong> ${name}</p>
-  //     <p><strong>Email:</strong> ${email}</p>
-  //     <p><strong>Phone:</strong> ${phone}</p>
-  //     <p><strong>Destinations:</strong> ${destinations.join(', ')}</p>
-  //     <p><strong>From:</strong> ${dateFrom}</p>
-  //     <p><strong>To:</strong> ${dateTo}</p>
-  //     ${pickup ? `<p><strong>Pickup:</strong> ${pickup}</p>` : ''}
-  //     ${drop ? `<p><strong>Drop-off:</strong> ${drop}</p>` : ''}
-  //   `
-  // };
 
   try {
     await transporter.verify();

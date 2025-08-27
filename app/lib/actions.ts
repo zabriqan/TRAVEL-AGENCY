@@ -341,6 +341,8 @@ export async function updateQuotation(id: string, formData: FormData): Promise<{
   return { ok: true, message: "Quotation updated successfully" }
 }
 
+/* Package actions ──────────────── */
+
 export async function createPackage(formData: FormData): Promise<{ ok: true, message: string } | { ok: false, error: string, fieldErrors?: FieldErrorType }> {
   const supabase = createClient();
   const { data: { user } } = await supabase.auth.getUser();
