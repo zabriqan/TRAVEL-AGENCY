@@ -16,6 +16,7 @@ type MultiSelectorProps<
   options: T[];
   keyField: KKey;        // value type must be React.Key (string|number)
   displayField: KDisp;   // value type must be string
+  inputField?: KDisp;   // value type must be string
   multiple?: boolean;
   name?: string;
   className?: string;
@@ -25,7 +26,7 @@ export default function MultiSelector<
   T,
   KKey extends KeysMatching<T, Key>,
   KDisp extends KeysMatching<T, string>
->({ options, keyField, displayField, multiple, name, className }: MultiSelectorProps<T, KKey, KDisp>) {
+>({ options, keyField, displayField, inputField, multiple, name, className }: MultiSelectorProps<T, KKey, KDisp>) {
   const [query, setQuery] = useState('');
   // keep your existing defaulting logic; you may want to guard empty options in real use
   const [selected, setSelected] = useState<any>(multiple ? [] : options.length ? options[0] : null);
@@ -49,8 +50,8 @@ export default function MultiSelector<
           <ComboboxInput
             displayValue={(value: any | any[]) =>(
               multiple
-                ? (value as T[]).map((d) => d[displayField]).join(', ')
-                : (value as T | null)?.[displayField]
+                ? (value as T[]).map((d) => d[inputField ?? displayField]).join(', ')
+                : (value as T | null)?.[inputField ?? displayField]
             ) as string}
             onChange={(event) => setQuery(event.target.value)}
             className={'outline-none min-w-0 flex-1'}
@@ -61,7 +62,7 @@ export default function MultiSelector<
           </ComboboxButton>
         </div>
 
-        <ComboboxOptions anchor="bottom" className="border border-gray-300 [--anchor-gap:0.5rem] p-1 rounded-xl empty:invisible bg-white relative z-50">
+        <ComboboxOptions anchor="bottom" className="w-[calc(var(--input-width)+1.8rem)] border border-gray-300 [--anchor-gap:0.5rem] p-1 rounded-xl empty:invisible bg-white relative z-50">
           {filteredOptions.map((item) => (
             <ComboboxOption
               key={item[keyField] as Key} // already constrained to Key

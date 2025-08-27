@@ -5,8 +5,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useNavStore } from '@/app/lib/store/navstore';
-import { X, ChevronDown, HamburgerIcon, MenuIcon } from 'lucide-react';
+import { X, ChevronDown, MenuIcon } from 'lucide-react';
 import { Menu } from '@headlessui/react';
+import clsx from 'clsx';
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -98,7 +99,11 @@ export default function Navbar() {
                       <Link
                         href={child.href}
                         onClick={() => setActiveTab('tours')}
-                        className={`block px-4 py-2 text-sm rounded text-secondary opacity-50 hover:text-secondary-dark hover:opacity-100`}
+                        className={clsx(
+                          "block px-4 py-2 text-sm rounded text-secondary opacity-50 hover:text-secondary-dark hover:opacity-100",
+                          active && 'text-secondary-dark font-semibold'
+
+                        )}
                       >
                         {child.label}
                       </Link>

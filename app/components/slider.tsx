@@ -4,18 +4,13 @@ import { FormEvent, useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Script from "next/script";
-import { addDays } from 'date-fns';
 import Image1 from '@/public/images/chitral.jpg';
 import Image2 from '@/public/images/naran.jpg';
 import Image3 from '@/public/images/hunza.jpg';
 import Image4 from '@/public/images/image4.jpg';
 import Image5 from '@/public/images/image5.jpg';
-// import BookingDialog from './bookingdailog';
 import MultiSelect from './multi-selector';
-// import DateRangePicker from './daterange';
 import { toast } from "sonner";
-import { Range } from 'react-date-range';
-import { Destinationstore } from '@/app/lib/store/destinationstore';
 import { ArrowDownIcon, ReceiptText } from 'lucide-react';
 import clsx from 'clsx';
 
@@ -60,17 +55,7 @@ const destinations: Destination[] = [
 const sliderImages = [Image1, Image2, Image3];
 
 export default function Slider() {
-  const globalDestinations = Destinationstore((state) => state.selectedDestinations);
-
   const [current, setCurrent] = useState(0);
-  const [openDialog, setOpenDialog] = useState(false);
-  const [selectedDestinations, setSelectedDestinations] = useState<string[]>((globalDestinations));
-
-  const [selectedRange, setSelectedRange] = useState<Range>({
-    startDate: new Date(),
-    endDate: addDays(new Date(0), 7),
-    key: 'selection',
-  });
 
   const pathname = usePathname();
 
@@ -163,12 +148,6 @@ export default function Slider() {
     return () => clearInterval(interval);
   }, [isHome]);
 
-  const destinationOptions = ['Karachi', 'Lahore', "Kashmir", 'Hunza', 'Skardu', 'Islamabad', 'Murree', 'Naran', 'Kaghan Valley', "Chitral", "Nationalpark", 'Hunza Valley', 'Skardu', 'Fairy Meadows', 'Swat Valley', 'Kalam', 'Shogran', 'Siri Paye', 'Neelum Valley', 'Ratti Gali Lake', 'Lake Saif-ul-Malook', 'Khunjerab Pass', 'Gojal Valley', 'Deosai National Park', 'Attabad Lake', 'Lahore Fort', 'Badshahi Mosque', 'Mohenjo Daro', 'Ziarat', 'Hingol National Park', 'Makli Necropolis', ' Gorakh Hill Station', 'Islamabad (Daman-e-Koh, Faisal Mosque)'];
-
-  useEffect(() => {
-    setSelectedDestinations(globalDestinations);
-  }, [globalDestinations]);
-
   let heading = 'Discover New Horizons';
   let description =
     'If you are looking for a perfect holiday experience with memories to cherish you are at the right place. Let\'s plan a reasonable stay for you.';
@@ -191,13 +170,13 @@ export default function Slider() {
     backgroundImage = Image2;
   } else if (isTours) {
     heading = 'Tours';
-    description = 'Embark on unforgettable tours designed to showcase the natural wonders, cultural treasures, and hidden gems of Pakistan. Whether you\'re seeking adventure or relaxation, we have the perfect journey for you.';
+    description = 'Embark on unforgettable tours designed to showcase the natural wonders, cultural treasures, and hidden gems of Pakistan. Whether you&apos;re seeking adventure or relaxation, we have the perfect journey for you.';
     showButton = false;
     heightClass = 'h-[85vh] lg:h-[50vh]';
     backgroundImage = Image2;
   } else if (isContact) {
     heading = 'Contact Us';
-    description = 'Have questions or ready to plan your trip? Get in touch with us — we\'re here to help you every step of the way.';
+    description = 'Have questions or ready to plan your trip? Get in touch with us — we&apos;re here to help you every step of the way.';
     showButton = false;
     heightClass = 'h-[85vh] lg:h-[50vh]';
     backgroundImage = Image5;
@@ -269,9 +248,9 @@ export default function Slider() {
           </p>
           {showButton && (
             <form onSubmit={handleSubmit} className="px-4 py-4.5 md:py-7 md:px-6 xl:py-9 xl:px-8 rounded-3xl bg-white flex flex-col gap-3 mx-4 md:mx-6 lg:mx-8 shadow-lg mb-6 md:mb-0">
-              <h5 className='text-lg md:text-xl lg:text-2xl leading-3 font-bold -mb-1 md:mb-0'>Let's get you started</h5>
+              <h5 className='text-lg md:text-xl lg:text-2xl leading-3 font-bold -mb-1 md:mb-0'>Let&apos;s get you started</h5>
               <p className="text-gray-600 md:text-sm leading-3 text-xs font-semibold mb-1.5 md:mb-4">
-                Just fill out the necessary details and we'll get back to you with a perfect quote.
+                Just fill out the necessary details and we&apos;ll get back to you with a perfect quote.
               </p>
               <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-3'>
                 <div className='flex flex-col gap-1'>
@@ -309,7 +288,8 @@ export default function Slider() {
                         { id: '+1', label: '🇺🇸 +1' }
                       ]}
                       keyField='id'
-                      displayField='label'
+                      displayField='id'
+                      inputField='label'
                       name='phone_code'
                       className='w-24 flex-0'
                     />
