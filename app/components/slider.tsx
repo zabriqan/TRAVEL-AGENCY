@@ -126,10 +126,10 @@ export default function Slider() {
         throw new Error("Failed to submit booking.");
       }
 
-      toast.success("Booking submitted successfully!");
+      toast.success("Query submitted successfully! We'll get back to you soon.");
 
     } catch {
-      toast.error("There was an error submitting the booking.");
+      toast.error("There was an error submitting the query.");
     } finally {
       setIsPending(false);
     }

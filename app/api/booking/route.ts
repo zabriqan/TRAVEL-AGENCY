@@ -57,11 +57,17 @@ export async function POST(req: Request) {
     to: process.env.ADMIN_EMAIL!,
     subject: 'Majestic Paths Booking Query',
     html: `
-      <h2>Booking query received from ${fullName}. Email: ${email}</h2>
-      <p><strong>Destinations:</strong> ${destinations}</p>
+      <h2>Booking query received from "${fullName}". Email: ${email}</h2>
+      <p><strong>No. of Destinations:</strong> ${JSON.parse(destinations)?.length}</p>
+      <p>
+        <strong>Destinations:</strong>
+        <ol>
+          ${JSON.parse(destinations)?.map((dest: any) => `<li>${dest?.label}</li>`).join("")}
+        </ol>
+      </p>
       <p><strong>Travel Dates:</strong> ${dateFrom} → ${dateTo}</p>
       <p><strong>Phone:</strong> ${phone}</p>
-      ${pickup ? `<p><strong>Pickup:</strong> ${pickup}</p>` : ''}
+      ${pickup ? `<p><strong>Pickup:</strong> ${JSON.parse(pickup)?.label}</p>` : ''}
       <hr />
     `
   };
