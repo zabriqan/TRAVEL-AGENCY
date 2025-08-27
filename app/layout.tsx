@@ -23,7 +23,7 @@ export default function RootLayout({
       <body
         className={`${raleway.className} antialiased text-gray-800`}
       >
-        <Toaster position="top-center" />
+        <Toaster position="bottom-right" />
         {children}
       </body>
     </html>

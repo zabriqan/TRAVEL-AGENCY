@@ -56,6 +56,7 @@ const sliderImages = [Image1, Image2, Image3];
 
 export default function Slider() {
   const [current, setCurrent] = useState(0);
+  const [isPending, setIsPending] = useState(false);
 
   const pathname = usePathname();
 
@@ -68,6 +69,8 @@ export default function Slider() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     // TODO: Implement validation with Zod
     e.preventDefault();
+
+    setIsPending(true);
 
     const fd = new FormData(e.currentTarget);
 
@@ -127,16 +130,10 @@ export default function Slider() {
 
     } catch {
       toast.error("There was an error submitting the booking.");
+    } finally {
+      setIsPending(false);
     }
   };
-
-  // const handleBookNow = () => {
-  //   if (!selectedDestinations.length || !selectedRange.startDate || !selectedRange.endDate) {
-  //     toast.error("Please select destinations and date range first.");
-  //     return;
-  //   }
-  //   setOpenDialog(true);
-  // };
 
   useEffect(() => {
     if (!isHome) return;
@@ -303,7 +300,9 @@ export default function Slider() {
                     We will get back to you shortly
                     <ArrowDownIcon className='size-4' />
                   </span>
-                  <button className="w-3/5 md:w-full bg-primary hover:bg-primary-dark transition text-white flex items-center justify-between gap-1.5 py-1.5 px-4 rounded-full cursor-pointer font-semibold">
+                  <button
+                  disabled={isPending}
+                  className="w-3/5 md:w-full bg-primary hover:bg-primary-dark transition text-white flex items-center justify-between gap-1.5 py-1.5 px-4 rounded-full cursor-pointer font-semibold disabled:opacity-50 disabled:cursor-not-allowed">
                     Get Quote
                     <ReceiptText className='size-5' />
                   </button>
