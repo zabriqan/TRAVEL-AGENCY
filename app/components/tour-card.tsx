@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import { Package } from '@/app/lib/types'
 import { ChevronUpIcon, ClockIcon, DownloadIcon, InfoIcon, MapIcon } from 'lucide-react'
 import clsx from 'clsx';
@@ -40,7 +40,7 @@ export default function TourCard({ pkg }: { pkg: Omit<Package, 'id'> }) {
                 <InfoIcon className='w-5 flex-none' />
                 <div>
                   {pkg.misc_text.split('\n').map((line, index) => (
-                    <><span key={index}>{line}</span><br /></>
+                    <Fragment key={index}><span>{line}</span><br /></Fragment>
                   ))}
                 </div>
               </div>

@@ -121,41 +121,39 @@ export default function Main() {
 
         <section className="grid md:grid-cols-2 gap-8 items-center">
           <div>
-            <Image src={image6} alt="Scenery" className="rounded-lg shadow-md mb-4 w-full h-64 md:h-[350px] lg:h-[500px]" />
-            <h2 className="text-3xl font-bold mb-2">Experience the Life of Kaghan Valley, Balakot, Pakistan</h2>
-            <p className="text-gray-600 mb-4">
+            <Image src={image6} alt="Scenery" className="rounded-2xl shadow-md w-full h-64 md:h-[350px] lg:h-[500px] mb-4" />
+            <h2 className="text-3xl font-bold mb-1.5">Experience the Life of Kaghan Valley, Balakot, Pakistan</h2>
+            <p className="text-gray-600 font-medium mb-4">
               Discover the serene beauty and vibrant life of Mykonos City. Enjoy top-tier service, beautiful scenery, and unforgettable experiences.
             </p>
-            <button onClick={() => router.push('/destinations#Kaghan')} className="bg-secondary text-white px-6 py-2 rounded hover:bg-secondary-dark">Learn More</button>
+            <button onClick={() => router.push('/destinations#Kaghan')} className="font-medium text-sm md:text-base bg-primary text-white px-4 py-2 rounded-full hover:bg-primary-dark transition cursor-pointer">Learn More</button>
           </div>
-          <div className="flex flex-col md:flex-col-reverse justify-between h-full">
+          <div className="flex flex-col md:flex-col-reverse gap-4 justify-between">
             {/* Image (will appear first on mobile due to flex-col-reverse) */}
-            <div>
-              <Image src={image7} alt="Scenery" className="rounded-lg shadow-md w-full h-64 md:h-[370px] lg:h-[520px] object-cover" />
-            </div>
+            <Image src={image7} alt="Scenery" className="rounded-2xl shadow-md w-full h-64 md:h-[350px] lg:h-[500px] object-cover" />
+
 
             {/* Text Content */}
-            <div>
-              <h2 className="text-3xl font-bold mb-4">Experience the Life of Kalam, Swat, Pakistan</h2>
-              <p className="text-gray-600 mb-4">
+            <div className=''>
+              <h2 className="text-3xl font-bold mb-1.5">Experience the Life of Kalam, Swat, Pakistan</h2>
+              <p className="text-gray-600 font-medium mb-4">
                 Discover the serene beauty and vibrant life of Mykonos City. Enjoy top-tier service, beautiful scenery, and unforgettable experiences.
               </p>
-              <button onClick={() => router.push('/destinations#Kalam')} className="bg-secondary text-white px-6 py-2 mb-4 rounded hover:bg-secondary-dark">Learn More</button>
+              <button onClick={() => router.push('/destinations#Kalam')} className="font-medium text-sm md:text-base bg-primary text-white px-4 py-2 rounded-full hover:bg-primary-dark transition cursor-pointer mb-4">Learn More</button>
             </div>
           </div>
-
         </section>
 
         {/* Section: Inside Pictures */}
         <section>
           <h2 className="xl:text-4xl lg:text-3xl md:text-2xl text-xl font-semibold mb-1">Our Inside Gallery</h2>
-          <p className="text-gray-600 mb-6 font-medium">Take a look at some pretty pictures captured on tours.</p>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-2">
+          <p className="text-gray-600 mb-6 font-medium">Take a look at some pretty pictures captured on tours</p>
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
             {[chitral, image5, image4,].map((img, i) => (
               <Image
                 key={i}
                 src={img}
-                className="rounded-lg shadow-md w-full h-auto"
+                className="rounded-2xl flex-1 h-auto"
                 alt={`Inside ${i + 1}`}
               />
             ))}
