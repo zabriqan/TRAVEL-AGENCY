@@ -2,7 +2,6 @@
 
 import { useRouter } from 'next/navigation';
 import Image, { StaticImageData } from "next/image";
-import ProductCard from "./productcard";
 import Reviews from "./reviews";
 import { Phone, CalendarCheck, ArrowRightIcon } from "lucide-react";
 import chitral from "@/public/images/chitral.jpg";
