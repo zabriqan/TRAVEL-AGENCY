@@ -94,7 +94,7 @@ export default function Main() {
             ))}
           </div>
         </section>
-        {/* Section: Experience Mykonos */}
+
         <section className="grid md:grid-cols-2 gap-8 items-center">
           <div>
             <Image src={image6} alt="Scenery" className="rounded-lg shadow-md mb-4 w-full h-64 md:h-[350px] lg:h-[500px]" />
@@ -120,27 +120,6 @@ export default function Main() {
             </div>
           </div>
 
-        </section>
-
-        {/* Section: Amenities */}
-        <section>
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="xl:text-3xl md:text-2xl text-xl font-bold">Destinations</h2>
-            <ViewMoreButton href='/destinations' />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {destinationss.map((dest) => (
-              <div key={dest.id} id={dest.id}>
-                <ProductCard
-                  image={dest.images}
-                  title={dest.name}
-                  description={dest.description}
-                  link={dest.link}
-                />
-              </div>
-            ))}
-
-          </div>
         </section>
 
         {/* Section: Inside Pictures */}
