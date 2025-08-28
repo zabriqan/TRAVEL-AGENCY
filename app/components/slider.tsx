@@ -231,15 +231,17 @@ export default function Slider() {
       <div className="absolute inset-0 z-10 bg-gradient-to-b from-gray-800/80 via-20% via-gray-800/30 to-80% to-gray-800/60" />
 
       {/* Content */}
-      <div id='slider' className="absolute inset-0 z-20 flex items-center md:items-end xl:items-center justify-center">
+      <div id='slider' className={clsx(
+        "absolute inset-0 z-20 flex justify-center",
+        {
+          "items-center": isHome,
+          "items-end": !isHome
+        }
+      )}>
         <div className="container mx-auto">
           <h2 className="text-center text-5xl md:text-6xl lg:text-7xl font-extrabold mb-4 text-white">{heading}</h2>
           <p className={clsx(
-            "rounded-3xl lg:rounded-full text-center mx-4 md:mx-6 lg:mx-auto w-fit md:text-lg bg-black/10 text-white backdrop-blur-md font-medium py-2.5 px-5",
-            {
-              "mb-4": isHome,
-              "mb-24": !isHome
-            }
+            "rounded-2xl text-center mx-4 md:mx-6 lg:mx-auto w-fit md:text-lg bg-black/10 text-white backdrop-blur-md font-medium py-2.5 px-5 mb-4"
           )}>
             {description}
           </p>
@@ -301,8 +303,8 @@ export default function Slider() {
                     <ArrowDownIcon className='size-4' />
                   </span>
                   <button
-                  disabled={isPending}
-                  className="w-3/5 md:w-full bg-primary hover:bg-primary-dark transition text-white flex items-center justify-between gap-1.5 py-1.5 px-4 rounded-full cursor-pointer font-semibold disabled:opacity-50 disabled:cursor-not-allowed">
+                    disabled={isPending}
+                    className="w-3/5 md:w-full bg-primary hover:bg-primary-dark transition text-white flex items-center justify-between gap-1.5 py-1.5 px-4 rounded-full cursor-pointer font-semibold disabled:opacity-50 disabled:cursor-not-allowed">
                     Get Quote
                     <ReceiptText className='size-5' />
                   </button>
