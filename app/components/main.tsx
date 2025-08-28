@@ -178,19 +178,22 @@ export default function Main() {
             <h2 className="text-2xl md:text-4xl font-bold mb-4">
               Plan an Unforgettable Experience at Your Favorite Spot Today!
             </h2>
-            <p className="mx-auto w-fit mb-8 md:text-lg bg-black/10 text-white backdrop-blur-md font-medium py-2.5 px-5 rounded-3xl lg:rounded-full">
+            <p className="mx-auto w-fit mb-8 md:text-lg bg-black/20 text-white backdrop-blur-md font-medium py-2.5 px-5 rounded-3xl lg:rounded-full">
               We can help you fit your stay and experience within your allotted budget.
             </p>
 
-            <p className="uppercase text-xs tracking-wide mb-1 flex items-center justify-center gap-1">
-              <CalendarCheck size={16} /> Book your stay now
-            </p>
-            <p className="text-xl md:text-3xl font-bold flex justify-center items-center gap-2">
-              <Phone size={22} /> 0092 340 3120120
-            </p>
-            <p className="text-xl md:text-3xl font-bold flex justify-center items-center gap-2">
-              <Phone size={22} /> 0092 300 1203041
-            </p>
+            <div className="rounded-3xl bg-black/20 text-white backdrop-blur-md font-medium py-3.5 px-5">
+
+              <p className="uppercase text-xs tracking-wide mb-3 flex items-center justify-center gap-1.5">
+                <CalendarCheck className='size-4.5' /> Book your stay now
+              </p>
+              <p className="text-xl md:text-3xl font-bold flex justify-center items-center gap-2">
+                <Phone className='size-6' /> 0092 340 3120120
+              </p>
+              <p className="text-xl md:text-3xl font-bold flex justify-center items-center gap-2">
+                <Phone className='size-6' /> 0092 300 1203041
+              </p>
+            </div>
           </div>
         </div>
       </section>
