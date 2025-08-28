@@ -2,8 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import Image, { StaticImageData } from "next/image";
-import Reviews from "./reviews";
-import { Phone, CalendarCheck, ArrowRightIcon } from "lucide-react";
+import { Phone, CalendarCheck, ArrowRightIcon, StarIcon } from "lucide-react";
 import chitral from "@/public/images/chitral.jpg";
 import kashmir from '@/public/images/kashmir.jpg'
 import nationalpark from "@/public/images/nationalpark.jpg";
@@ -21,6 +20,32 @@ import Link from 'next/link';
 
 const supabase = createClient();
 
+const reviews = [
+  {
+    name: "Ayesha Siddiqui",
+    review: "This place is absolutely stunning. The view, the staff, everything was perfect!",
+  },
+  {
+    name: "Ahmed Khan",
+    review: "I had a great time here with my family. Highly recommended for a peaceful vacation.",
+  },
+  {
+    name: "Fatima Zahra",
+    review: "The service was top-notch and the location is just breathtaking.",
+  },
+  {
+    name: "Bilal Ahmed",
+    review: "A truly magical place. Can't wait to return!",
+  },
+  {
+    name: "Zainab Ali",
+    review: "Perfect for a quiet getaway with a breathtaking view.",
+  },
+  {
+    name: "Usman Malik",
+    review: "Friendly staff, great food, and a cozy environment.",
+  },
+];
 
 export default function Main() {
   const router = useRouter();
@@ -69,10 +94,10 @@ export default function Main() {
 
   return (
     <>
-      <main className="container mt-10 md:mt-16 space-y-10 md:space-y-18 px-4 mx-auto">
+      <main className="container mt-10 md:mt-16 space-y-10 md:space-y-20 px-4 mx-auto">
         <section className="mb-18 md:mb-28">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="xl:text-3xl md:text-2xl text-xl font-bold">Package Types</h2>
+            <h2 className="xl:text-4xl lg:text-3xl md:text-2xl text-xl font-semibold">Package Types</h2>
             <ViewMoreButton href='/tours' label='View All' />
           </div>
           <div className="grid md:grid-cols-3 gap-4 lg:gap-6">
@@ -83,7 +108,7 @@ export default function Main() {
         </section>
         <section className=''>
           <div className="flex justify-between items-center mb-6">
-            <h2 className="xl:text-3xl md:text-2xl text-xl font-bold">Top Packages</h2>
+            <h2 className="xl:text-4xl lg:text-3xl md:text-2xl text-xl font-semibold">Top Packages</h2>
             <ViewMoreButton href='/tours' />
           </div>
 
@@ -97,7 +122,7 @@ export default function Main() {
         <section className="grid md:grid-cols-2 gap-8 items-center">
           <div>
             <Image src={image6} alt="Scenery" className="rounded-lg shadow-md mb-4 w-full h-64 md:h-[350px] lg:h-[500px]" />
-            <h2 className="text-3xl  font-bold mb-2">Experience the Life of Kaghan Valley, Balakot, Pakistan</h2>
+            <h2 className="text-3xl font-bold mb-2">Experience the Life of Kaghan Valley, Balakot, Pakistan</h2>
             <p className="text-gray-600 mb-4">
               Discover the serene beauty and vibrant life of Mykonos City. Enjoy top-tier service, beautiful scenery, and unforgettable experiences.
             </p>
@@ -123,8 +148,8 @@ export default function Main() {
 
         {/* Section: Inside Pictures */}
         <section>
-          <h2 className="xl:text-3xl md:text-2xl text-xl font-bold text-center mb-1">Our Inside Gallery</h2>
-          <p className="text-center text-gray-600 mb-10 font-medium">Take a look at some pretty pictures captured in and around our premises.</p>
+          <h2 className="xl:text-4xl lg:text-3xl md:text-2xl text-xl font-semibold mb-1">Our Inside Gallery</h2>
+          <p className="text-gray-600 mb-6 font-medium">Take a look at some pretty pictures captured on tours.</p>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-2">
             {[chitral, image5, image4,].map((img, i) => (
               <Image
@@ -135,7 +160,45 @@ export default function Main() {
               />
             ))}
           </div>
-          <Reviews />
+        </section>
+        <section className="mb-12 md:mb-20">
+          <h2 className="xl:text-4xl lg:text-3xl md:text-2xl text-xl font-semibold mb-6">Reviews</h2>
+
+          {/* MOBILE (max 3 reviews) */}
+          <div className="grid grid-cols-1 gap-6 md:hidden">
+            {reviews.slice(0, 3).map((r, idx) => (
+              <div
+                key={idx}
+                className="bg-white p-4 rounded-lg shadow text-left hover:shadow-lg transition"
+              >
+                <div className="flex items-center gap-1 mb-3 text-yellow-500">
+                  {[...Array(4)].map((_, i) => (
+                    <StarIcon key={i} size={16} fill="currentColor" />
+                  ))}
+                </div>
+                <p className="text-gray-700 mb-2 text-sm italic">{r.review}</p>
+                <p className="font-semibold text-gray-900 text-sm">{r.name}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* DESKTOP (all reviews) */}
+          <div className="hidden md:grid grid-cols-3 gap-4">
+            {reviews.map((r, idx) => (
+              <div
+                key={idx}
+                className="p-5 rounded-2xl bg-primary/5 flex flex-col border border-primary/30 text-left transition"
+              >
+                <div className="flex items-center gap-1.5 mb-2 text-yellow-500">
+                  {[...Array(5)].map((_, i) => (
+                    <StarIcon key={i} size={18} fill="currentColor" />
+                  ))}
+                </div>
+                <p className="mb-4 italic font-medium">{r.review}</p>
+                <p className="text-gray-700 font-semibold mt-auto">{r.name}</p>
+              </div>
+            ))}
+          </div>
         </section>
       </main>
       <section className="relative h-[500px] text-white">
@@ -166,10 +229,10 @@ export default function Main() {
                 <CalendarCheck className='size-4.5' /> Book your stay now
               </p>
               <p className="text-xl md:text-3xl font-bold flex justify-center items-center gap-2">
-                <Phone className='size-6' /> 0092 340 3120120
+                <Phone fill='currentColor' className='size-6' /> 0092 340 3120120
               </p>
               <p className="text-xl md:text-3xl font-bold flex justify-center items-center gap-2">
-                <Phone className='size-6' /> 0092 300 1203041
+                <Phone fill='currentColor' className='size-6' /> 0092 300 1203041
               </p>
             </div>
           </div>
@@ -183,7 +246,7 @@ function ViewMoreButton({ href, label }: { href: string, label?: string }) {
   return (
     <Link
       href={href}
-      className="px-3.5 py-1.5 text-sm md:text-base bg-gray-100 rounded-full hover:bg-primary hover:text-white cursor-pointer transition font-medium flex items-center gap-1.5"
+      className="px-3.5 py-1.5 text-sm md:text-base bg-gray-100 rounded-full hover:bg-primary hover:text-white cursor-pointer transition font-medium flex items-center gap-1.5 tracking-normal"
     >
       {label ?? 'View More'}
       <ArrowRightIcon className='size-4.5' />
