@@ -32,7 +32,9 @@ export default async function ToursPage({ searchParams }: {
       </div>
 
       {filteredPackages.length === 0 ? (
-        <div className='text-lg text-center'>No packages available, try removing any filters if applied.</div>
+        <div className='text-gray-600 font-medium text-center'>
+          No packages available, try removing any filters if applied.
+        </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredPackages.map(pkg => <TourCard key={pkg.id} pkg={pkg} />)}

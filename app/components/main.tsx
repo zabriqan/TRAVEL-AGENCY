@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from 'next/navigation';
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import ProductCard from "./productcard";
 import Reviews from "./reviews";
 import { Phone, CalendarCheck, ArrowRightIcon } from "lucide-react";
@@ -9,10 +9,12 @@ import chitral from "@/public/images/chitral.jpg";
 import kashmir from '@/public/images/kashmir.jpg'
 import nationalpark from "@/public/images/nationalpark.jpg";
 import naran from "@/public/images/naran.jpg";
+import umrah from "@/public/images/umrah.jpg";
 import image4 from "@/public/images/image4.jpg";
 import image5 from "@/public/images/image5.jpg";
 import image6 from "@/public/images/image6.jpg";
 import image7 from "@/public/images/image7.jpg";
+import california from "@/public/images/california.jpg";
 import { createClient } from "@/app/lib/utils/supabase/browser";
 import { useEffect, useState } from 'react';
 import TourCard from './tour-card';
@@ -68,7 +70,18 @@ export default function Main() {
 
   return (
     <>
-      <main className="container mt-10 md:mt-20 space-y-10 md:space-y-20 px-4 mx-auto">
+      <main className="container mt-10 md:mt-16 space-y-10 md:space-y-18 px-4 mx-auto">
+        <section className="">
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="xl:text-3xl md:text-2xl text-xl font-bold">Package Types</h2>
+            <ViewMoreButton href='/tours' label='View All' />
+          </div>
+          <div className="grid md:grid-cols-3 gap-2.5 lg:gap-5">
+            {[['umrah', umrah], ['domestic', image7], ['international', california]].map(([label, src]) => (
+              <PackageTypeCard src={src as StaticImageData} label={label as string} key={label as string} />
+            ))}
+          </div>
+        </section>
         <section className=''>
           <div className="flex justify-between items-center mb-6">
             <h2 className="xl:text-3xl md:text-2xl text-xl font-bold">Top Packages</h2>
@@ -185,14 +198,24 @@ export default function Main() {
   );
 }
 
-function ViewMoreButton({ href }: { href: string }) {
+function ViewMoreButton({ href, label }: { href: string, label?: string }) {
   return (
     <Link
       href={href}
       className="px-3.5 py-1.5 text-sm md:text-base bg-gray-100 rounded-full hover:bg-primary hover:text-white cursor-pointer transition font-medium flex items-center gap-1.5"
     >
-      View More
+      {label ?? 'View More'}
       <ArrowRightIcon className='size-4.5' />
+    </Link>
+  )
+}
+
+function PackageTypeCard({ label, src }: { label: string, src: StaticImageData }) {
+  return (
+    <Link href={`/tours?type=${label}`} className="h-32 md:h-64 xl:h-72 relative group p-3 md:p-5 xl:p-8 rounded-3xl overflow-hidden flex">
+      <Image src={src} alt={`Image for ${label} card`} className='absolute inset-0 h-full object-cover -z-10' />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/10 group-hover:bg-black/20 -z-5 transition" />
+      <h3 className="text-xl md:text-2xl xl:text-4xl font-bold capitalize text-white self-end drop-shadow-md">{label}</h3>
     </Link>
   )
 }
